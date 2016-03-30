@@ -1,18 +1,28 @@
 #include <SDL.h>
 #include <iostream>
 #include "InputManager.h"
+#include "Window.h"
 
-int main(int argc, char **argv)
+static const int WINDOW_WIDTH = 1024;
+static const int WINDOW_HEIGHT = 1024;
+
+int main(int argc, char ** argv)
 {
-	InputManager *input = new InputManager(); // Could be placed on stack instead
-	
-	// main game loop (by all means not finished)
-	while (!input->GetFlagQuit) {
-		input->HandleInputEvents();
-
+	try {
+		Breakout::Window window(WINDOW_WIDTH, WINDOW_HEIGHT);
+	}
+	catch (const char * msg) {
+		std::cerr << msg << std::endl;
+		system("pause");
+		return EXIT_FAILURE;
 	}
 
-	delete input;
+	Breakout::InputManager input;
+	while (!input.GetFlagQuit()) // Intended to be the main game loop
+	{
+		input.HandleInputEvents();
+		SDL_Delay(3000);
+	}
 
 	return EXIT_SUCCESS;
 }
