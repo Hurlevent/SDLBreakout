@@ -6,7 +6,7 @@ public:
 	Timer();
 	~Timer();
 private:
-
+	long time;
 };
 
 #endif
