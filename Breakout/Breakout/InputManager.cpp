@@ -50,13 +50,16 @@ namespace Breakout {
         }
     }
     
+    
+    
     void InputManager::clear_flags()
     {
         // Should hopefully set all the flags to flase. i must be initialized to the first flag,
         // and must not be greater than the last flag.
-        for (bool *i = &up; i <= &quit; i++) {
+        for (bool * i = &up; i <= &quit; i++) {
             *i = false;
         }
+        
     }
 }
 

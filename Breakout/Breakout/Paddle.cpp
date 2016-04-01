@@ -36,8 +36,8 @@ namespace Breakout {
         // Making sure that the paddle can't move out of bounds
         if(properties->x < 0){
             properties->x = 0;
-        } else if(properties->x > (win->get_width - properties->w)){
-            properties->x = win->get_width;
+        } else if((properties->x + properties->w) > win->get_width()){
+            properties->x = win->get_height();
         }
         
         // updating collider position to match properties

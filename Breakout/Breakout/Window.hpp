@@ -28,8 +28,8 @@ namespace Breakout {
         void clear_render();
         void render_fill_rect(const SDL_Rect *rect) const;
         void render_present();
-        int get_height;
-        int get_width;
+        int get_height()const{return _height;};
+        int get_width()const{return _width;};
     private:
         int _width;
         int _height;

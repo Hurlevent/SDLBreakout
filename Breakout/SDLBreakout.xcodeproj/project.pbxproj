@@ -47,7 +47,6 @@
 		4540BE3E1CAE87A800B76E1B /* Vector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vector.cpp; path = Breakout/Vector.cpp; sourceTree = SOURCE_ROOT; };
 		4540BE3F1CAE87A800B76E1B /* Vector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Vector.hpp; path = Breakout/Vector.hpp; sourceTree = SOURCE_ROOT; };
 		4540BE401CAE87A800B76E1B /* Window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Window.cpp; path = Breakout/Window.cpp; sourceTree = SOURCE_ROOT; };
-		4540BE411CAE87A800B76E1B /* Window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Window.h; path = Breakout/Window.h; sourceTree = SOURCE_ROOT; };
 		4540BE421CAE87A800B76E1B /* Window.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Window.hpp; path = Breakout/Window.hpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -99,7 +98,6 @@
 				4540BE3E1CAE87A800B76E1B /* Vector.cpp */,
 				4540BE3F1CAE87A800B76E1B /* Vector.hpp */,
 				4540BE401CAE87A800B76E1B /* Window.cpp */,
-				4540BE411CAE87A800B76E1B /* Window.h */,
 				4540BE421CAE87A800B76E1B /* Window.hpp */,
 			);
 			name = Breakout;
