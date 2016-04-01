@@ -11,6 +11,17 @@
 #include <math.h>
 
 namespace Breakout {
+    /*
+    template <typename T>
+    struct is_valid{
+        bool value = false;
+    };
+    
+    template <>
+    struct is_valid<int>{
+        bool value = true;
+    };*/
+    
     class Vector{
     public:
         Vector();

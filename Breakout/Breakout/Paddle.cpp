@@ -37,7 +37,7 @@ namespace Breakout {
         if(properties->x < 0){
             properties->x = 0;
         } else if((properties->x + properties->w) > win->get_width()){
-            properties->x = win->get_height();
+            properties->x = (win->get_width() - properties->w);
         }
         
         // updating collider position to match properties
@@ -48,6 +48,7 @@ namespace Breakout {
         win->render_fill_rect(properties);
     }
     
+    // it is important to understand that _speed is an integer, we should probably replace it with double
     void Paddle::calculate_velocity(const InputManager * input){
         if(input->get_flag_right()){
             properties->x += (1 * _speed);

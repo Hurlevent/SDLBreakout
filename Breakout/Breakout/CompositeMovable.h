@@ -14,6 +14,10 @@
 #include "IMovable.hpp"
 
 namespace Breakout {
+    
+    // Do you remember the design pattern composite??
+    // I think it can be used for updating the positions of our gameObjects
+    
     class CompositeMovable : public IMovable{
     public:
         CompositeMovable();
@@ -24,7 +28,7 @@ namespace Breakout {
         std::vector<IMovable *> childMovables;
     };
     
-    CompositeMovable::CompositeMovable(){}
+    CompositeMovable::CompositeMovable(){};
     CompositeMovable::~CompositeMovable(){};
 }
 
