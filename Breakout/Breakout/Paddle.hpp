@@ -36,9 +36,7 @@ namespace Breakout {
         
         void set_speed(const int speed){_speed = speed;};
         
-        void update_position(const Window * win);
-        
-        void calculate_velocity(const InputManager * input);
+        void update_position(const Window * win, const InputManager * input);
         
     private:
         Color color;

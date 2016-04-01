@@ -10,11 +10,12 @@
 #define IMovable_hpp
 
 #include "Window.hpp"
+#include "InputManager.h"
 
 namespace Breakout {
     class IMovable{
     public:
-        virtual void update_position(const Window * win) = 0;
+        virtual void update_position(const Window * win, const InputManager * input = nullptr) = 0;
     };
 }
 

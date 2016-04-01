@@ -44,9 +44,7 @@ int main(int argc, const char ** argv) {
             window.set_render_draw_color(0xFF, 0x00, 0x00, 0x00);
             window.render_fill_rect(&fillrect);
             
-            paddle.calculate_velocity(&input);
-            
-            game_objects.update_position(&window);
+            game_objects.update_position(&window, &input);
             
             window.render_present();
         }

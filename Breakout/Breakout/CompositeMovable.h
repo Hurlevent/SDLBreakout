@@ -23,7 +23,7 @@ namespace Breakout {
         CompositeMovable();
         ~CompositeMovable();
         void add(IMovable * element){ childMovables.push_back(element);};
-        void update_position(const Window * win){for(int i = 0; i < childMovables.size(); i++)childMovables[i]->update_position(win);}
+        void update_position(const Window * win, const InputManager * input){for(int i = 0; i < childMovables.size(); i++)childMovables[i]->update_position(win, input);}
     private:
         std::vector<IMovable *> childMovables;
     };
