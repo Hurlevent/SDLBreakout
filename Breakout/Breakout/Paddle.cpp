@@ -30,10 +30,13 @@ namespace Breakout {
     
     void Paddle::update_position(const Window * win, const InputManager * input){
         // it is important to understand that _speed is an integer, we should probably replace it with double
-        if(input->get_flag_right()){
-            properties->x += (1 * _speed);
-        } else if(input->get_flag_left()){
-            properties->x += (-1 * _speed);
+        
+        if(input != nullptr){
+            if(input->get_flag_right()){
+                properties->x += (1 * _speed);
+            } else if(input->get_flag_left()){
+                properties->x += (-1 * _speed);
+            }
         }
         
         // the paddle doesn't need constant movement, so the velocity member variable could be removed
