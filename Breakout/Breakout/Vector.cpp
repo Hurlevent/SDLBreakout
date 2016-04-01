@@ -24,6 +24,7 @@ namespace Breakout {
         
     }
     
+    
     double Vector::length() const {
         return sqrt(_x*_x + _y*_y);
     }

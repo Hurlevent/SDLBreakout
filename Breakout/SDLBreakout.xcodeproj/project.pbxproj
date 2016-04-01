@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		450722EA1CAEB4B3003C8E93 /* Brick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450722E81CAEB4B3003C8E93 /* Brick.cpp */; };
 		4540BE301CAE875D00B76E1B /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4540BE2F1CAE875D00B76E1B /* SDL2.framework */; };
 		4540BE321CAE877000B76E1B /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4540BE311CAE877000B76E1B /* SDL2_ttf.framework */; };
 		4540BE341CAE878000B76E1B /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4540BE331CAE878000B76E1B /* SDL2_image.framework */; };
@@ -31,12 +32,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		450722E81CAEB4B3003C8E93 /* Brick.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Brick.cpp; path = Breakout/Brick.cpp; sourceTree = SOURCE_ROOT; };
+		450722E91CAEB4B3003C8E93 /* Brick.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Brick.hpp; path = Breakout/Brick.hpp; sourceTree = SOURCE_ROOT; };
+		450722EB1CAEB60D003C8E93 /* Color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Color.h; path = Breakout/Color.h; sourceTree = SOURCE_ROOT; };
 		4538C5281CAD934100142A67 /* SDLBreakout */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SDLBreakout; sourceTree = BUILT_PRODUCTS_DIR; };
 		4540BE2F1CAE875D00B76E1B /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		4540BE311CAE877000B76E1B /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
 		4540BE331CAE878000B76E1B /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
-		4540BE351CAE87A800B76E1B /* CompositeMovable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CompositeMovable.h; path = Breakout/CompositeMovable.h; sourceTree = SOURCE_ROOT; };
-		4540BE361CAE87A800B76E1B /* IMovable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = IMovable.hpp; path = Breakout/IMovable.hpp; sourceTree = SOURCE_ROOT; };
+		4540BE351CAE87A800B76E1B /* CompositeRenderable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CompositeRenderable.h; path = Breakout/CompositeRenderable.h; sourceTree = SOURCE_ROOT; };
+		4540BE361CAE87A800B76E1B /* IRenderable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = IRenderable.hpp; path = Breakout/IRenderable.hpp; sourceTree = SOURCE_ROOT; };
 		4540BE371CAE87A800B76E1B /* InputManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InputManager.cpp; path = Breakout/InputManager.cpp; sourceTree = SOURCE_ROOT; };
 		4540BE381CAE87A800B76E1B /* InputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InputManager.h; path = Breakout/InputManager.h; sourceTree = SOURCE_ROOT; };
 		4540BE391CAE87A800B76E1B /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = Breakout/main.cpp; sourceTree = SOURCE_ROOT; };
@@ -86,8 +90,8 @@
 		4538C52A1CAD934100142A67 /* Breakout */ = {
 			isa = PBXGroup;
 			children = (
-				4540BE351CAE87A800B76E1B /* CompositeMovable.h */,
-				4540BE361CAE87A800B76E1B /* IMovable.hpp */,
+				4540BE351CAE87A800B76E1B /* CompositeRenderable.h */,
+				4540BE361CAE87A800B76E1B /* IRenderable.hpp */,
 				4540BE371CAE87A800B76E1B /* InputManager.cpp */,
 				4540BE381CAE87A800B76E1B /* InputManager.h */,
 				4540BE391CAE87A800B76E1B /* main.cpp */,
@@ -99,6 +103,9 @@
 				4540BE3F1CAE87A800B76E1B /* Vector.hpp */,
 				4540BE401CAE87A800B76E1B /* Window.cpp */,
 				4540BE421CAE87A800B76E1B /* Window.hpp */,
+				450722E81CAEB4B3003C8E93 /* Brick.cpp */,
+				450722E91CAEB4B3003C8E93 /* Brick.hpp */,
+				450722EB1CAEB60D003C8E93 /* Color.h */,
 			);
 			name = Breakout;
 			path = SDLBreakout;
@@ -162,6 +169,7 @@
 			files = (
 				4540BE481CAE87A800B76E1B /* Window.cpp in Sources */,
 				4540BE471CAE87A800B76E1B /* Vector.cpp in Sources */,
+				450722EA1CAEB4B3003C8E93 /* Brick.cpp in Sources */,
 				4540BE431CAE87A800B76E1B /* InputManager.cpp in Sources */,
 				4540BE441CAE87A800B76E1B /* main.cpp in Sources */,
 				4540BE451CAE87A800B76E1B /* Paddle.cpp in Sources */,

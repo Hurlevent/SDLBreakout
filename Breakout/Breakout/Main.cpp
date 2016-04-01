@@ -14,7 +14,7 @@
 #include <iostream>
 #include "InputManager.h"
 #include "Window.hpp"
-#include "CompositeMovable.h"
+#include "CompositeRenderable.h"
 #include "Paddle.hpp"
 
 static const int WINDOW_WIDTH = 640;
@@ -26,12 +26,12 @@ int main(int argc, const char ** argv) {
         
         Breakout::Window window(WINDOW_WIDTH, WINDOW_HEIGHT);
         Breakout::InputManager input;
-        Breakout::CompositeMovable game_objects;
+        Breakout::CompositeRenderable game_objects;
         
         Breakout::Paddle paddle((WINDOW_WIDTH - 50) / 2, WINDOW_HEIGHT - 50);
         paddle.set_speed(10);
         
-        game_objects.add(reinterpret_cast<Breakout::IMovable *>(&paddle));
+        game_objects.add(reinterpret_cast<Breakout::IRenderable *>(&paddle));
         
         
         while (!input.get_flag_quit()) { // this is supposed to be the main game-loop
@@ -44,7 +44,7 @@ int main(int argc, const char ** argv) {
             window.set_render_draw_color(0xFF, 0x00, 0x00, 0x00);
             window.render_fill_rect(&fillrect);
             
-            game_objects.update_position(&window, &input);
+            game_objects.render_object(&window, &input);
             
             window.render_present();
         }

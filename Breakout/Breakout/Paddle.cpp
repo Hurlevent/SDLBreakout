@@ -28,7 +28,7 @@ namespace Breakout {
         collider = nullptr;
     }
     
-    void Paddle::update_position(const Window * win, const InputManager * input){
+    void Paddle::render_object(const Window * win, const InputManager * input){
         // it is important to understand that _speed is an integer, we should probably replace it with double
         
         if(input != nullptr){

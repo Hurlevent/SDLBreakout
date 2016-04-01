@@ -6,16 +6,16 @@
 //  Copyright © 2016 SDLBreakout. All rights reserved.
 //
 
-#ifndef IMovable_hpp
-#define IMovable_hpp
+#ifndef IRenderable_hpp
+#define IRenderable_hpp
 
 #include "Window.hpp"
 #include "InputManager.h"
 
 namespace Breakout {
-    class IMovable{
+    class IRenderable{
     public:
-        virtual void update_position(const Window * win, const InputManager * input = nullptr) = 0;
+        virtual void render_object(const Window * win, const InputManager * input = nullptr) = 0;
     };
 }
 
