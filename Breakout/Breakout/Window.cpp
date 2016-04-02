@@ -10,6 +10,7 @@
 #include <iostream>
 namespace Breakout {
     
+    // Creates an SDL_Window
     bool create_window(SDL_Window ** window, const int width, const int height){
         bool success = true;
         
@@ -29,6 +30,7 @@ namespace Breakout {
         return success;
     }
     
+    // Creates an SDL_Renderer, and sets it's color to white
     bool create_renderer(SDL_Window ** window, SDL_Renderer ** renderer){
         bool success = true;
         
@@ -45,12 +47,19 @@ namespace Breakout {
         return success;
     }
     
+    // This is were all our sprites and TTF's should be loaded
     bool load_media(){
         bool success = true;
         
         
         
         return success;
+    }
+    
+    void init_timer(Timer * timer, int * counted_frames){
+        
+        timer->start();
+        *counted_frames = 0;
     }
     
     Window::Window(const int width, const int height){
@@ -78,6 +87,8 @@ namespace Breakout {
         }
         
         std::cout << "Loaded sprites!" << std::endl;
+        
+        init_timer(&timer, &counted_frames);
     }
     
     Window::~Window(){
@@ -104,4 +115,25 @@ namespace Breakout {
     }
     
     
+    void Window::capture_start_of_frame(){
+        time_start_of_frame = static_cast<int>(SDL_GetTicks());
+    }
+    
+    void Window::capture_end_of_frame(){
+        delta_time = static_cast<int>(SDL_GetTicks()) - time_start_of_frame;
+        counted_frames++;
+    }
+    
+    float Window::get_fps()const{
+        double fps = counted_frames / (timer.elapsed_time() / 1000.f);
+        if(fps > 0xFFFFFFFF){
+            fps = -1;
+        }
+        return fps;
+    }
+    
+    void Window::reset_fps(){
+        timer.stop();
+        init_timer(&timer, &counted_frames);
+    }
 }

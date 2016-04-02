@@ -6,6 +6,8 @@
 //  Copyright © 2016 SDLBreakout. All rights reserved.
 //
 
+// This class represents the paddle which the player is controlling.
+
 #ifndef Paddle_hpp
 #define Paddle_hpp
 
@@ -29,16 +31,18 @@ namespace Breakout {
         Paddle(const int posX, const int posY, const int width = 100, const int height = 50);
         ~Paddle();
         
-        void set_speed(const int speed){_speed = speed;};
+        void set_speed(const double speed){_speed = speed;};
         
         void render_object(const Window * win, const InputManager * input = nullptr);
+        
+        void set_colors(const uint8_t red, const uint8_t green, const uint8_t blue, const uint8_t alpha);
 
     private:
         Color color;
         SDL_Rect * properties;
         SDL_Rect * collider;
         Vector * velocity; // paddle doesn't really need constant movement. I should remove this
-        int _speed;
+        double _speed;
     };
 }
 

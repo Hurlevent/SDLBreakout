@@ -6,21 +6,13 @@
 //  Copyright © 2016 SDLBreakout. All rights reserved.
 //
 
+// This class can be used by moving game_objects to calculate the direction in which the object is moving towards
+
 #ifndef Vector_hpp
 #define Vector_hpp
 #include <math.h>
 
 namespace Breakout {
-    /*
-    template <typename T>
-    struct is_valid{
-        bool value = false;
-    };
-    
-    template <>
-    struct is_valid<int>{
-        bool value = true;
-    };*/
     
     class Vector{
     public:

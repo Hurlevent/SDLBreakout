@@ -1,3 +1,5 @@
+// This class listens to input events
+
 #ifndef INPUTMANAGER
 #define INPUTMANAGER
 

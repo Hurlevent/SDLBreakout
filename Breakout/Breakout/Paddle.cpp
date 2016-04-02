@@ -29,13 +29,12 @@ namespace Breakout {
     }
     
     void Paddle::render_object(const Window * win, const InputManager * input){
-        // it is important to understand that _speed is an integer, we should probably replace it with double
         
         if(input != nullptr){
             if(input->get_flag_right()){
-                properties->x += (1 * _speed);
+                properties->x += static_cast<int>((1 * _speed));
             } else if(input->get_flag_left()){
-                properties->x += (-1 * _speed);
+                properties->x += static_cast<int>((-1 * _speed));
             }
         }
         
@@ -56,5 +55,12 @@ namespace Breakout {
         
         win->set_render_draw_color(color.color_red, color.color_green, color.color_blue, color.color_alpha);
         win->render_fill_rect(properties);
+    }
+    
+    void Paddle::set_colors(const uint8_t r, const uint8_t g, const uint8_t b, const uint8_t a){
+        color.color_red = r;
+        color.color_green = g;
+        color.color_blue = b;
+        color.color_alpha = a;
     }
 }

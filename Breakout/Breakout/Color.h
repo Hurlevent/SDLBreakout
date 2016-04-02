@@ -9,6 +9,7 @@
 #ifndef Color_h
 #define Color_h
 
+// default color: red
 typedef struct {
     uint8_t color_red = 0xFF;
     uint8_t color_green = 0x00;

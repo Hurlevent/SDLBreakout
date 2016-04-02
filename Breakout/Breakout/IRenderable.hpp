@@ -6,6 +6,8 @@
 //  Copyright © 2016 SDLBreakout. All rights reserved.
 //
 
+// This is an interface that all game_objects is supposed to inherit from
+
 #ifndef IRenderable_hpp
 #define IRenderable_hpp
 

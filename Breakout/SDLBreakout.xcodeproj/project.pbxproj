@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		450722EA1CAEB4B3003C8E93 /* Brick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450722E81CAEB4B3003C8E93 /* Brick.cpp */; };
+		450722EE1CB0192B003C8E93 /* Viewport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450722EC1CB0192B003C8E93 /* Viewport.cpp */; };
 		4540BE301CAE875D00B76E1B /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4540BE2F1CAE875D00B76E1B /* SDL2.framework */; };
 		4540BE321CAE877000B76E1B /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4540BE311CAE877000B76E1B /* SDL2_ttf.framework */; };
 		4540BE341CAE878000B76E1B /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4540BE331CAE878000B76E1B /* SDL2_image.framework */; };
@@ -35,6 +36,8 @@
 		450722E81CAEB4B3003C8E93 /* Brick.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Brick.cpp; path = Breakout/Brick.cpp; sourceTree = SOURCE_ROOT; };
 		450722E91CAEB4B3003C8E93 /* Brick.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Brick.hpp; path = Breakout/Brick.hpp; sourceTree = SOURCE_ROOT; };
 		450722EB1CAEB60D003C8E93 /* Color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Color.h; path = Breakout/Color.h; sourceTree = SOURCE_ROOT; };
+		450722EC1CB0192B003C8E93 /* Viewport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Viewport.cpp; path = Breakout/Viewport.cpp; sourceTree = SOURCE_ROOT; };
+		450722ED1CB0192B003C8E93 /* Viewport.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Viewport.hpp; path = Breakout/Viewport.hpp; sourceTree = SOURCE_ROOT; };
 		4538C5281CAD934100142A67 /* SDLBreakout */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SDLBreakout; sourceTree = BUILT_PRODUCTS_DIR; };
 		4540BE2F1CAE875D00B76E1B /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		4540BE311CAE877000B76E1B /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
@@ -106,6 +109,8 @@
 				450722E81CAEB4B3003C8E93 /* Brick.cpp */,
 				450722E91CAEB4B3003C8E93 /* Brick.hpp */,
 				450722EB1CAEB60D003C8E93 /* Color.h */,
+				450722EC1CB0192B003C8E93 /* Viewport.cpp */,
+				450722ED1CB0192B003C8E93 /* Viewport.hpp */,
 			);
 			name = Breakout;
 			path = SDLBreakout;
@@ -172,6 +177,7 @@
 				450722EA1CAEB4B3003C8E93 /* Brick.cpp in Sources */,
 				4540BE431CAE87A800B76E1B /* InputManager.cpp in Sources */,
 				4540BE441CAE87A800B76E1B /* main.cpp in Sources */,
+				450722EE1CB0192B003C8E93 /* Viewport.cpp in Sources */,
 				4540BE451CAE87A800B76E1B /* Paddle.cpp in Sources */,
 				4540BE461CAE87A800B76E1B /* Timer.cpp in Sources */,
 			);
