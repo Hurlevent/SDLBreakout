@@ -12,10 +12,12 @@
 #endif
 
 #include <iostream>
+#include <memory>
 #include "InputManager.h"
 #include "Window.hpp"
 #include "CompositeRenderable.h"
 #include "Paddle.hpp"
+#include "Brick.hpp"
 
 static const int WINDOW_WIDTH = 640;
 static const int WINDOW_HEIGHT = 480;
@@ -31,6 +33,13 @@ int main(int argc, const char ** argv) {
         Breakout::Paddle paddle((WINDOW_WIDTH - 50) / 2, WINDOW_HEIGHT - 50);
         paddle.set_speed(10);
         
+        int brickWidth = 20;
+        
+        // add bricks here
+        std::shared_ptr<Breakout::Brick> brick_ptr;
+        
+        
+        
         game_objects.add(reinterpret_cast<Breakout::IRenderable *>(&paddle));
         
         
@@ -39,10 +48,6 @@ int main(int argc, const char ** argv) {
             
             window.set_render_draw_color(0xFF, 0xFF, 0xFF, 0xFF);
             window.clear_render();
-        
-            SDL_Rect fillrect = {WINDOW_WIDTH / 4, WINDOW_HEIGHT / 4, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2};
-            window.set_render_draw_color(0xFF, 0x00, 0x00, 0x00);
-            window.render_fill_rect(&fillrect);
             
             game_objects.render_object(&window, &input);
             
