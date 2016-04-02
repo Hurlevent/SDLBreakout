@@ -11,6 +11,7 @@
 #include <SDL2/SDL.h>
 #endif
 
+
 #include <iostream>
 #include <memory>
 #include "InputManager.h"
@@ -22,7 +23,7 @@
 static const int WINDOW_WIDTH = 640;
 static const int WINDOW_HEIGHT = 480;
 
-int main(int argc, const char ** argv) {
+int main(int argc, char ** argv) {
     
     try{
         
