@@ -7,8 +7,8 @@
 //
 #ifdef _WIN32
 #include <SDL.h>
-#include <SDL2_ttf.h>
-#include <SDL2_image.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
 #elif __APPLE__
 #include <SDL2/SDL.h>
 #include <SDL2_ttf/SDL_ttf.h>
