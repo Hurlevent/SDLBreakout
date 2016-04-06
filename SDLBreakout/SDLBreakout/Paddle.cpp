@@ -7,7 +7,7 @@
 //
 
 #include "Paddle.hpp"
-
+#include <iostream>
 namespace Breakout {
     
     Paddle::Paddle(const int posX, const int posY, const int width, const int height){
@@ -30,12 +30,17 @@ namespace Breakout {
     }
     
     void Paddle::render_object(const Window * win, const InputManager * input){
+
+		//Her varierer deltatime fra 1-3 tall.
+		double deltatime = win->get_delta_time();
+		
+		std::cout << "Deltatime: " << deltatime << std::endl;
         
-        if(input != nullptr){
+		if(input != nullptr){
             if(input->get_flag_right()){
-                properties->x += static_cast<int>((1 * _speed));
+                properties->x += static_cast<int>((deltatime/10 * _speed));
             } else if(input->get_flag_left()){
-                properties->x += static_cast<int>((-1 * _speed));
+                properties->x += static_cast<int>((deltatime/10 * -_speed));
             }
         }
         

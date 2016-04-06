@@ -47,6 +47,8 @@ int main(int argc, char ** argv) {
         
         
         while (!input.get_flag_quit()) { // this is supposed to be the main game-loop
+			
+
             window.capture_start_of_frame();
             
             // Reads input events from user
@@ -67,6 +69,7 @@ int main(int argc, char ** argv) {
             
             // Update delta_time
             window.capture_end_of_frame();
+			
         }
         
     } catch(const char * msg){
