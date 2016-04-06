@@ -15,8 +15,12 @@
 
 #ifdef _WIN32
 #include <SDL.h>
+#include <SDL_image.h>
+#include <dirent.h>
 #elif __APPLE__
 #include <SDL2/SDL.h>
+#include <SDL2_image/SDL_image.h>
+#include <dirent.h>
 #endif
 
 #include "Timer.h"
@@ -55,6 +59,7 @@ namespace Breakout {
         int delta_time;
         int time_start_of_frame;
         int counted_frames;
+        SDL_Texture ** textures;
     };
 }
 

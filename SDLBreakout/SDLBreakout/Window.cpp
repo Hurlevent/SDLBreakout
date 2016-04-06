@@ -48,9 +48,17 @@ namespace Breakout {
     }
     
     // This is were all our sprites and TTF's should be loaded
-    bool load_media(){
+    bool load_media(SDL_Texture ** textures){
         bool success = true;
         
+        /*int numberOfTextures;
+        
+        textures = new SDL_Texture[numberOfTextures];
+        
+        for (int i = 0; i < numberOfTextures; i++) {
+            textures[i] = IMG_Load();
+        }
+        */
         
         
         return success;
@@ -82,7 +90,7 @@ namespace Breakout {
         
         std::cout << "Created renderer!" << std::endl;
         
-        if(!load_media()){
+        if(!load_media(textures)){
             std::cerr << "Failed to load sprites: " << SDL_GetError() << std::endl;
         }
         

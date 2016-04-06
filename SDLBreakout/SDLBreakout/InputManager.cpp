@@ -16,7 +16,6 @@ namespace Breakout {
     
     void InputManager::handle_input_events()
     {
-        //clear_flags();
         
         while(SDL_PollEvent(&evntHandler) != 0){
             if (evntHandler.type == SDL_QUIT) {
@@ -48,12 +47,7 @@ namespace Breakout {
                 }
             }
 			else {
-					up = false;
-					down = false;
-					left = false;
-					right = false;
-					space = false;
-					escape = false;
+                clear_flags();
 			}    
         }
     }
