@@ -6,6 +6,7 @@ namespace Breakout {
     
     InputManager::InputManager()
     {
+		clear_flags();
     }
     
     

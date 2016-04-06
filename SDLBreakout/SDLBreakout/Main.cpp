@@ -45,7 +45,6 @@ int main(int argc, char ** argv) {
         
         game_objects.add(reinterpret_cast<Breakout::IRenderable *>(&paddle));
         
-    
         
         while (!input.get_flag_quit()) { // this is supposed to be the main game-loop
             window.capture_start_of_frame();
@@ -78,7 +77,7 @@ int main(int argc, char ** argv) {
     }
     
     
-    
+	system("pause");
     
     return EXIT_SUCCESS;
 }

@@ -15,7 +15,7 @@ namespace Breakout {
     }
     
     Brick::~Brick(){
-        delete properties;
+	delete properties;
         properties = nullptr;
         
         delete collider;

@@ -18,7 +18,7 @@ namespace Breakout {
     
     Paddle::~Paddle(){
         
-        delete velocity;
+       delete velocity;
         velocity = nullptr;
         
         delete properties;
@@ -26,6 +26,7 @@ namespace Breakout {
         
         delete collider;
         collider = nullptr;
+		
     }
     
     void Paddle::render_object(const Window * win, const InputManager * input){
