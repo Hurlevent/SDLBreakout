@@ -16,7 +16,7 @@ namespace Breakout {
     
     void InputManager::handle_input_events()
     {
-        clear_flags();
+        //clear_flags();
         
         while(SDL_PollEvent(&evntHandler) != 0){
             if (evntHandler.type == SDL_QUIT) {
@@ -47,7 +47,14 @@ namespace Breakout {
                         break;
                 }
             }
-            
+			else {
+					up = false;
+					down = false;
+					left = false;
+					right = false;
+					space = false;
+					escape = false;
+			}    
         }
     }
     
@@ -58,7 +65,7 @@ namespace Breakout {
         // Should hopefully set all the flags to flase. i must be initialized to the first flag,
         // and must not be greater than the last flag.
         for (bool * i = &up; i <= &quit; i++) {
-            *i = false;
+				*i = false;
         }
         
     }
