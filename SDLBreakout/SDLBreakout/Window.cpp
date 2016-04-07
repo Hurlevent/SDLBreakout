@@ -52,22 +52,24 @@ namespace Breakout {
         bool success = true;
         
         DIR * dir;
+        struct dirent * ent = nullptr;
         
-        if(nullptr == (dir = opendir("resources/"))){ // da er det viktig at programmet tar utgangspunkt i et directory som har et directory som heter resources/
+        // So this function is not working as intended yet, will hopefully get it to work soon
+        
+        if((dir = opendir("Sprites"))){ // da er det viktig at programmet tar utgangspunkt i et directory som har et directory som heter resources/
             
+            while ((ent = readdir(dir))) { // Read all files from directory
+                std::string filename = ent->d_name;
+                //if(filename[0] != '.'){ // if file is not "hidden"
+                    std::cout << "File" << filename << std::endl;
+                //}
+            }
             closedir(dir);
             
-            success = false;
+            ent = nullptr;
         } else {
-            struct dirent * ent = nullptr;
-            while ((ent = readdir(dir)) != nullptr) { // Read all files from directory
-                std::string filename = ent->d_name;
-                if(filename[0] != '.'){ // if file is not "hidden"
-                    std::cout << "File" << filename << std::endl;
-                }
-            }
+            // success = false;
         }
-        closedir(dir);
         
         /*int numberOfTextures;
         
