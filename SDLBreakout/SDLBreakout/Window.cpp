@@ -82,7 +82,7 @@ namespace Breakout {
     bool load_media(vector<SDL_Texture*> &textures, SDL_Renderer ** renderer){
         bool success = true;
      
-
+		/*
         DIR * dir;
         struct dirent * ent = nullptr;
         
@@ -102,14 +102,12 @@ namespace Breakout {
         } else {
             // success = false;
         }
-        
+        */
       
 		int numberOfTextures = 8;
 	  
 		string path;
-
-        textures = new SDL_Texture[numberOfTextures];
-        
+      
 
         for (int i = 0; i < numberOfTextures; i++) {
 			//Kanskje ikke lage ss for vær gang?! dårlig? ss = i, går ikke.
