@@ -82,11 +82,38 @@ namespace Breakout {
     bool load_media(vector<SDL_Texture*> &textures, SDL_Renderer ** renderer){
         bool success = true;
         
+<<<<<<< HEAD
 		
        int numberOfTextures = 8;
 	  
 		string path;
 	
+=======
+        DIR * dir;
+        struct dirent * ent = nullptr;
+        
+        // So this function is not working as intended yet, will hopefully get it to work soon
+        
+        if((dir = opendir("Sprites"))){ // da er det viktig at programmet tar utgangspunkt i et directory som har et directory som heter resources/
+            
+            while ((ent = readdir(dir))) { // Read all files from directory
+                std::string filename = ent->d_name;
+                //if(filename[0] != '.'){ // if file is not "hidden"
+                    std::cout << "File" << filename << std::endl;
+                //}
+            }
+            closedir(dir);
+            
+            ent = nullptr;
+        } else {
+            // success = false;
+        }
+        
+        /*int numberOfTextures;
+        
+        textures = new SDL_Texture[numberOfTextures];
+        
+>>>>>>> 2002d42d9d91aa1bbfc517b092e4725bb56f7976
         for (int i = 0; i < numberOfTextures; i++) {
 			//Kanskje ikke lage ss for vær gang?! dårlig? ss = i, går ikke.
 			stringstream ss;
