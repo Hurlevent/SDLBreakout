@@ -81,14 +81,8 @@ namespace Breakout {
     // This is were all our sprites and TTF's should be loaded
     bool load_media(vector<SDL_Texture*> &textures, SDL_Renderer ** renderer){
         bool success = true;
-        
-<<<<<<< HEAD
-		
-       int numberOfTextures = 8;
-	  
-		string path;
-	
-=======
+     
+
         DIR * dir;
         struct dirent * ent = nullptr;
         
@@ -109,11 +103,14 @@ namespace Breakout {
             // success = false;
         }
         
-        /*int numberOfTextures;
-        
+      
+		int numberOfTextures = 8;
+	  
+		string path;
+
         textures = new SDL_Texture[numberOfTextures];
         
->>>>>>> 2002d42d9d91aa1bbfc517b092e4725bb56f7976
+
         for (int i = 0; i < numberOfTextures; i++) {
 			//Kanskje ikke lage ss for vær gang?! dårlig? ss = i, går ikke.
 			stringstream ss;
