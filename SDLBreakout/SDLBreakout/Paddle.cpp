@@ -31,7 +31,7 @@ namespace Breakout {
     
     void Paddle::render_object(const Window * win, const InputManager * input){
 
-		//Her varierer deltatime fra 1-3 tall.
+		//Her varierer deltatime fra 1-3 tall, spørs helt hvordan frames er på din maskin.
 		double deltatime = win->get_delta_time();
 		
 		std::cout << "Deltatime: " << deltatime << std::endl;
@@ -59,8 +59,10 @@ namespace Breakout {
         collider->x = properties->x;
         collider->y = properties->y;
         
-        win->set_render_draw_color(color.color_red, color.color_green, color.color_blue, color.color_alpha);
-        win->render_fill_rect(properties);
+		win->render_texture(0, collider);
+		
+		//win->set_render_draw_color(color.color_red, color.color_green, color.color_blue, color.color_alpha);	
+		//win->render_fill_rect(properties);
     }
     
     void Paddle::set_colors(const uint8_t r, const uint8_t g, const uint8_t b, const uint8_t a){

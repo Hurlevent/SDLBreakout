@@ -60,10 +60,15 @@ int main(int argc, char ** argv) {
             
             // tells the renderer to render all game_objects
             game_objects.render_object(&window, &input);
-            
+
+			//Her inneholder alle bildene
+			//window.render_texture(1);
+
+
             // makes the renderer actually draw a picture on screen
             window.render_present();
             
+			
             // just a temporary way to view the fps
             std::cout << "FPS: " << window.get_fps() << std::endl;
             

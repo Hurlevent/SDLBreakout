@@ -16,6 +16,8 @@
 #ifdef _WIN32
 #include <SDL.h>
 #include <SDL_image.h>
+#include <iostream>
+#include <vector>
 //#include <dirent.h>
 #elif __APPLE__
 #include <SDL2/SDL.h>
@@ -31,13 +33,19 @@ namespace Breakout {
     
     class Window {
     public:
-        Window(const int width = default_width, const int height = default_height);
+		
+
+		Window(const int width = default_width, const int height = default_height);
         ~Window();
+
         void set_render_draw_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a) const;
         void clear_render();
         void render_fill_rect(const SDL_Rect *rect) const;
-        void render_present();
-        
+		void render_texture(int id, SDL_Rect* clip)const;
+		void render_present();
+		
+
+		 
         void capture_start_of_frame();
         void capture_end_of_frame();
         
@@ -47,7 +55,6 @@ namespace Breakout {
         
         int get_height()const{return _height;};
         int get_width()const{return _width;};
-
         
     
     private:
@@ -55,11 +62,15 @@ namespace Breakout {
         int _height;
         SDL_Window * _window;
         SDL_Renderer * _renderer;
+		SDL_Renderer * _paddle;
         Timer timer;
         int delta_time;
         int time_start_of_frame;
         int counted_frames;
-        SDL_Texture ** textures;
+		bool failedToLoad;
+		std::vector<SDL_Texture*> textures;
+        //SDL_Texture ** textures;
+		//SDL_Texture * text;
     };
 }
 
