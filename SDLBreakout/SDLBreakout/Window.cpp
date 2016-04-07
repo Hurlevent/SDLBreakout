@@ -51,6 +51,24 @@ namespace Breakout {
     bool load_media(SDL_Texture ** textures){
         bool success = true;
         
+        DIR * dir;
+        
+        if(nullptr == (dir = opendir("resources/"))){ // da er det viktig at programmet tar utgangspunkt i et directory som har et directory som heter resources/
+            
+            closedir(dir);
+            
+            success = false;
+        } else {
+            struct dirent * ent = nullptr;
+            while ((ent = readdir(dir)) != nullptr) { // Read all files from directory
+                std::string filename = ent->d_name;
+                if(filename[0] != '.'){ // if file is not "hidden"
+                    std::cout << "File" << filename << std::endl;
+                }
+            }
+        }
+        closedir(dir);
+        
         /*int numberOfTextures;
         
         textures = new SDL_Texture[numberOfTextures];
