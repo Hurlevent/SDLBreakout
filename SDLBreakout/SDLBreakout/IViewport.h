@@ -9,6 +9,13 @@
 #ifndef Header_h
 #define Header_h
 
+#ifdef _WIN32
+#include <SDL.h>
+#elif __APPLE__
+#include <SDL2/SDL.h>
+#endif
+
+
 namespace Breakout {
     class IViewport{
     public:

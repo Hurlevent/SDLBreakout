@@ -34,6 +34,7 @@ int main(int argc, char ** argv) {
     try{
         // viewport for our game-board
         SDL_Rect gameboard_viewport{0, STATUSBAR_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT - STATUSBAR_HEIGHT};
+        SDL_Rect statusbar_viewport{0, 0, WINDOW_WIDTH, STATUSBAR_HEIGHT};
         
         Breakout::Window window(WINDOW_WIDTH, WINDOW_HEIGHT);
         Breakout::InputManager input;

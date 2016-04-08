@@ -48,6 +48,7 @@ namespace Breakout {
         Vector * velocity; // paddle doesn't really need constant movement. I should remove this
         double m_speed;
         const SDL_Rect * m_viewport;
+        int texture_id;
     };
 }
 
