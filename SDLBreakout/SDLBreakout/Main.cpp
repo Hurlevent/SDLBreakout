@@ -27,19 +27,24 @@
 
 static const int WINDOW_WIDTH = 640;
 static const int WINDOW_HEIGHT = 480;
+static const int STATUSBAR_HEIGHT = 100;
 
 int main(int argc, char ** argv) {
     
     try{
+        // viewport for our game-board
+        SDL_Rect gameboard_viewport{0, STATUSBAR_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT - STATUSBAR_HEIGHT};
         
         Breakout::Window window(WINDOW_WIDTH, WINDOW_HEIGHT);
         Breakout::InputManager input;
         Breakout::CompositeRenderable game_objects;
         
-        Breakout::Paddle paddle((WINDOW_WIDTH - 50) / 2, WINDOW_HEIGHT - 50);
+        Breakout::Paddle paddle((gameboard_viewport.w - 50) / 2, gameboard_viewport.h - 50);
+        paddle.set_viewport(&gameboard_viewport);
         paddle.set_speed(10);
         
-        Breakout::BrickContainer bricks(WINDOW_WIDTH, WINDOW_HEIGHT);
+        Breakout::BrickContainer bricks(gameboard_viewport.w, gameboard_viewport.h);
+        bricks.set_viewport(&gameboard_viewport);
         
         game_objects.add(reinterpret_cast<Breakout::IRenderable *>(&paddle));
         game_objects.add(reinterpret_cast<Breakout::IRenderable *>(&bricks));

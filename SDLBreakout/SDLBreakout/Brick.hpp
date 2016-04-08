@@ -18,9 +18,10 @@
 #include <memory>
 #include "Color.h"
 #include "IRenderable.hpp"
+#include "IViewport.h"
 
 namespace Breakout {
-    class Brick : public IRenderable {
+    class Brick : public IRenderable, public IViewport {
     public:
         Brick(int texture_id, int posX, int posY, int width = 20, int height = 10);
         ~Brick();
@@ -31,12 +32,15 @@ namespace Breakout {
         
         void render_object(const Window * win, const InputManager * input = nullptr);
         
+        void set_viewport(const SDL_Rect * viewport){m_viewport = viewport;};
+        
     private:
         bool m_active;
         Color m_color;
         SDL_Rect * m_collider;
         SDL_Rect * m_properties;
         int m_texture_id;
+        const SDL_Rect * m_viewport;
     };
 }
 

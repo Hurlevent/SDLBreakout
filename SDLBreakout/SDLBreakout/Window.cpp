@@ -178,7 +178,7 @@ namespace Breakout {
         
         SDL_DestroyWindow(_window);
         _window = nullptr;
-	
+        
         IMG_Quit();
         SDL_Quit();
     }
@@ -186,17 +186,17 @@ namespace Breakout {
     void Window::set_render_draw_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a)const{
         SDL_SetRenderDrawColor(_renderer, r, g, b, a);
     }
-    void Window::clear_render(){
+    void Window::clear_render() const{
         SDL_RenderClear(_renderer);
     }
     void Window::render_fill_rect(const SDL_Rect *rect)const{
         SDL_RenderFillRect(_renderer, rect);
     }
 
-	void Window::render_texture(int id, const SDL_Rect * clip)const
+	void Window::render_texture(int id, const SDL_Rect * clip, const SDL_Rect * viewport) const
 	{
 		//Set rendering space and render to screen
-		SDL_Rect renderQuad = { clip->x, clip->y, 640, 480 };
+		SDL_Rect renderQuad = { clip->x, clip->y, _width, _height };
 
 		//Set clip rendering dimensions
 		if (clip != nullptr)
@@ -204,6 +204,15 @@ namespace Breakout {
 			renderQuad.w = clip->w;
 			renderQuad.h = clip->h;
 		}
+        
+        // if viewport is null, we set viewport to be the entire window
+        if(viewport == nullptr){
+            SDL_Rect wholescreen{0, 0, _width, _height};
+            viewport = &wholescreen;
+            SDL_RenderSetViewport(_renderer, viewport);
+        } else {
+            SDL_RenderSetViewport(_renderer, viewport);
+        }
 
 		//Render to screen
 		SDL_RenderCopy(_renderer, *(textures[id]), nullptr, &renderQuad);
@@ -211,7 +220,7 @@ namespace Breakout {
 	}
 
 	
-    void Window::render_present(){
+    void Window::render_present() const{
         SDL_RenderPresent(_renderer);
     }    
     

@@ -29,18 +29,18 @@ namespace Breakout {
    static const int default_width = 1024;
    static const int default_height = 1024;
     
+    
     class Window {
     public:
-		
-
 		Window(const int width = default_width, const int height = default_height);
+        
         ~Window();
 
         void set_render_draw_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a) const;
-        void clear_render();
+        void clear_render() const;
         void render_fill_rect(const SDL_Rect * rect) const;
-		void render_texture(int id, const SDL_Rect * clip)const;
-		void render_present();
+		void render_texture(int id, const SDL_Rect * clip, const SDL_Rect * viewport = nullptr) const;
+		void render_present() const;
 		 
         void capture_start_of_frame();
         void capture_end_of_frame();

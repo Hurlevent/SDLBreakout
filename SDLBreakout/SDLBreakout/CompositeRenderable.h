@@ -22,7 +22,9 @@ namespace Breakout {
     public:
         CompositeRenderable();
         ~CompositeRenderable();
+        
         void add(IRenderable * element){ children.push_back(element);};
+        
         void render_object(const Window * win, const InputManager * input){for(int i = 0; i < children.size(); i++)children[i]->render_object(win, input);}
     private:
         std::vector<IRenderable *> children;

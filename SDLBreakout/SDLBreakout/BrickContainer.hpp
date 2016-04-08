@@ -13,17 +13,20 @@
 #define BrickContainer_hpp
 
 #include "IRenderable.hpp"
+#include "IViewport.h"
 #include "Brick.hpp"
 #include <memory>
 #include "Sprites.h"
 
 namespace Breakout {
-    class BrickContainer : public IRenderable{
+    class BrickContainer : public IRenderable, public IViewport {
     public:
         BrickContainer(int window_width, int window_height, int rows = 3, int colums = 5, int brick_height = 10);
         ~BrickContainer();
         
         void render_object(const Window * win, const InputManager * input = nullptr);
+        
+        void set_viewport(const SDL_Rect * viewport);
         
         void handle_collision();
         

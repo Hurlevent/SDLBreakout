@@ -14,6 +14,7 @@ namespace Breakout {
         properties = new SDL_Rect{posX, posY, width, height};
         collider = new SDL_Rect{posX, posY, width, height};
         velocity = new Vector(0, 0);
+        m_viewport = nullptr;
     }
     
     Paddle::~Paddle(){
@@ -38,9 +39,9 @@ namespace Breakout {
         
 		if(input != nullptr){
             if(input->get_flag_right()){
-                properties->x += static_cast<int>((deltatime/10 * _speed));
+                properties->x += static_cast<int>((deltatime/10 * m_speed));
             } else if(input->get_flag_left()){
-                properties->x += static_cast<int>((deltatime/10 * -_speed));
+                properties->x += static_cast<int>((deltatime/10 * -m_speed));
             }
         }
         
@@ -59,7 +60,7 @@ namespace Breakout {
         collider->x = properties->x;
         collider->y = properties->y;
         
-		win->render_texture(PURPLE_BRICK, collider);
+		win->render_texture(PURPLE_BRICK, collider, m_viewport);
 		
 		//win->set_render_draw_color(color.color_red, color.color_green, color.color_blue, color.color_alpha);	
 		//win->render_fill_rect(properties);

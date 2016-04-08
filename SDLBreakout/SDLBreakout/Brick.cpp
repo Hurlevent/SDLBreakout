@@ -14,6 +14,7 @@ namespace Breakout {
         m_collider = new SDL_Rect{posX, posY, width, height};
         m_active = true;
         m_texture_id = texture_id;
+        m_viewport = nullptr;
     }
     
     Brick::~Brick(){
@@ -37,7 +38,7 @@ namespace Breakout {
             win->set_render_draw_color(color.color_red, color.color_green, color.color_blue, color.color_alpha);
             win->render_fill_rect(properties);
             */
-            win->render_texture(m_texture_id, m_collider);
+            win->render_texture(m_texture_id, m_collider, m_viewport);
         }
     }
     
