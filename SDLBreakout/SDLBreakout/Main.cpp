@@ -23,6 +23,7 @@
 #include "CompositeRenderable.h"
 #include "Paddle.hpp"
 #include "Brick.hpp"
+#include "BrickContainer.hpp"
 
 static const int WINDOW_WIDTH = 640;
 static const int WINDOW_HEIGHT = 480;
@@ -38,12 +39,10 @@ int main(int argc, char ** argv) {
         Breakout::Paddle paddle((WINDOW_WIDTH - 50) / 2, WINDOW_HEIGHT - 50);
         paddle.set_speed(10);
         
-        // add bricks here
-       // std::shared_ptr<Breakout::Brick> brick_ptr;
-        
-        
+        Breakout::BrickContainer bricks(window.get_textures(), WINDOW_WIDTH, WINDOW_HEIGHT);
         
         game_objects.add(reinterpret_cast<Breakout::IRenderable *>(&paddle));
+        game_objects.add(reinterpret_cast<Breakout::IRenderable *>(&bricks));
         
         
         while (!input.get_flag_quit()) { // this is supposed to be the main game-loop

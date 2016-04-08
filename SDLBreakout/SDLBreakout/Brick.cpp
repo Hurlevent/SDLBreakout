@@ -12,6 +12,7 @@ namespace Breakout {
     Brick::Brick(const int posX, const int posY, const int width, const int height){
         properties = new SDL_Rect{posX, posY, width, height};
         collider = new SDL_Rect{posX, posY, width, height};
+        _active = true;
     }
     
     Brick::~Brick(){
@@ -30,9 +31,10 @@ namespace Breakout {
     }
     
     void Brick::render_object(const Window * win, const InputManager * input){
-        
-        win->set_render_draw_color(color.color_red, color.color_green, color.color_blue, color.color_alpha);
-        win->render_fill_rect(properties);
+        if(_active){
+            win->set_render_draw_color(color.color_red, color.color_green, color.color_blue, color.color_alpha);
+            win->render_fill_rect(properties);
+        }
     }
     
 }

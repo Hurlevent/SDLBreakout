@@ -57,6 +57,8 @@ namespace Breakout {
         int get_height()const{return _height;};
         int get_width()const{return _width;};
         
+        std::vector<SDL_Texture *> get_textures(){return textures;};
+        
     
     private:
         int _width;

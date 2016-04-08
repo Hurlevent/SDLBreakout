@@ -199,14 +199,14 @@ namespace Breakout {
 		SDL_Rect renderQuad = { clip->x, clip->y, 640, 480 };
 
 		//Set clip rendering dimensions
-		if (clip != NULL)
+		if (clip != nullptr)
 		{
 			renderQuad.w = clip->w;
 			renderQuad.h = clip->h;
 		}
 
 		//Render to screen
-		SDL_RenderCopy(_renderer, textures[id], NULL, &renderQuad);
+		SDL_RenderCopy(_renderer, textures[id], nullptr, &renderQuad);
 			
 	}
 
@@ -236,4 +236,6 @@ namespace Breakout {
         timer.stop();
         init_timer(&timer, &counted_frames);
     }
+    
+    
 }
