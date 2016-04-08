@@ -10,6 +10,7 @@
 #include <iostream>
 #include <string.h>
 #include <sstream>
+#include <dirent.h>
 
 namespace Breakout {
     
@@ -80,50 +81,86 @@ namespace Breakout {
     bool load_media(std::vector<std::shared_ptr<SDL_Texture *>> &textures, SDL_Renderer * renderer){
         bool success = true;
      
-		/*
-        DIR * dir;
+		
+        DIR * dir = nullptr;
         struct dirent * ent = nullptr;
         
-        // So this function is not working as intended yet, will hopefully get it to work soon
+        const char * sprites_directory = "Sprites/";
         
-        if((dir = opendir("Sprites"))){ // da er det viktig at programmet tar utgangspunkt i et directory som har et directory som heter resources/
+        if((dir = opendir(sprites_directory))){ // Det er viktig at working directory er satt riktig!
             
             while ((ent = readdir(dir))) { // Read all files from directory
+                
                 std::string filename = ent->d_name;
-                //if(filename[0] != '.'){ // if file is not "hidden"
-                    std::cout << "File" << filename << std::endl;
-                //}
+                
+                if(filename[0] != '.'){ // if file is not "hidden"
+                    std::cout << "Found file: " << filename << std::endl;
+                    
+                    SDL_Texture * texture = load_texture(sprites_directory + filename, renderer);
+                    
+                    if(texture == nullptr){
+                        
+                        success = false;
+                    
+                    } else {
+                        
+                        textures.push_back(std::make_shared<SDL_Texture *>(texture));
+                    }
+                }
             }
+            
             closedir(dir);
             
+            dir = nullptr;
             ent = nullptr;
+            
         } else {
-            // success = false;
+            
+             success = false;
         }
-        */
-      
-		int numberOfTextures = 8;
-	  
-        std::string path;
-      
-
-        for (int i = 0; i < numberOfTextures; i++) {
-			//Kanskje ikke lage ss for vær gang?! dårlig? ss = i, går ikke.
-            std::stringstream ss;
-			
-			ss << i;
-			
-            path = "Sprites/" + ss.str();
-            
-            SDL_Texture * texture = load_texture(path + ".png", renderer);
-            
-            if(texture == nullptr){
-                success = false;
-            } else {
-                textures.push_back(std::make_shared<SDL_Texture *>(texture));
+        
+        std::string ttf_directory = "TTF/";
+        
+        TTF_Font * font = nullptr;
+        
+        if((dir = opendir(ttf_directory.c_str()))){
+        
+            while((ent = readdir(dir))){
+                
+                std::string filename = ent->d_name;
+                
+                if(filename[0] != '.'){ // We don't want to read hidden files
+                    
+                    std::cout << "Found file: " << filename << std::endl;
+                    font = TTF_OpenFont((ttf_directory + filename).c_str(), 28);
+                    
+                    if(font == nullptr){
+                        
+                        std::cerr << "Failed to load TTF! Error: " << TTF_GetError() << std::endl;
+                        success = false;
+                    
+                    } else {
+                        SDL_Color text_color{0, 0, 0};
+                        
+                        // This is were I'll put functionality for updating the texture.
+                        // This is important beause the text need to be able to update during runtime.
+                        
+                        TTF_CloseFont(font);
+                        font = nullptr;
+                    }
+                }
             }
-			
+            
+            closedir(dir);
+            dir = nullptr;
+            ent = nullptr;
+            
+        } else {
+            
+            std::cerr << "Failed to open directory " << ttf_directory << std::endl;
+            success = false;
         }
+        
         return success;
     }
 
@@ -152,16 +189,23 @@ namespace Breakout {
         }
         
         std::cout << "Created renderer!" << std::endl;
-                
-		int imgFlags = IMG_INIT_PNG;
-		if (!(IMG_Init(imgFlags) & imgFlags )) {
-            std::cout << "SDL image could not initilaize!" << SDL_GetError() << std::endl;
+        
+        int imgFlags = IMG_INIT_PNG;
+        if (!(IMG_Init(imgFlags) & imgFlags )) {
+            std::cerr << "SDL_IMAGE could not initilaize! Error: " << IMG_GetError() << std::endl;
             throw "Failure";
-		}
+        }
+        
+        if(TTF_Init() == -1){
+            std::cerr << "SDL_TTF could not initialize! Error: " << TTF_GetError() << std::endl;
+            throw "Failure";
+        }
+        
 		if (!load_media(textures, _renderer)) {
-            std::cout << "Failed to load resource files!" << std::endl;
+            std::cerr << "Failed to load resource files!" << std::endl;
             throw "Failure";
 		}
+        
         std::cout << "Loaded sprites!" << std::endl;
         
         init_timer(&timer, &counted_frames);
@@ -179,6 +223,7 @@ namespace Breakout {
         SDL_DestroyWindow(_window);
         _window = nullptr;
         
+        TTF_Quit();
         IMG_Quit();
         SDL_Quit();
     }
