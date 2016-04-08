@@ -21,6 +21,7 @@
 #include "Vector.hpp"
 #include "InputManager.h"
 #include "Color.h"
+#include "Sprites.h"
 
 namespace Breakout {
     

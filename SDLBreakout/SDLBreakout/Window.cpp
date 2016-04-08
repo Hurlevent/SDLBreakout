@@ -11,7 +11,6 @@
 #include <string.h>
 #include <sstream>
 
-using namespace std;
 namespace Breakout {
     
     // Creates an SDL_Window
@@ -78,7 +77,7 @@ namespace Breakout {
 	}
     
     // This is were all our sprites and TTF's should be loaded
-    bool load_media(vector<SDL_Texture*> &textures, SDL_Renderer * renderer){
+    bool load_media(std::vector<std::shared_ptr<SDL_Texture *>> &textures, SDL_Renderer * renderer){
         bool success = true;
      
 		/*
@@ -105,12 +104,12 @@ namespace Breakout {
       
 		int numberOfTextures = 8;
 	  
-		string path;
+        std::string path;
       
 
         for (int i = 0; i < numberOfTextures; i++) {
 			//Kanskje ikke lage ss for vær gang?! dårlig? ss = i, går ikke.
-			stringstream ss;
+            std::stringstream ss;
 			
 			ss << i;
 			
@@ -121,7 +120,7 @@ namespace Breakout {
             if(texture == nullptr){
                 success = false;
             } else {
-                textures.push_back(texture);
+                textures.push_back(std::make_shared<SDL_Texture *>(texture));
             }
 			
         }
@@ -137,42 +136,42 @@ namespace Breakout {
     Window::Window(const int width, const int height){
         _width = width;
         _height = height;
-		failedToLoad = true;
+        
         SDL_Init(SDL_INIT_VIDEO);
         
         if(!create_window(&_window, width, height)){
-            cerr << "Failed to create window: " << SDL_GetError() << endl;
+            std::cerr << "Failed to create window: " << SDL_GetError() << std::endl;
             throw "Failure";
         }
         
-        cout << "Created window!" << endl;
+        std::cout << "Created window!" << std::endl;
         
         if(!create_renderer(&_window, &_renderer)){
-            cerr << "Failed to create renderer: " << SDL_GetError() << endl;
+            std::cerr << "Failed to create renderer: " << SDL_GetError() << std::endl;
             throw "Failure";
         }
         
-        cout << "Created renderer!" << endl;
+        std::cout << "Created renderer!" << std::endl;
                 
 		int imgFlags = IMG_INIT_PNG;
 		if (!(IMG_Init(imgFlags) & imgFlags )) {
-			cout << "SDL image could not initilaize!" << SDL_GetError() << endl;
-			failedToLoad = false;
+            std::cout << "SDL image could not initilaize!" << SDL_GetError() << std::endl;
             throw "Failure";
 		}
 		if (!load_media(textures, _renderer)) {
-			cout << "Failed to load resource files!" << endl;
+            std::cout << "Failed to load resource files!" << std::endl;
             throw "Failure";
 		}
-        cout << "Loaded sprites!" << endl;
+        std::cout << "Loaded sprites!" << std::endl;
         
         init_timer(&timer, &counted_frames);
     }
     
     Window::~Window(){
         
-		//SDL_DestroyTexture(textures);
-		//textures = nullptr;
+        for(std::vector<std::shared_ptr<SDL_Texture *>>::iterator iter = textures.begin(); iter != textures.end(); iter++){
+            SDL_DestroyTexture(**iter);
+        }
 		
 		SDL_DestroyRenderer(_renderer);
         _renderer = nullptr;
@@ -180,6 +179,7 @@ namespace Breakout {
         SDL_DestroyWindow(_window);
         _window = nullptr;
 	
+        IMG_Quit();
         SDL_Quit();
     }
     
@@ -193,7 +193,7 @@ namespace Breakout {
         SDL_RenderFillRect(_renderer, rect);
     }
 
-	void Window::render_texture(int id, SDL_Rect* clip)const
+	void Window::render_texture(int id, const SDL_Rect * clip)const
 	{
 		//Set rendering space and render to screen
 		SDL_Rect renderQuad = { clip->x, clip->y, 640, 480 };
@@ -206,7 +206,7 @@ namespace Breakout {
 		}
 
 		//Render to screen
-		SDL_RenderCopy(_renderer, textures[id], nullptr, &renderQuad);
+		SDL_RenderCopy(_renderer, *(textures[id]), nullptr, &renderQuad);
 			
 	}
 

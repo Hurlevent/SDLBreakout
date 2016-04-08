@@ -14,11 +14,13 @@
 
 #include "IRenderable.hpp"
 #include "Brick.hpp"
+#include <memory>
+#include "Sprites.h"
 
 namespace Breakout {
     class BrickContainer : public IRenderable{
     public:
-        BrickContainer(const std::vector<SDL_Texture *> textures, int window_width, int window_height, int rows = 3, int colums = 5, int brick_height = 10);
+        BrickContainer(int window_width, int window_height, int rows = 3, int colums = 5, int brick_height = 10);
         ~BrickContainer();
         
         void render_object(const Window * win, const InputManager * input = nullptr);
@@ -33,7 +35,7 @@ namespace Breakout {
         int m_brick_rows;
         int m_brick_height;
         
-        std::vector<SDL_Texture *> m_textures;
+        std::vector<int> m_texture_IDs;
         std::vector<std::unique_ptr<Brick>> m_bricks;
     };
 }

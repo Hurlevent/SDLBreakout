@@ -59,7 +59,7 @@ namespace Breakout {
         collider->x = properties->x;
         collider->y = properties->y;
         
-		win->render_texture(0, collider);
+		win->render_texture(PURPLE_BRICK, collider);
 		
 		//win->set_render_draw_color(color.color_red, color.color_green, color.color_blue, color.color_alpha);	
 		//win->render_fill_rect(properties);

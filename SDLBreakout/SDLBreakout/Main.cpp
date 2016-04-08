@@ -39,7 +39,7 @@ int main(int argc, char ** argv) {
         Breakout::Paddle paddle((WINDOW_WIDTH - 50) / 2, WINDOW_HEIGHT - 50);
         paddle.set_speed(10);
         
-        Breakout::BrickContainer bricks(window.get_textures(), WINDOW_WIDTH, WINDOW_HEIGHT);
+        Breakout::BrickContainer bricks(WINDOW_WIDTH, WINDOW_HEIGHT);
         
         game_objects.add(reinterpret_cast<Breakout::IRenderable *>(&paddle));
         game_objects.add(reinterpret_cast<Breakout::IRenderable *>(&bricks));

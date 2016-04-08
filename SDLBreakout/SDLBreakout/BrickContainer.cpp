@@ -10,8 +10,12 @@
 
 
 namespace Breakout {
-    BrickContainer::BrickContainer(const std::vector<SDL_Texture *> textures, int window_width, int window_height, int rows, int columns, int brick_height){
-        m_textures = textures;
+    BrickContainer::BrickContainer(int window_width, int window_height, int rows, int columns, int brick_height){
+        
+        m_texture_IDs.push_back(BLUE_BRICK);
+        m_texture_IDs.push_back(GREEN_BRICK);
+        m_texture_IDs.push_back(CYAN_BRICK);
+        
         m_brick_rows = rows;
         m_brick_columns = columns;
         m_brick_height = brick_height;
@@ -24,7 +28,9 @@ namespace Breakout {
             int w = m_window_width / m_brick_columns;
             int h = m_brick_height;
             
-            m_bricks.push_back(std::unique_ptr<Brick>(new Brick(x, y, w, h)));
+            int texture_id = m_texture_IDs[(i / m_brick_columns) % m_texture_IDs.size()];
+            
+            m_bricks.push_back(std::unique_ptr<Brick>(new Brick(texture_id, x, y, w, h)));
         }
     }
     
