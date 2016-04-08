@@ -51,7 +51,7 @@ namespace Breakout {
         return success;
     }
 
-	SDL_Texture * loadTexture(std::string path, SDL_Renderer ** renderer)
+	SDL_Texture * loadTexture(std::string path, SDL_Renderer * renderer)
 	{
 		//The final texture
 		SDL_Texture* newTexture = NULL;
@@ -65,7 +65,7 @@ namespace Breakout {
 		else
 		{
 			//Create texture from surface pixels
-			newTexture = SDL_CreateTextureFromSurface(*renderer, loadedSurface);
+			newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
 			if (newTexture == NULL)
 			{
 				printf("Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
@@ -79,7 +79,7 @@ namespace Breakout {
 	}
     
     // This is were all our sprites and TTF's should be loaded
-    bool load_media(vector<SDL_Texture*> &textures, SDL_Renderer ** renderer){
+    bool load_media(vector<SDL_Texture*> &textures, SDL_Renderer * renderer){
         bool success = true;
      
 		/*
@@ -115,7 +115,7 @@ namespace Breakout {
 			
 			ss << i;
 			path = "Sprites/" + ss.str();
-			textures.push_back(loadTexture(path + ".png", &*renderer));	
+			textures.push_back(loadTexture(path + ".png", renderer));	
 
 			if (&textures == nullptr) {
 				success = false;
@@ -156,7 +156,7 @@ namespace Breakout {
 			cout << "SDL image could not initilaize!" << SDL_GetError() << endl;
 			failedToLoad = false;
 		}
-		if (!load_media(textures, &_renderer)) {
+		if (!load_media(textures, _renderer)) {
 			cout << "Error, cant rendrer the image." << endl;
 		}
         cout << "Loaded sprites!" << endl;
