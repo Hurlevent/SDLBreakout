@@ -51,14 +51,13 @@ namespace Breakout {
         return success;
     }
 
-	SDL_Texture * loadTexture(std::string path, SDL_Renderer * renderer)
-	{
+	SDL_Texture * load_texture(std::string path, SDL_Renderer * renderer){
 		//The final texture
-		SDL_Texture* newTexture = NULL;
+		SDL_Texture * newTexture = nullptr;
 
 		//Load image at specified path
-		SDL_Surface* loadedSurface = IMG_Load(path.c_str());
-		if (loadedSurface == NULL)
+		SDL_Surface * loadedSurface = IMG_Load(path.c_str());
+		if (loadedSurface == nullptr)
 		{
 			printf("Unable to load image %s! SDL_image Error: %s\n", path.c_str(), IMG_GetError());
 		}
@@ -66,7 +65,7 @@ namespace Breakout {
 		{
 			//Create texture from surface pixels
 			newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
-			if (newTexture == NULL)
+			if (newTexture == nullptr)
 			{
 				printf("Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
 			}
@@ -114,12 +113,16 @@ namespace Breakout {
 			stringstream ss;
 			
 			ss << i;
-			path = "Sprites/" + ss.str();
-			textures.push_back(loadTexture(path + ".png", renderer));	
-
-			if (&textures == nullptr) {
-				success = false;
-			}
+			
+            path = "Sprites/" + ss.str();
+            
+            SDL_Texture * texture = load_texture(path + ".png", renderer);
+            
+            if(texture == nullptr){
+                success = false;
+            } else {
+                textures.push_back(texture);
+            }
 			
         }
         return success;
@@ -155,9 +158,11 @@ namespace Breakout {
 		if (!(IMG_Init(imgFlags) & imgFlags )) {
 			cout << "SDL image could not initilaize!" << SDL_GetError() << endl;
 			failedToLoad = false;
+            throw "Failure";
 		}
 		if (!load_media(textures, _renderer)) {
-			cout << "Error, cant rendrer the image." << endl;
+			cout << "Failed to load resource files!" << endl;
+            throw "Failure";
 		}
         cout << "Loaded sprites!" << endl;
         

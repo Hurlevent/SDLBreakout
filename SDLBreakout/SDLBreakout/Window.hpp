@@ -22,7 +22,8 @@
 #elif __APPLE__
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
-#include <dirent.h>
+#include <iostream>
+#include <vector>
 #endif
 
 #include "Timer.h"
