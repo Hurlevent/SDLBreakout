@@ -261,6 +261,11 @@ namespace Breakout {
 			
 	}
 
+	void Window::set_render_color_on_mouse(int id, uint8_t r, uint8_t g, uint8_t b)const
+	{
+		SDL_SetTextureColorMod(*(textures[id]), r, g, b);
+	}
+
 	
     void Window::render_present() const{
         SDL_RenderPresent(_renderer);
@@ -287,4 +292,5 @@ namespace Breakout {
         timer.stop();
         init_timer(&timer, &counted_frames);
     }
+	
 }

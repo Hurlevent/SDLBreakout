@@ -51,6 +51,20 @@ namespace Breakout {
 			}    
         }
     }
+
+	bool InputManager::handle_mouse_events()const
+	{
+		bool mouseDown = false;
+		if (evntHandler.type == SDL_MOUSEBUTTONDOWN)
+		{
+
+			if (evntHandler.button.button == SDL_BUTTON_LEFT) {
+				mouseDown = true;
+			}
+		}
+		return mouseDown;
+		
+	}
     
     
     

@@ -12,23 +12,29 @@
 #include <vector>
 #include <algorithm>
 #include "IRenderable.hpp"
+#include "IMenu.h"
 
 namespace Breakout {
     
     // Do you remember the design pattern composite??
     // I think it can be used for updating the positions of our gameObjects
     
-    class CompositeRenderable : public IRenderable{
+    class CompositeRenderable : public IRenderable, public IMenu{
     public:
         CompositeRenderable();
         ~CompositeRenderable();
         
-        void add(IRenderable * element){ children.push_back(element);};
+		void add(IRenderable * element) { children.push_back(element); };
+		void addMenu(IMenu * element) { MenuChildren.push_back(element); };
         
+		int GetClick(const Window * win, const InputManager * input) { for (int i = 0; i < MenuChildren.size(); i++)MenuChildren[i]->GetClick(win, input); return 0; };
         void render_object(const Window * win, const InputManager * input){for(int i = 0; i < children.size(); i++)children[i]->render_object(win, input);}
+		
     private:
         std::vector<IRenderable *> children;
-    };
+		std::vector<IMenu *> MenuChildren;
+		
+	};
     
     CompositeRenderable::CompositeRenderable(){};
     CompositeRenderable::~CompositeRenderable(){};

@@ -54,7 +54,7 @@
     <ClInclude Include="IViewport.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Breakout\SDLBreakout\SDLBreakout\BrickContainer.hpp">
+    <ClInclude Include="IMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -86,7 +86,7 @@
     <ClCompile Include="Statusbar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Breakout\SDLBreakout\SDLBreakout\BrickContainer.cpp">
+    <ClCompile Include="BrickContainer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

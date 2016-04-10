@@ -44,6 +44,8 @@ int main(int argc, char ** argv) {
         Breakout::Window window(WINDOW_WIDTH, WINDOW_HEIGHT);
         Breakout::InputManager input;
         Breakout::CompositeRenderable game_objects;
+		Breakout::CompositeRenderable game_menu;
+		Breakout::Menu menu(WINDOW_WIDTH, WINDOW_HEIGHT);
 
         Breakout::Paddle paddle((gameboard_viewport.w - 50) / 2, gameboard_viewport.h - 50);
         paddle.set_viewport(&gameboard_viewport);
@@ -55,8 +57,11 @@ int main(int argc, char ** argv) {
         
         game_objects.add(reinterpret_cast<Breakout::IRenderable *>(&paddle));
         game_objects.add(reinterpret_cast<Breakout::IRenderable *>(&bricks));
+		game_menu.add(reinterpret_cast<Breakout::IRenderable *>(&menu));
+		game_menu.addMenu(reinterpret_cast<Breakout::IMenu *>(&menu));
         
-        
+		int Menu = 0;
+
         while (!input.get_flag_quit()) { // this is supposed to be the main game-loop
 			
 
@@ -64,28 +69,39 @@ int main(int argc, char ** argv) {
             
             // Reads input events from user
             input.handle_input_events();
-            
-            // Clears the renderer
-            window.set_render_draw_color(0xFF, 0xFF, 0xFF, 0xFF);
-            window.clear_render();
-            
-            // tells the renderer to render all game_objects
-			game_objects.render_object(&window, &input);
+			if (Menu == 0 ) {
+				// Clears the renderer
+				window.set_render_draw_color(0xFF, 0xFF, 0xFF, 0xFF);
+				window.clear_render();
+				Menu = menu.GetClick(&window, &input);
+				game_menu.render_object(&window, &input);
 
-			//Her inneholder alle bildene
-			//window.render_texture(1);
+				
+				window.render_present();
+				std::cout << "Dette er verdie:" << Menu << std::endl;
+			}
+			else {
+				// Clears the renderer
+				window.set_render_draw_color(0xFF, 0xFF, 0xFF, 0xFF);
+				window.clear_render();
 
-            // makes the renderer actually draw a picture on screen
-            
-			window.render_present();
-            
-			
-            // just a temporary way to view the fps
-            std::cout << "FPS: " << window.get_fps() << std::endl;
-            
-            // Update delta_time
-            window.capture_end_of_frame();
-			
+				// tells the renderer to render all game_objects
+				game_objects.render_object(&window, &input);
+
+				//Her inneholder alle bildene
+				//window.render_texture(1);
+
+				// makes the renderer actually draw a picture on screen
+
+				window.render_present();
+
+
+				// just a temporary way to view the fps
+				std::cout << "FPS: " << window.get_fps() << std::endl;
+
+				// Update delta_time
+				window.capture_end_of_frame();
+			}
         }
         
     } catch(const char * msg){

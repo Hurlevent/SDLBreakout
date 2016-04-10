@@ -44,7 +44,9 @@ namespace Breakout {
         void clear_render() const;
         void render_fill_rect(const SDL_Rect * rect) const;
 		void render_texture(int id, const SDL_Rect * clip, const SDL_Rect * viewport = nullptr) const;
+		void set_render_color_on_mouse(int id, uint8_t r, uint8_t g, uint8_t b)const;
 		void render_present() const;
+		
 		 
         void capture_start_of_frame();
         void capture_end_of_frame();
