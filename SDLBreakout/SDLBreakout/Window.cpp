@@ -10,7 +10,7 @@
 #include <iostream>
 #include <string.h>
 #include <sstream>
-#include <dirent.h>
+#include 
 
 namespace Breakout {
     
@@ -81,21 +81,22 @@ namespace Breakout {
     bool load_media(std::vector<std::shared_ptr<SDL_Texture *>> &textures, SDL_Renderer * renderer){
         bool success = true;
      
-		
-        DIR * dir = nullptr;
+		int a = 0;
+
+        Dir * dir = nullptr;
         struct dirent * ent = nullptr;
         
         const char * sprites_directory = "Sprites/";
         
         if((dir = opendir(sprites_directory))){ // Det er viktig at working directory er satt riktig!
-            
+			
             while ((ent = readdir(dir))) { // Read all files from directory
-                
+				a++;
                 std::string filename = ent->d_name;
                 
                 if(filename[0] != '.'){ // if file is not "hidden"
                     std::cout << "Found file: " << filename << std::endl;
-					//textures.reserve(numberOfTextures);
+					
                     SDL_Texture * texture = load_texture(sprites_directory + filename, renderer);
                     
                     if(texture == nullptr){
@@ -103,7 +104,7 @@ namespace Breakout {
                         success = false;
                     
                     } else {
-                        
+                        textures.reserve(a);
                         textures.push_back(std::make_shared<SDL_Texture *>(texture));
                     }
                 }
