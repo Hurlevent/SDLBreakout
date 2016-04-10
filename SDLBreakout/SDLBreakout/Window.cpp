@@ -224,7 +224,7 @@ namespace Breakout {
         SDL_DestroyWindow(_window);
         _window = nullptr;
         
-        TTF_Quit();
+        
         IMG_Quit();
         SDL_Quit();
     }
