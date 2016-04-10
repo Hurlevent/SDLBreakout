@@ -9,30 +9,37 @@
 #include "Brick.hpp"
 
 namespace Breakout {
-    Brick::Brick(const int posX, const int posY, const int width, const int height){
-        properties = new SDL_Rect{posX, posY, width, height};
-        collider = new SDL_Rect{posX, posY, width, height};
+    Brick::Brick(const int texture_id, int posX, int posY, int width, int height){
+        m_properties = new SDL_Rect{posX, posY, width, height};
+        m_collider = new SDL_Rect{posX, posY, width, height};
+        m_active = true;
+        m_texture_id = texture_id;
+        m_viewport = nullptr;
     }
     
     Brick::~Brick(){
-	delete properties;
-        properties = nullptr;
+        delete m_properties;
+        m_properties = nullptr;
         
-        delete collider;
-        collider = nullptr;
+        delete m_collider;
+        m_collider = nullptr;
     }
     
     void Brick::set_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a){
-        color.color_red = r;
-        color.color_green = g;
-        color.color_blue = b;
-        color.color_alpha = a;
+        m_color.color_red = r;
+        m_color.color_green = g;
+        m_color.color_blue = b;
+        m_color.color_alpha = a;
     }
     
     void Brick::render_object(const Window * win, const InputManager * input){
-        
-        win->set_render_draw_color(color.color_red, color.color_green, color.color_blue, color.color_alpha);
-        win->render_fill_rect(properties);
+        if(m_active){
+            /*
+            win->set_render_draw_color(color.color_red, color.color_green, color.color_blue, color.color_alpha);
+            win->render_fill_rect(properties);
+            */
+            win->render_texture(m_texture_id, m_collider, m_viewport);
+        }
     }
     
 }

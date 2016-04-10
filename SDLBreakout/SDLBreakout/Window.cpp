@@ -10,8 +10,8 @@
 #include <iostream>
 #include <string.h>
 #include <sstream>
+#include <dirent.h>
 
-using namespace std;
 namespace Breakout {
     
     // Creates an SDL_Window
@@ -51,14 +51,13 @@ namespace Breakout {
         return success;
     }
 
-	SDL_Texture * loadTexture(std::string path, SDL_Renderer * renderer)
-	{
+	SDL_Texture * load_texture(std::string path, SDL_Renderer * renderer){
 		//The final texture
-		SDL_Texture* newTexture = NULL;
+		SDL_Texture * newTexture = nullptr;
 
 		//Load image at specified path
-		SDL_Surface* loadedSurface = IMG_Load(path.c_str());
-		if (loadedSurface == NULL)
+		SDL_Surface * loadedSurface = IMG_Load(path.c_str());
+		if (loadedSurface == nullptr)
 		{
 			printf("Unable to load image %s! SDL_image Error: %s\n", path.c_str(), IMG_GetError());
 		}
@@ -66,7 +65,7 @@ namespace Breakout {
 		{
 			//Create texture from surface pixels
 			newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
-			if (newTexture == NULL)
+			if (newTexture == nullptr)
 			{
 				printf("Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
 			}
@@ -79,29 +78,47 @@ namespace Breakout {
 	}
     
     // This is were all our sprites and TTF's should be loaded
-    bool load_media(vector<SDL_Texture*> &textures, SDL_Renderer * renderer){
+    bool load_media(std::vector<std::shared_ptr<SDL_Texture *>> &textures, SDL_Renderer * renderer){
         bool success = true;
      
-		/*
-        DIR * dir;
+		
+        DIR * dir = nullptr;
         struct dirent * ent = nullptr;
         
-        // So this function is not working as intended yet, will hopefully get it to work soon
+        const char * sprites_directory = "Sprites/";
         
-        if((dir = opendir("Sprites"))){ // da er det viktig at programmet tar utgangspunkt i et directory som har et directory som heter resources/
+        if((dir = opendir(sprites_directory))){ // Det er viktig at working directory er satt riktig!
             
             while ((ent = readdir(dir))) { // Read all files from directory
+                
                 std::string filename = ent->d_name;
-                //if(filename[0] != '.'){ // if file is not "hidden"
-                    std::cout << "File" << filename << std::endl;
-                //}
+                
+                if(filename[0] != '.'){ // if file is not "hidden"
+                    std::cout << "Found file: " << filename << std::endl;
+                    
+                    SDL_Texture * texture = load_texture(sprites_directory + filename, renderer);
+                    
+                    if(texture == nullptr){
+                        
+                        success = false;
+                    
+                    } else {
+                        
+                        textures.push_back(std::make_shared<SDL_Texture *>(texture));
+                    }
+                }
             }
+            
             closedir(dir);
             
+            dir = nullptr;
             ent = nullptr;
+            
         } else {
-            // success = false;
+            
+             success = false;
         }
+<<<<<<< HEAD
         */
       
 		int numberOfTextures = 10;
@@ -120,7 +137,51 @@ namespace Breakout {
 				success = false;
 			}
 			
+=======
+        
+        std::string ttf_directory = "TTF/";
+        
+        TTF_Font * font = nullptr;
+        
+        if((dir = opendir(ttf_directory.c_str()))){
+        
+            while((ent = readdir(dir))){
+                
+                std::string filename = ent->d_name;
+                
+                if(filename[0] != '.'){ // We don't want to read hidden files
+                    
+                    std::cout << "Found file: " << filename << std::endl;
+                    font = TTF_OpenFont((ttf_directory + filename).c_str(), 28);
+                    
+                    if(font == nullptr){
+                        
+                        std::cerr << "Failed to load TTF! Error: " << TTF_GetError() << std::endl;
+                        success = false;
+                    
+                    } else {
+                        SDL_Color text_color{0, 0, 0};
+                        
+                        // This is were I'll put functionality for updating the texture.
+                        // This is important beause the text need to be able to update during runtime.
+                        
+                        TTF_CloseFont(font);
+                        font = nullptr;
+                    }
+                }
+            }
+            
+            closedir(dir);
+            dir = nullptr;
+            ent = nullptr;
+            
+        } else {
+            
+            std::cerr << "Failed to open directory " << ttf_directory << std::endl;
+            success = false;
+>>>>>>> 3d24f410509648da4872867d79df4210ef498138
         }
+        
         return success;
     }
 
@@ -133,79 +194,99 @@ namespace Breakout {
     Window::Window(const int width, const int height){
         _width = width;
         _height = height;
-		failedToLoad = true;
+        
         SDL_Init(SDL_INIT_VIDEO);
         
         if(!create_window(&_window, width, height)){
-            cerr << "Failed to create window: " << SDL_GetError() << endl;
+            std::cerr << "Failed to create window: " << SDL_GetError() << std::endl;
             throw "Failure";
         }
         
-        cout << "Created window!" << endl;
+        std::cout << "Created window!" << std::endl;
         
         if(!create_renderer(&_window, &_renderer)){
-            cerr << "Failed to create renderer: " << SDL_GetError() << endl;
+            std::cerr << "Failed to create renderer: " << SDL_GetError() << std::endl;
             throw "Failure";
         }
         
-        cout << "Created renderer!" << endl;
-                
-		int imgFlags = IMG_INIT_PNG;
-		if (!(IMG_Init(imgFlags) & imgFlags )) {
-			cout << "SDL image could not initilaize!" << SDL_GetError() << endl;
-			failedToLoad = false;
-		}
+        std::cout << "Created renderer!" << std::endl;
+        
+        int imgFlags = IMG_INIT_PNG;
+        if (!(IMG_Init(imgFlags) & imgFlags )) {
+            std::cerr << "SDL_IMAGE could not initilaize! Error: " << IMG_GetError() << std::endl;
+            throw "Failure";
+        }
+        
+        if(TTF_Init() == -1){
+            std::cerr << "SDL_TTF could not initialize! Error: " << TTF_GetError() << std::endl;
+            throw "Failure";
+        }
+        
 		if (!load_media(textures, _renderer)) {
-			cout << "Error, cant rendrer the image." << endl;
+            std::cerr << "Failed to load resource files!" << std::endl;
+            throw "Failure";
 		}
-        cout << "Loaded sprites!" << endl;
+        
+        std::cout << "Loaded sprites!" << std::endl;
         
         init_timer(&timer, &counted_frames);
     }
     
     Window::~Window(){
         
-		//SDL_DestroyTexture(textures);
-		//textures = nullptr;
+        for(std::vector<std::shared_ptr<SDL_Texture *>>::iterator iter = textures.begin(); iter != textures.end(); iter++){
+            SDL_DestroyTexture(**iter);
+        }
 		
 		SDL_DestroyRenderer(_renderer);
         _renderer = nullptr;
         
         SDL_DestroyWindow(_window);
         _window = nullptr;
-	
+        
+        TTF_Quit();
+        IMG_Quit();
         SDL_Quit();
     }
     
     void Window::set_render_draw_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a)const{
         SDL_SetRenderDrawColor(_renderer, r, g, b, a);
     }
-    void Window::clear_render(){
+    void Window::clear_render() const{
         SDL_RenderClear(_renderer);
     }
     void Window::render_fill_rect(const SDL_Rect *rect)const{
         SDL_RenderFillRect(_renderer, rect);
     }
 
-	void Window::render_texture(int id, SDL_Rect* clip)const
+	void Window::render_texture(int id, const SDL_Rect * clip, const SDL_Rect * viewport) const
 	{
 		//Set rendering space and render to screen
-		SDL_Rect renderQuad = { clip->x, clip->y, 640, 480 };
+		SDL_Rect renderQuad = { clip->x, clip->y, _width, _height };
 
 		//Set clip rendering dimensions
-		if (clip != NULL)
+		if (clip != nullptr)
 		{
 			renderQuad.w = clip->w;
 			renderQuad.h = clip->h;
 		}
+        
+        // if viewport is null, we set viewport to be the entire window
+        if(viewport == nullptr){
+            SDL_Rect wholescreen{0, 0, _width, _height};
+            viewport = &wholescreen;
+            SDL_RenderSetViewport(_renderer, viewport);
+        } else {
+            SDL_RenderSetViewport(_renderer, viewport);
+        }
 
 		//Render to screen
-		SDL_RenderCopy(_renderer, textures[id], NULL, &renderQuad);
+		SDL_RenderCopy(_renderer, *(textures[id]), nullptr, &renderQuad);
 			
 	}
 
 	
-    void Window::render_present(){
+    void Window::render_present() const{
         SDL_RenderPresent(_renderer);
     }    
     
@@ -230,6 +311,7 @@ namespace Breakout {
         timer.stop();
         init_timer(&timer, &counted_frames);
     }
+<<<<<<< HEAD
 	SDL_Texture * Window::getTexture(int id)
 	{
 		return textures[id];
@@ -271,4 +353,8 @@ namespace Breakout {
 		NewGameRect.w = 100;
 		NewGameRect.h = 20;
 	}
+=======
+    
+    
+>>>>>>> 3d24f410509648da4872867d79df4210ef498138
 }
