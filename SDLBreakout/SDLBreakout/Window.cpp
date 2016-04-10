@@ -95,7 +95,7 @@ namespace Breakout {
                 
                 if(filename[0] != '.'){ // if file is not "hidden"
                     std::cout << "Found file: " << filename << std::endl;
-                    
+					//textures.reserve(numberOfTextures);
                     SDL_Texture * texture = load_texture(sprites_directory + filename, renderer);
                     
                     if(texture == nullptr){
@@ -118,27 +118,7 @@ namespace Breakout {
             
              success = false;
         }
-<<<<<<< HEAD
-        */
-      
-		int numberOfTextures = 10;
-	  
-		string path;
-		textures.reserve(numberOfTextures);
-        for (int i = 0; i <= numberOfTextures; i++) {
-			//Kanskje ikke lage ss for vær gang?! dårlig? ss = i, går ikke.
-			stringstream ss;
-			
-			ss << i;
-			path = "Sprites/" + ss.str();
-			textures.push_back(loadTexture(path + ".png", renderer));	
-
-			if (&textures == nullptr) {
-				success = false;
-			}
-			
-=======
-        
+	        
         std::string ttf_directory = "TTF/";
         
         TTF_Font * font = nullptr;
@@ -179,7 +159,6 @@ namespace Breakout {
             
             std::cerr << "Failed to open directory " << ttf_directory << std::endl;
             success = false;
->>>>>>> 3d24f410509648da4872867d79df4210ef498138
         }
         
         return success;
@@ -311,50 +290,4 @@ namespace Breakout {
         timer.stop();
         init_timer(&timer, &counted_frames);
     }
-<<<<<<< HEAD
-	SDL_Texture * Window::getTexture(int id)
-	{
-		return textures[id];
-		
-	}
-	SDL_Renderer * Window::getRendrer()
-	{
-		return _renderer;
-	}
-	int Window::MenuShow(int id)
-	{
-		SDL_GetMouseState(&x, &y);
-		
-		if (x >= NewGameRect.x && x <= NewGameRect.x + NewGameRect.w && y >= NewGameRect.y && y <= NewGameRect.y + NewGameRect.h) {
-			SDL_SetTextureColorMod(textures[id], 250, 0, 0);
-
-			if (event.type == SDL_MOUSEBUTTONDOWN)
-			{
-				if (event.button.button == SDL_BUTTON_LEFT) {
-					cout << "HelloHello" << endl;
-					return 1;
-				}
-			}
-			else {
-				SDL_SetTextureColorMod(textures[id], 250, 250, 250);
-			}
-		}
-		SDL_RenderCopyEx(_renderer, textures[id], NULL, &NewGameRect);
-	}
-	void Window::MenuSetup(int ScreenWidth, int ScreenHeight)
-	{
-		BackgroundRect.x = 0;
-		BackgroundRect.y = 0;
-		BackgroundRect.w = ScreenWidth;
-		BackgroundRect.h = ScreenHeight;
-
-		NewGameRect.x = ScreenWidth / 2;
-		NewGameRect.y = ScreenHeight / 2;
-		NewGameRect.w = 100;
-		NewGameRect.h = 20;
-	}
-=======
-    
-    
->>>>>>> 3d24f410509648da4872867d79df4210ef498138
 }
