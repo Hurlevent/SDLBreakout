@@ -24,30 +24,41 @@
 #include "Paddle.hpp"
 #include "Brick.hpp"
 
+#include "Menu.h"
+
+#include "BrickContainer.hpp"
+
+
 static const int WINDOW_WIDTH = 640;
 static const int WINDOW_HEIGHT = 480;
+static const int STATUSBAR_HEIGHT = 100;
 
 int main(int argc, char ** argv) {
     
     try{
+        // viewport for our game-board
+        SDL_Rect gameboard_viewport{0, STATUSBAR_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT - STATUSBAR_HEIGHT};
+        SDL_Rect statusbar_viewport{0, 0, WINDOW_WIDTH, STATUSBAR_HEIGHT};
         
         Breakout::Window window(WINDOW_WIDTH, WINDOW_HEIGHT);
         Breakout::InputManager input;
         Breakout::CompositeRenderable game_objects;
-        
-        Breakout::Paddle paddle((WINDOW_WIDTH - 50) / 2, WINDOW_HEIGHT - 50);
+
+        Breakout::Paddle paddle((gameboard_viewport.w - 50) / 2, gameboard_viewport.h - 50);
+        paddle.set_viewport(&gameboard_viewport);
         paddle.set_speed(10);
         
-        // add bricks here
-       // std::shared_ptr<Breakout::Brick> brick_ptr;
-        
-        
+        Breakout::BrickContainer bricks(gameboard_viewport.w, gameboard_viewport.h);
+        bricks.set_viewport(&gameboard_viewport);
+
         
         game_objects.add(reinterpret_cast<Breakout::IRenderable *>(&paddle));
+        game_objects.add(reinterpret_cast<Breakout::IRenderable *>(&bricks));
         
-    
         
         while (!input.get_flag_quit()) { // this is supposed to be the main game-loop
+			
+
             window.capture_start_of_frame();
             
             // Reads input events from user
@@ -58,16 +69,22 @@ int main(int argc, char ** argv) {
             window.clear_render();
             
             // tells the renderer to render all game_objects
-            game_objects.render_object(&window, &input);
-            
+			game_objects.render_object(&window, &input);
+
+			//Her inneholder alle bildene
+			//window.render_texture(1);
+
             // makes the renderer actually draw a picture on screen
-            window.render_present();
             
+			window.render_present();
+            
+			
             // just a temporary way to view the fps
             std::cout << "FPS: " << window.get_fps() << std::endl;
             
             // Update delta_time
             window.capture_end_of_frame();
+			
         }
         
     } catch(const char * msg){
@@ -77,8 +94,8 @@ int main(int argc, char ** argv) {
         return EXIT_FAILURE;
     }
     
-    
-    
+   
+	system("pause");
     
     return EXIT_SUCCESS;
 }
