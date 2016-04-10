@@ -116,11 +116,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\Breakout\SDLBreakout\SDLBreakout\BrickContainer.hpp" />
     <ClInclude Include="Brick.hpp" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="CompositeRenderable.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IRenderable.hpp" />
+    <ClInclude Include="IViewport.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Paddle.hpp" />
     <ClInclude Include="Sprites.h" />
@@ -130,6 +132,7 @@
     <ClInclude Include="Window.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Breakout\SDLBreakout\SDLBreakout\BrickContainer.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Main.cpp" />

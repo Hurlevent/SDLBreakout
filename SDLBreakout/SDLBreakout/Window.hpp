@@ -27,7 +27,7 @@
 #include <vector>
 #include "Timer.h"
 #include <memory>
-
+#include <dirent.h>
 
 namespace Breakout {
    static const int default_width = 1024;
@@ -79,6 +79,8 @@ namespace Breakout {
 
         
         std::vector<std::shared_ptr<SDL_Texture *>> textures; // I made it a shared_ptr, it might not be enough to fix the leaks
+
+
 
     };
 }

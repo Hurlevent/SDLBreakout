@@ -7,10 +7,7 @@
 //
 
 #include "Window.hpp"
-#include <iostream>
-#include <string.h>
-#include <sstream>
-#include 
+
 
 namespace Breakout {
     
@@ -81,22 +78,21 @@ namespace Breakout {
     bool load_media(std::vector<std::shared_ptr<SDL_Texture *>> &textures, SDL_Renderer * renderer){
         bool success = true;
      
-		int a = 0;
-
-        Dir * dir = nullptr;
+		
+        DIR * dir = nullptr;
         struct dirent * ent = nullptr;
         
         const char * sprites_directory = "Sprites/";
         
         if((dir = opendir(sprites_directory))){ // Det er viktig at working directory er satt riktig!
-			
+            
             while ((ent = readdir(dir))) { // Read all files from directory
-				a++;
+                
                 std::string filename = ent->d_name;
                 
                 if(filename[0] != '.'){ // if file is not "hidden"
-                    std::cout << "Found file: " << filename << std::endl;
-					
+                    std::cout << "Found file: " << filename.c_str() << std::endl;
+
                     SDL_Texture * texture = load_texture(sprites_directory + filename, renderer);
                     
                     if(texture == nullptr){
@@ -104,7 +100,7 @@ namespace Breakout {
                         success = false;
                     
                     } else {
-                        textures.reserve(a);
+                        
                         textures.push_back(std::make_shared<SDL_Texture *>(texture));
                     }
                 }
@@ -132,7 +128,7 @@ namespace Breakout {
                 
                 if(filename[0] != '.'){ // We don't want to read hidden files
                     
-                    std::cout << "Found file: " << filename << std::endl;
+                    std::cout << "Found file: " << filename.c_str() << std::endl;
                     font = TTF_OpenFont((ttf_directory + filename).c_str(), 28);
                     
                     if(font == nullptr){
@@ -158,7 +154,7 @@ namespace Breakout {
             
         } else {
             
-            std::cerr << "Failed to open directory " << ttf_directory << std::endl;
+            std::cerr << "Failed to open directory " << ttf_directory.c_str() << std::endl;
             success = false;
         }
         
