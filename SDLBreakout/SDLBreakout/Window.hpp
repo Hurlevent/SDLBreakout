@@ -27,6 +27,8 @@
 #include <vector>
 #include "Timer.h"
 #include <memory>
+
+
 namespace Breakout {
    static const int default_width = 1024;
    static const int default_height = 1024;
