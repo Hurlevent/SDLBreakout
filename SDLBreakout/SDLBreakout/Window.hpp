@@ -26,6 +26,7 @@
 #include <iostream>
 #include <vector>
 #include "Timer.h"
+#include  <memory>
 
 namespace Breakout {
    static const int default_width = 1024;
