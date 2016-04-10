@@ -23,6 +23,7 @@
 #include "CompositeRenderable.h"
 #include "Paddle.hpp"
 #include "Brick.hpp"
+#include "Menu.h"
 
 static const int WINDOW_WIDTH = 640;
 static const int WINDOW_HEIGHT = 480;
@@ -34,10 +35,10 @@ int main(int argc, char ** argv) {
         Breakout::Window window(WINDOW_WIDTH, WINDOW_HEIGHT);
         Breakout::InputManager input;
         Breakout::CompositeRenderable game_objects;
-        
+		//Breakout::Menu Menu(&window.getRendrer(), &(window.getTexture(10)));
         Breakout::Paddle paddle((WINDOW_WIDTH - 50) / 2, WINDOW_HEIGHT - 50);
         paddle.set_speed(10);
-        
+		
         // add bricks here
        // std::shared_ptr<Breakout::Brick> brick_ptr;
         
@@ -59,14 +60,17 @@ int main(int argc, char ** argv) {
             window.clear_render();
             
             // tells the renderer to render all game_objects
-            game_objects.render_object(&window, &input);
+			//game_objects.render_object(&window, &input);
+			
+			window.MenuSetup(WINDOW_WIDTH, WINDOW_HEIGHT);
+			window.MenuShow(10);
 
 			//Her inneholder alle bildene
 			//window.render_texture(1);
 
-
             // makes the renderer actually draw a picture on screen
-            window.render_present();
+            
+			window.render_present();
             
 			
             // just a temporary way to view the fps
@@ -84,7 +88,7 @@ int main(int argc, char ** argv) {
         return EXIT_FAILURE;
     }
     
-    
+   
 	system("pause");
     
     return EXIT_SUCCESS;

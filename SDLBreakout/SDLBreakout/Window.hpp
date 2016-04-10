@@ -56,13 +56,18 @@ namespace Breakout {
         int get_height()const{return _height;};
         int get_width()const{return _width;};
         
+		SDL_Texture *getTexture(int id);
+		SDL_Renderer *getRendrer();
+
+		int MenuShow(int id);
+
+		void MenuSetup(int ScreenWidth, int ScreenHeight);
     
     private:
         int _width;
         int _height;
         SDL_Window * _window;
         SDL_Renderer * _renderer;
-		SDL_Renderer * _paddle;
         Timer timer;
         int delta_time;
         int time_start_of_frame;
@@ -71,6 +76,18 @@ namespace Breakout {
 		std::vector<SDL_Texture*> textures;
         //SDL_Texture ** textures;
 		//SDL_Texture * text;
+		SDL_Renderer *RendererMenu;
+		SDL_Texture *NewGameMenu;
+
+		int x;
+		int y;
+
+		bool Play = false;
+
+		SDL_Rect BackgroundRect;
+		SDL_Rect NewGameRect;
+
+		SDL_Event event;
     };
 }
 
