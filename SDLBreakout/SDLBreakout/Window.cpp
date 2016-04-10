@@ -7,8 +7,7 @@
 //
 
 #include "Window.hpp"
-#include <iostream>
-#include <string.h>
+
 
 namespace Breakout {
     

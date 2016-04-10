@@ -26,7 +26,7 @@
 #include <iostream>
 #include <vector>
 #include "Timer.h"
-#include  <memory>
+#include <memory>
 #include <dirent.h>
 
 namespace Breakout {
