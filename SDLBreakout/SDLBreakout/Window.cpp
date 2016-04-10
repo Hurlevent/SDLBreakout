@@ -9,8 +9,6 @@
 #include "Window.hpp"
 #include <iostream>
 #include <string.h>
-#include <sstream>
-#include <dirent.h>
 
 namespace Breakout {
     
@@ -94,8 +92,8 @@ namespace Breakout {
                 std::string filename = ent->d_name;
                 
                 if(filename[0] != '.'){ // if file is not "hidden"
-                    std::cout << "Found file: " << filename << std::endl;
-					//textures.reserve(numberOfTextures);
+                    std::cout << "Found file: " << filename.c_str() << std::endl;
+
                     SDL_Texture * texture = load_texture(sprites_directory + filename, renderer);
                     
                     if(texture == nullptr){
@@ -131,7 +129,7 @@ namespace Breakout {
                 
                 if(filename[0] != '.'){ // We don't want to read hidden files
                     
-                    std::cout << "Found file: " << filename << std::endl;
+                    std::cout << "Found file: " << filename.c_str() << std::endl;
                     font = TTF_OpenFont((ttf_directory + filename).c_str(), 28);
                     
                     if(font == nullptr){
@@ -157,7 +155,7 @@ namespace Breakout {
             
         } else {
             
-            std::cerr << "Failed to open directory " << ttf_directory << std::endl;
+            std::cerr << "Failed to open directory " << ttf_directory.c_str() << std::endl;
             success = false;
         }
         
