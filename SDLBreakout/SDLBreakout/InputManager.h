@@ -15,6 +15,8 @@ namespace Breakout {
         InputManager();
         ~InputManager();
         void handle_input_events();
+		bool handle_mouse_events()const;
+
         void clear_flags();
         bool get_flag_up() const {return up;}
         bool get_flag_down() const{return down;}
@@ -23,6 +25,8 @@ namespace Breakout {
         bool get_flag_space() const{return space;}
         bool get_flag_escape() const{return escape;}
         bool get_flag_quit() const{return quit;}
+
+
     private:
         bool up;
         bool down;
