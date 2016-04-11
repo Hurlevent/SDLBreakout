@@ -28,11 +28,11 @@
 #include "Timer.h"
 #include <memory>
 #include <dirent.h>
+#include "FontTexture.h"
 
 namespace Breakout {
    static const int default_width = 1024;
    static const int default_height = 1024;
-    
     
     class Window {
     public:
@@ -44,13 +44,14 @@ namespace Breakout {
         void clear_render() const;
         void render_fill_rect(const SDL_Rect * rect) const;
 		void render_texture(int id, const SDL_Rect * clip, const SDL_Rect * viewport = nullptr) const;
+		void render_font_texture(int id, std::string text, int font_size, SDL_Color color, SDL_Rect * clip, SDL_Rect * viewport)const;
 		void render_present() const;
 		 
         void capture_start_of_frame();
         void capture_end_of_frame();
         
         int get_delta_time() const{return delta_time;};
-        float get_fps() const;
+        double get_fps() const;
         void reset_fps();
         
         int get_height()const{return _height;};
@@ -77,11 +78,9 @@ namespace Breakout {
 
 		SDL_Event event;
 
-        
         std::vector<std::shared_ptr<SDL_Texture *>> textures; // I made it a shared_ptr, it might not be enough to fix the leaks
-
-
-
+		
+		FontTexture * m_font_texture; // Jeg tar å gjør slik som textures er gjordt, istedetfor. Da kan vi ikke endre størrelsen, men samma faen. 
     };
 }
 

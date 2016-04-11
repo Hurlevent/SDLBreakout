@@ -25,4 +25,9 @@ enum Sprites {
     NUMBER_OF_SPRITES
 };
 
+enum TTFs
+{
+	MINECRAFT
+};
+
 #endif /* Sprites_h */

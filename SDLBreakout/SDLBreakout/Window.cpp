@@ -118,7 +118,6 @@ namespace Breakout {
 	        
         std::string ttf_directory = "TTF/";
         
-        TTF_Font * font = nullptr;
         
         if((dir = opendir(ttf_directory.c_str()))){
         
@@ -129,22 +128,7 @@ namespace Breakout {
                 if(filename[0] != '.'){ // We don't want to read hidden files
                     
                     std::cout << "Found file: " << filename.c_str() << std::endl;
-                    font = TTF_OpenFont((ttf_directory + filename).c_str(), 28);
-                    
-                    if(font == nullptr){
-                        
-                        std::cerr << "Failed to load TTF! Error: " << TTF_GetError() << std::endl;
-                        success = false;
-                    
-                    } else {
-                        SDL_Color text_color{0, 0, 0};
-                        
-                        // This is were I'll put functionality for updating the texture.
-                        // This is important beause the text need to be able to update during runtime.
-                        
-                        TTF_CloseFont(font);
-                        font = nullptr;
-                    }
+					g_font_texture->add_file((ttf_directory + filename).c_str());
                 }
             }
             
@@ -197,7 +181,7 @@ namespace Breakout {
             std::cerr << "SDL_TTF could not initialize! Error: " << TTF_GetError() << std::endl;
             throw "Failure";
         }
-        
+
 		if (!load_media(textures, _renderer)) {
             std::cerr << "Failed to load resource files!" << std::endl;
             throw "Failure";
@@ -213,7 +197,9 @@ namespace Breakout {
         for(std::vector<std::shared_ptr<SDL_Texture *>>::iterator iter = textures.begin(); iter != textures.end(); iter++){
             SDL_DestroyTexture(**iter);
         }
-		
+		delete g_font_texture;
+		g_font_texture = nullptr;
+
 		SDL_DestroyRenderer(_renderer);
         _renderer = nullptr;
         
@@ -261,6 +247,26 @@ namespace Breakout {
 			
 	}
 
+	void Window::render_font_texture(int id, std::string text, int font_size, SDL_Color color, SDL_Rect * clip, SDL_Rect * viewport) const
+	{
+		if(g_font_texture->update_font_texture(_renderer, id, text.c_str(), font_size, color))
+		{
+			if (viewport == nullptr) {
+				SDL_Rect wholescreen{ 0, 0, _width, _height };
+				viewport = &wholescreen;
+				SDL_RenderSetViewport(_renderer, viewport);
+			}
+			else {
+				SDL_RenderSetViewport(_renderer, viewport);
+			}
+
+			g_font_texture->render(_renderer, clip);
+		} else
+		{
+			std::cerr << "Failed to update TTF texture!" << std::endl;
+		}
+	}
+
 	
     void Window::render_present() const{
         SDL_RenderPresent(_renderer);
@@ -275,7 +281,7 @@ namespace Breakout {
         counted_frames++;
     }
     
-    float Window::get_fps()const{
+    double Window::get_fps()const{
         double fps = counted_frames / (timer.elapsed_time() / 1000.f);
         if(fps > 0xFFFFFFFF){
             fps = -1;

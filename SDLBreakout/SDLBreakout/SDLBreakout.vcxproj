@@ -120,6 +120,7 @@
     <ClInclude Include="Brick.hpp" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="CompositeRenderable.h" />
+    <ClInclude Include="FontTexture.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IRenderable.hpp" />
     <ClInclude Include="IViewport.h" />
@@ -134,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\Breakout\SDLBreakout\SDLBreakout\BrickContainer.cpp" />
     <ClCompile Include="Brick.cpp" />
+    <ClCompile Include="FontTexture.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Menu.cpp" />
