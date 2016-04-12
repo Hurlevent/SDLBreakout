@@ -50,6 +50,8 @@ int main(int argc, char ** argv) {
         Breakout::Paddle paddle((gameboard_viewport.w - 50) / 2, gameboard_viewport.h - 50);
         paddle.set_viewport(&gameboard_viewport);
         paddle.set_speed(10);
+
+		Breakout::Statusbar statusbar(&statusbar_viewport);
         
         Breakout::BrickContainer bricks(gameboard_viewport.w, gameboard_viewport.h);
         bricks.set_viewport(&gameboard_viewport);
@@ -57,6 +59,7 @@ int main(int argc, char ** argv) {
         
         game_objects.add(reinterpret_cast<Breakout::IRenderable *>(&paddle));
         game_objects.add(reinterpret_cast<Breakout::IRenderable *>(&bricks));
+		game_objects.add(dynamic_cast<Breakout::IRenderable *>(&statusbar));
 		game_menu.add(reinterpret_cast<Breakout::IRenderable *>(&menu));
 		game_menu.addMenu(reinterpret_cast<Breakout::IMenu *>(&menu));
         

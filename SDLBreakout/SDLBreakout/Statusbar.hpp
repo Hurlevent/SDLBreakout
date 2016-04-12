@@ -31,12 +31,12 @@ namespace Breakout {
         void set_viewport(const SDL_Rect * viewport){m_viewport = viewport;};
         
     private:
+		SDL_Color m_color;
         const SDL_Rect * m_viewport;
         struct texture_info m_score;
         struct texture_info m_speed;
         struct texture_info m_fps;
         struct texture_info m_health;
-		SDL_Color m_color;
     };
 }
 

@@ -36,7 +36,7 @@ namespace Breakout {
     }
     
     void Statusbar::render_object(const Window * win, const InputManager * input){
-        for(struct texture_info * i = &m_score; i <= &m_health; i++)
+        for(auto i = &m_score; i <= &m_health; i++)
         {
 			win->update_font_texture_text(i->texture_id, i->text, m_color);
 			win->render_font_texture(i->texture_id, &i->properties, m_viewport);
