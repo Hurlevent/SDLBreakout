@@ -15,24 +15,23 @@
 #endif
 
 #include <string>
-#include "Window.hpp"
-#include <vector>
+#include <iostream>
+#include "Sprites.h"
 
 namespace Breakout {
 	class FontTexture
 	{
 	public:
-		FontTexture();
+		FontTexture();                              
 		~FontTexture();
 
 		void free();
-		void add_file(std::string file);
-		bool update_font_texture(SDL_Renderer * renderer, int file_id, const char * text, int font_size, SDL_Color text_color);
-		void render(SDL_Renderer * renderer, SDL_Rect * clip, double angle = 0.0, SDL_Point * center = nullptr, SDL_RendererFlip flip = SDL_FLIP_NONE)const;
+		bool load_font_from_file(const char * filepath, int text_size);
+		bool update_font_texture(SDL_Renderer * renderer, int id, const char * text, SDL_Color text_color);
+		void render(SDL_Renderer * renderer, int id, SDL_Rect * clip, double angle = 0.0, SDL_Point * center = nullptr, SDL_RendererFlip flip = SDL_FLIP_NONE)const;
 	private:
-		std::vector<std::string> m_font_files;
-		SDL_Texture * m_texture;
 		TTF_Font * m_font;
+		SDL_Texture * m_textures[NUMBER_OF_TTF_TEXTURES];
 	};
 }
 

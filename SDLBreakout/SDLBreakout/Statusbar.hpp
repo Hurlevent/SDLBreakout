@@ -11,11 +11,13 @@
 
 #include "IViewport.h"
 #include "IRenderable.hpp"
+#include <string>
 
 namespace Breakout {
     
     struct texture_info{
         int texture_id;
+		std::string text;
         SDL_Rect properties;
     };
     
@@ -32,8 +34,9 @@ namespace Breakout {
         const SDL_Rect * m_viewport;
         struct texture_info m_score;
         struct texture_info m_speed;
-        struct texture_info m_sound;
+        struct texture_info m_fps;
         struct texture_info m_health;
+		SDL_Color m_color;
     };
 }
 

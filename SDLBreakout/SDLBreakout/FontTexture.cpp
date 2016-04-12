@@ -4,77 +4,73 @@ namespace Breakout {
 
 	FontTexture::FontTexture()
 	{
-		m_texture = nullptr;
 		m_font = nullptr;
-	}
-
-	void FontTexture::add_file(std::string file)
-	{
-		m_font_files.push_back(file);
 	}
 
 
 	FontTexture::~FontTexture()
 	{
+		if(m_font != nullptr)
+		{
+			TTF_CloseFont(m_font);
+		}
+
 		free();
 	}
 
-	bool FontTexture::update_font_texture(SDL_Renderer* renderer, int file_id, const char* text, int font_size, SDL_Color text_color)
+	bool FontTexture::load_font_from_file(const char* filepath, int text_size)
+	{
+		if(m_font != nullptr)
+		{
+			TTF_CloseFont(m_font);
+			m_font = nullptr;
+		}
+		m_font = TTF_OpenFont(filepath, text_size);
+		return m_font != nullptr;
+	}
+
+
+	bool FontTexture::update_font_texture(SDL_Renderer* renderer, int id, const char* text, SDL_Color text_color)
 	{
 		free();
 
 		bool success = true;
 
-		m_font = TTF_OpenFont(m_font_files[file_id].c_str(), font_size);
+		SDL_Surface * text_surface = TTF_RenderText_Solid(m_font, text, text_color);
 
-		if(m_font == nullptr)
+		if(text_surface == nullptr)
 		{
-			std::cerr << "Failed to open file " << m_font_files[file_id] << "! Error: " << TTF_GetError() << std::endl;
+			std::cerr << "Failed to render text surface! Error: " << TTF_GetError() << std::endl;
 			success = false;
-
 		} else
 		{
-			SDL_Surface * text_surface = TTF_RenderText_Solid(m_font, text, text_color);
-
-			if(text_surface == nullptr)
+			SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, text_surface);
+			if(texture == nullptr)
 			{
-				std::cerr << "Failed to render text surface! Error: " << TTF_GetError() << std::endl;
+				std::cerr << "Failed to create texture from surface! Error: " << SDL_GetError() << std::endl;
 				success = false;
 			} else
 			{
-				m_texture = SDL_CreateTextureFromSurface(renderer, text_surface);
-				if(m_texture == nullptr)
-				{
-					std::cerr << "Failed to create texture from surface! Error: " << SDL_GetError() << std::endl;
-					success = false;
-				}
-				SDL_FreeSurface(text_surface);
+				m_textures[id] = texture;
 			}
+			SDL_FreeSurface(text_surface);
 		}
 		return success;
 	}
 
 	void FontTexture::free()
 	{
-		if(m_font != nullptr)
+		for (int i = 0; i < NUMBER_OF_TTF_TEXTURES; i++)
 		{
-			TTF_CloseFont(m_font);
-			m_font = nullptr;
-
-			if(m_texture != nullptr)
-			{
-				SDL_DestroyTexture(m_texture);
-				m_texture = nullptr;
-
-			}
+			SDL_DestroyTexture(m_textures[i]);
 		}
 	}
 
-	void FontTexture::render(SDL_Renderer* renderer, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip) const
+	void FontTexture::render(SDL_Renderer* renderer, int id, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip) const
 	{
-		if(m_texture != nullptr && clip != nullptr)
+		if(m_textures[id] != nullptr && clip != nullptr)
 		{
-			SDL_RenderCopyEx(renderer, m_texture, clip, nullptr, angle, center, flip);
+			SDL_RenderCopyEx(renderer, m_textures[id], clip, nullptr, angle, center, flip);
 		} else
 		{
 			std::cerr << "Failed to rebnder TTF texture!" << std::endl;

@@ -24,7 +24,7 @@
 #include "CompositeRenderable.h"
 #include "Paddle.hpp"
 #include "Brick.hpp"
-
+#include "Statusbar.hpp"
 #include "Menu.h"
 
 #include "BrickContainer.hpp"
