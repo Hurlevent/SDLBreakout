@@ -49,6 +49,14 @@ namespace Breakout {
 			}
 			return EnterButton;
 		}
+		bool Menu::PressEsc(const InputManager * input)
+		{
+			/*bool Escape = false;
+			if (input->handle_input_events()) {
+
+			}*/
+			return false;
+		}
 		void Menu::render_object(const Window * win, const InputManager * input)
 		{
 			NewGameRect->x = ScreenWidth/2;

@@ -95,6 +95,10 @@ int main(int argc, char ** argv) {
 
 				window.render_present();
 
+				//Hvis du trykker escape så går du tilbake til menyen
+				if (input.get_flag_escape() == true) {
+					Menu = 0;
+				}
 
 				// just a temporary way to view the fps
 				std::cout << "FPS: " << window.get_fps() << std::endl;

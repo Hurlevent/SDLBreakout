@@ -292,5 +292,6 @@ namespace Breakout {
         timer.stop();
         init_timer(&timer, &counted_frames);
     }
+
 	
 }
