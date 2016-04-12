@@ -32,7 +32,7 @@ namespace Breakout {
 
 	bool FontTexture::update_font_texture(SDL_Renderer* renderer, int id, const char* text, SDL_Color text_color)
 	{
-		free();
+
 
 		bool success = true;
 
@@ -51,6 +51,11 @@ namespace Breakout {
 				success = false;
 			} else
 			{
+				if(m_textures[id] != nullptr)
+				{
+					SDL_DestroyTexture(m_textures[id]);
+				}
+
 				m_textures[id] = texture;
 			}
 			SDL_FreeSurface(text_surface);
@@ -63,6 +68,7 @@ namespace Breakout {
 		for (int i = 0; i < NUMBER_OF_TTF_TEXTURES; i++)
 		{
 			SDL_DestroyTexture(m_textures[i]);
+			m_textures[i] = nullptr;
 		}
 	}
 
@@ -70,7 +76,7 @@ namespace Breakout {
 	{
 		if(m_textures[id] != nullptr && clip != nullptr)
 		{
-			SDL_RenderCopyEx(renderer, m_textures[id], clip, nullptr, angle, center, flip);
+			SDL_RenderCopyEx(renderer, m_textures[id], nullptr, clip, angle, center, flip);
 		} else
 		{
 			std::cerr << "Failed to rebnder TTF texture!" << std::endl;

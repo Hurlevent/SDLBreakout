@@ -57,8 +57,8 @@ int main(int argc, char ** argv) {
         bricks.set_viewport(&gameboard_viewport);
 
         
-        game_objects.add(reinterpret_cast<Breakout::IRenderable *>(&paddle));
-        game_objects.add(reinterpret_cast<Breakout::IRenderable *>(&bricks));
+        game_objects.add(dynamic_cast<Breakout::IRenderable *>(&paddle));
+        game_objects.add(dynamic_cast<Breakout::IRenderable *>(&bricks));
 		game_objects.add(dynamic_cast<Breakout::IRenderable *>(&statusbar));
 		game_menu.add(reinterpret_cast<Breakout::IRenderable *>(&menu));
 		game_menu.addMenu(reinterpret_cast<Breakout::IMenu *>(&menu));
@@ -81,7 +81,7 @@ int main(int argc, char ** argv) {
 
 				
 				window.render_present();
-				std::cout << "Dette er verdie:" << Menu << std::endl;
+				// std::cout << "Dette er verdie:" << Menu << std::endl;
 			}
 			else {
 				// Clears the renderer
