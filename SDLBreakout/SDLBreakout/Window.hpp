@@ -55,7 +55,7 @@ namespace Breakout {
         void capture_end_of_frame();
         
         int get_delta_time() const{return delta_time;};
-        float get_fps() const;
+        double get_fps() const;
         void reset_fps();
         
         int get_height()const{return _height;};

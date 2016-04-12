@@ -76,7 +76,8 @@ namespace Breakout {
 	{
 		if(m_textures[id] != nullptr && clip != nullptr)
 		{
-			SDL_RenderCopyEx(renderer, m_textures[id], nullptr, clip, angle, center, flip);
+			//std::cout << "CLIP: x:" << clip->x << ", y:" << clip->y << ", w:" << clip->w << ", h:" << clip->h << std::endl;
+			SDL_RenderCopy(renderer, m_textures[id], nullptr, clip);
 		} else
 		{
 			std::cerr << "Failed to rebnder TTF texture!" << std::endl;

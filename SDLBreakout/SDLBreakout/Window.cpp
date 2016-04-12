@@ -309,7 +309,7 @@ namespace Breakout {
         counted_frames++;
     }
     
-    float Window::get_fps()const{
+    double Window::get_fps()const{
         double fps = counted_frames / (timer.elapsed_time() / 1000.f);
         if(fps > 0xFFFFFFFF){
             fps = -1;

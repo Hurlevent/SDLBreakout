@@ -12,13 +12,16 @@
 #include "IViewport.h"
 #include "IRenderable.hpp"
 #include <string>
+#include <iomanip>
 
 namespace Breakout {
     
     struct texture_info{
         int texture_id;
 		std::string text;
+		std::string value;
         SDL_Rect properties;
+		SDL_Rect value_props;
     };
     
     class Statusbar : public IViewport, public IRenderable {

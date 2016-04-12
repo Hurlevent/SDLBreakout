@@ -32,7 +32,7 @@
 
 static const int WINDOW_WIDTH = 640;
 static const int WINDOW_HEIGHT = 480;
-static const int STATUSBAR_HEIGHT = 100;
+static const int STATUSBAR_HEIGHT = 50;
 
 int main(int argc, char ** argv) {
     
@@ -54,7 +54,7 @@ int main(int argc, char ** argv) {
 
 		Breakout::Statusbar statusbar(&statusbar_viewport);
         
-        Breakout::BrickContainer bricks(gameboard_viewport.w, gameboard_viewport.h);
+        Breakout::BrickContainer bricks(gameboard_viewport.w, gameboard_viewport.h, 5, 10, 20);
         bricks.set_viewport(&gameboard_viewport);
 
 
@@ -118,9 +118,6 @@ int main(int argc, char ** argv) {
 				if (input.get_flag_escape() == true) {
 					Menu = 0;
 				}
-
-				// just a temporary way to view the fps
-				std::cout << "FPS: " << window.get_fps() << std::endl;
 
 				// Update delta_time
 				window.capture_end_of_frame();
