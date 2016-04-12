@@ -17,7 +17,7 @@ namespace Breakout {
 		int MenuShow(const Window * win, const InputManager * input);
 		void MenuSetup(int ScreenWidht, int ScreenHeight);
 		int GetClick(const Window * win, const InputManager * input);
-	
+		bool PressEsc(const InputManager * input);
 
 	private:
 		SDL_Renderer *RendererMenu;
