@@ -10,7 +10,7 @@
 #include "IMenu.h"
 
 namespace Breakout {
-	class Menu : IRenderable, IMenu {
+	class Menu : public IRenderable, public IMenu {
 
 	public:
 		Menu(int Width, int Height);
@@ -18,17 +18,20 @@ namespace Breakout {
 		void MenuSetup(int ScreenWidht, int ScreenHeight);
 		int GetClick(const Window * win, const InputManager * input);
 		bool PressEsc(const InputManager * input);
+		void SetPosition(const int posx, const int posy);
 
 	private:
-		SDL_Renderer *RendererMenu;
-		SDL_Texture *NewGameMenu;
+	
 		void render_object(const Window * win, const InputManager * input = nullptr);
 		
 		int ScreenWidth;
 		int ScreenHeight;
 
+
 		int x;
 		int y;
+		int PositionX;
+		int PositionY;
 
 		bool Play = false;
 

@@ -38,7 +38,6 @@ namespace Breakout {
 
 			if (x >= NewGameRect->x && x <= NewGameRect->x + NewGameRect->w && y >= NewGameRect->y && y <= NewGameRect->y + NewGameRect->h) {
 				win->set_render_color_on_mouse(0, 250, 0, 0);
-
 				if (input->handle_mouse_events() == true)
 				{
 						EnterButton = 1;					
@@ -57,10 +56,17 @@ namespace Breakout {
 			}*/
 			return false;
 		}
+
+		void Menu::SetPosition(const int posx, const int posy)
+		{
+			PositionX = posx;
+			PositionY = posy;
+		}
+		
 		void Menu::render_object(const Window * win, const InputManager * input)
 		{
-			NewGameRect->x = ScreenWidth/2;
-			NewGameRect->y = ScreenHeight / 2;
+			NewGameRect->x = ScreenWidth/PositionX;
+			NewGameRect->y = ScreenHeight /PositionY;
 			NewGameRect->w = 100;
 			NewGameRect->h = 20;
 			
