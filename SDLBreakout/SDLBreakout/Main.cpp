@@ -44,7 +44,8 @@ int main(int argc, char ** argv) {
         Breakout::Window window(WINDOW_WIDTH, WINDOW_HEIGHT);
         Breakout::InputManager input;
         Breakout::CompositeRenderable game_objects;
-		Breakout::CompositeRenderable game_menu;
+		Breakout::CompositeRenderable start;
+		Breakout::CompositeRenderable options;
 		Breakout::Menu menu(WINDOW_WIDTH, WINDOW_HEIGHT);
 
         Breakout::Paddle paddle((gameboard_viewport.w - 50) / 2, gameboard_viewport.h - 50);
@@ -56,13 +57,18 @@ int main(int argc, char ** argv) {
         Breakout::BrickContainer bricks(gameboard_viewport.w, gameboard_viewport.h);
         bricks.set_viewport(&gameboard_viewport);
 
-        
+
         game_objects.add(dynamic_cast<Breakout::IRenderable *>(&paddle));
         game_objects.add(dynamic_cast<Breakout::IRenderable *>(&bricks));
-		game_objects.add(dynamic_cast<Breakout::IRenderable *>(&statusbar));
-		game_menu.add(reinterpret_cast<Breakout::IRenderable *>(&menu));
-		game_menu.addMenu(reinterpret_cast<Breakout::IMenu *>(&menu));
+		start.add(dynamic_cast<Breakout::IRenderable *>(&menu));
+		start.addMenu(dynamic_cast<Breakout::IMenu *>(&menu));
+		start.addpos(dynamic_cast<Breakout::IMenu *>(&menu));
+
         
+		options.add(dynamic_cast<Breakout::IRenderable *>(&menu));
+		options.addMenu(dynamic_cast<Breakout::IMenu *>(&menu));
+		options.addpos(dynamic_cast<Breakout::IMenu *>(&menu));
+
 		int Menu = 0;
 
         while (!input.get_flag_quit()) { // this is supposed to be the main game-loop
@@ -76,12 +82,21 @@ int main(int argc, char ** argv) {
 				// Clears the renderer
 				window.set_render_draw_color(0xFF, 0xFF, 0xFF, 0xFF);
 				window.clear_render();
-				Menu = menu.GetClick(&window, &input);
-				game_menu.render_object(&window, &input);
+				
+				start.SetPosition(2,3);
+				
+				//Menu = menu.GetClick(&window, &input);
+				start.render_object(&window, &input);
+				Menu = start.GetClick(&window, &input);
+				std::cout << "Menu: " << Menu << std::endl;
+				
+				options.SetPosition(2,2);
+				Menu = options.GetClick(&window, &input);
+				options.render_object(&window, &input);
+				
 
 				
 				window.render_present();
-				// std::cout << "Dette er verdie:" << Menu << std::endl;
 			}
 			else {
 				// Clears the renderer

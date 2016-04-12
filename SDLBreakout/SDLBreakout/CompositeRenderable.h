@@ -25,14 +25,19 @@ namespace Breakout {
         ~CompositeRenderable();
         
 		void add(IRenderable * element) { children.push_back(element); };
-		void addMenu(IMenu * element) { MenuChildren.push_back(element); };
-        
-		int GetClick(const Window * win, const InputManager * input) { for (int i = 0; i < MenuChildren.size(); i++)MenuChildren[i]->GetClick(win, input); return 0; };
-        void render_object(const Window * win, const InputManager * input){for(int i = 0; i < children.size(); i++)children[i]->render_object(win, input);}
+		void addMenu(IMenu * element) { startChildren.push_back(element); };
+		void addpos(IMenu * element) { posChildren.push_back(element); };
+
+		void SetPosition(const int posx, const int posy) { for (int i = 0; i < posChildren.size(); i++)posChildren[i]->SetPosition(posx,posy); };
+		int GetClick(const Window * win, const InputManager * input) { for (int i = 0; i < startChildren.size(); i++)return startChildren[i]-> GetClick(win, input); };
+		void render_object(const Window * win, const InputManager * input) { for (int i = 0; i < children.size(); i++)children[i]->render_object(win, input); };
+
 		
     private:
         std::vector<IRenderable *> children;
-		std::vector<IMenu *> MenuChildren;
+		std::vector<IMenu *> startChildren;
+		std::vector<IMenu *> posChildren;
+		
 		
 	};
     
