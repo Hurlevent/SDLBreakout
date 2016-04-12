@@ -60,6 +60,7 @@ int main(int argc, char ** argv) {
 
         game_objects.add(dynamic_cast<Breakout::IRenderable *>(&paddle));
         game_objects.add(dynamic_cast<Breakout::IRenderable *>(&bricks));
+		game_objects.add(dynamic_cast<Breakout::IRenderable *>(&statusbar));
 		start.add(dynamic_cast<Breakout::IRenderable *>(&menu));
 		start.addMenu(dynamic_cast<Breakout::IMenu *>(&menu));
 		start.addpos(dynamic_cast<Breakout::IMenu *>(&menu));
