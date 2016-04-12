@@ -75,7 +75,7 @@ namespace Breakout {
 	}
     
     // This is were all our sprites and TTF's should be loaded
-	bool load_media(std::vector<std::shared_ptr<SDL_Texture *>> &textures, FontTexture * font_texture, SDL_Renderer * renderer) {
+	bool load_media(std::vector<std::shared_ptr<SDL_Texture *>> &textures, FontTexture * font_texture, int font_size, SDL_Renderer * renderer) {
         bool success = true;
      
 		
@@ -128,7 +128,7 @@ namespace Breakout {
                     
                     std::cout << "Found file: " << filename.c_str() << std::endl;
                     
-                    if(!font_texture->load_font_from_file((ttf_directory + filename).c_str(), 14)){
+                    if(!font_texture->load_font_from_file((ttf_directory + filename).c_str(), font_size)){
                         
                         std::cerr << "Failed to load TTF! Error: " << TTF_GetError() << std::endl;
                         success = false;
@@ -160,6 +160,8 @@ namespace Breakout {
         _width = width;
         _height = height;
         
+		m_font_size = 24;
+
         SDL_Init(SDL_INIT_VIDEO);
         
         if(!create_window(&_window, width, height)){
@@ -189,7 +191,7 @@ namespace Breakout {
         
 		m_font_texture_creator = new FontTexture();
 
-		if (!load_media(textures, m_font_texture_creator, _renderer)) {
+		if (!load_media(textures, m_font_texture_creator, m_font_size, _renderer)) {
             std::cerr << "Failed to load resource files!" << std::endl;
             throw "Failure";
 		}
@@ -206,6 +208,7 @@ namespace Breakout {
         }
 		
 		delete m_font_texture_creator;
+		m_font_texture_creator = nullptr;
 
 		SDL_DestroyRenderer(_renderer);
         _renderer = nullptr;

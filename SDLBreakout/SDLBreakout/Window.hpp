@@ -85,6 +85,7 @@ namespace Breakout {
         
         std::vector<std::shared_ptr<SDL_Texture *>> textures; // I made it a shared_ptr, it might not be enough to fix the leaks
 		FontTexture * m_font_texture_creator;
+		int m_font_size;
 
 
     };
