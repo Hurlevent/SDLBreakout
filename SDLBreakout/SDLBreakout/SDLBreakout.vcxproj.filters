@@ -57,6 +57,9 @@
     <ClInclude Include="IMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FontTexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Brick.cpp">
@@ -87,6 +90,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BrickContainer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FontTexture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

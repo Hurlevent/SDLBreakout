@@ -24,7 +24,7 @@
 #include "CompositeRenderable.h"
 #include "Paddle.hpp"
 #include "Brick.hpp"
-
+#include "Statusbar.hpp"
 #include "Menu.h"
 
 #include "BrickContainer.hpp"
@@ -51,16 +51,19 @@ int main(int argc, char ** argv) {
         Breakout::Paddle paddle((gameboard_viewport.w - 50) / 2, gameboard_viewport.h - 50);
         paddle.set_viewport(&gameboard_viewport);
         paddle.set_speed(10);
+
+		Breakout::Statusbar statusbar(&statusbar_viewport);
         
         Breakout::BrickContainer bricks(gameboard_viewport.w, gameboard_viewport.h);
         bricks.set_viewport(&gameboard_viewport);
 
-        
+
         game_objects.add(dynamic_cast<Breakout::IRenderable *>(&paddle));
         game_objects.add(dynamic_cast<Breakout::IRenderable *>(&bricks));
 		start.add(dynamic_cast<Breakout::IRenderable *>(&menu));
 		start.addMenu(dynamic_cast<Breakout::IMenu *>(&menu));
 		start.addpos(dynamic_cast<Breakout::IMenu *>(&menu));
+
         
 		options.add(dynamic_cast<Breakout::IRenderable *>(&menu));
 		options.addMenu(dynamic_cast<Breakout::IMenu *>(&menu));

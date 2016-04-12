@@ -28,6 +28,7 @@
 #include "Timer.h"
 #include <memory>
 #include <dirent.h>
+#include "FontTexture.h"
 
 namespace Breakout {
    static const int default_width = 1024;
@@ -44,6 +45,8 @@ namespace Breakout {
         void clear_render() const;
         void render_fill_rect(const SDL_Rect * rect) const;
 		void render_texture(int id, const SDL_Rect * clip, const SDL_Rect * viewport = nullptr) const;
+		void render_font_texture(int id, const SDL_Rect * clip, const SDL_Rect * viewport = nullptr)const;
+		void update_font_texture_text(int id, std::string text, SDL_Color text_color)const;
 		void set_render_color_on_mouse(int id, uint8_t r, uint8_t g, uint8_t b)const;
 		void render_present() const;
 		
@@ -81,7 +84,8 @@ namespace Breakout {
 
         
         std::vector<std::shared_ptr<SDL_Texture *>> textures; // I made it a shared_ptr, it might not be enough to fix the leaks
-
+		FontTexture * m_font_texture_creator;
+		int m_font_size;
 
 
     };
