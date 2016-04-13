@@ -1,43 +1,33 @@
-#ifndef  Menu_h
+#ifndef Menu_h
 #define Menu_h
 
-#include <SDL.h>
-#include <SDL_ttf.h>
-#include <iostream>
-#include "Window.hpp"
+#include <vector>
+#include <memory>
+#include "Button.h"
 #include "IRenderable.hpp"
 #include "Sprites.h"
 
-
 namespace Breakout {
-	class Menu : public IRenderable {
-
+	class Menu : public IRenderable
+	{
 	public:
-		Menu(int Width, int Height);
-		void MenuSetup(int ScreenWidht, int ScreenHeight);
-		int GetClick(const Window * win, const InputManager * input);
-		bool PressEsc(const InputManager * input);
-		void SetPosition(const int posx, const int posy);
-		void render_object(const Window * win, const InputManager * input);
-
+		Menu(int window_width, int window_height, int number_of_buttons, int button_width = 100, int button_height = 20);
+		void render_object(const Window * win, const InputManager * input = nullptr);
+		int get_view() { return m_view;};
+		void set_view(int view) { m_view = view; }
+		~Menu();
 	private:
-	
+		int m_window_width;
+		int m_window_height;
+		int m_button_width;
+		int m_button_height;
+		int m_padding_y;
 		
-		int ScreenWidth;
-		int ScreenHeight;
+		int m_view; // This is a temp variable that will be replaced
 
-
-		int x;
-		int y;
-		int PositionX;
-		int PositionY;
-
-		bool Play = false;
-
-		SDL_Rect *NewGameRect;
-
-		SDL_Event event;
+		std::vector<int> m_texture_IDs;
+		std::vector<std::unique_ptr<Button *>> m_buttons;
 	};
 }
-#endif // ! Menu_h
 
+#endif
