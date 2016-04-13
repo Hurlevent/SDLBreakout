@@ -2,7 +2,6 @@
 #define Ball_h
 
 #include <iostream>
-#include <SDL.h>
 
 #include "GameObject.h"
 #include "IRenderable.hpp"
