@@ -31,8 +31,6 @@ namespace Breakout {
 		
     private:
         std::vector<IRenderable *> children;
-
-		
 		
 	};
     

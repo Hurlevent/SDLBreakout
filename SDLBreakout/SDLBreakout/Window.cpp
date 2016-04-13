@@ -292,7 +292,7 @@ namespace Breakout {
 
 	void Window::set_render_color_on_mouse(int id, uint8_t r, uint8_t g, uint8_t b)const
 	{
-		SDL_SetTextureColorMod(*(textures[id]), r, g, b);
+		SDL_SetTextureColorMod(*textures[id], r, g, b);
 	}
 
 	

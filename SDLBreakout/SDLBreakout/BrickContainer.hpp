@@ -7,6 +7,7 @@
 //
 
 // the purpose of this class is to enable us treat all bricks as a single game_object
+// This class can probably be renamed to "Level"
 
 
 #ifndef BrickContainer_hpp

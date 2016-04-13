@@ -17,11 +17,12 @@
 
 #include <memory>
 #include "Color.h"
+#include "GameObject.h"
 #include "IRenderable.hpp"
 #include "IViewport.h"
 
 namespace Breakout {
-    class Brick : public IRenderable, public IViewport {
+    class Brick : public GameObject, public IViewport {
     public:
         Brick(int texture_id, int posX, int posY, int width = 20, int height = 10);
         ~Brick();
@@ -36,10 +37,8 @@ namespace Breakout {
         
     private:
         bool m_active;
-        Color m_color;
         SDL_Rect * m_collider;
         SDL_Rect * m_properties;
-        int m_texture_id;
         const SDL_Rect * m_viewport;
     };
 }

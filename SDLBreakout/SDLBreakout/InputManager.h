@@ -16,6 +16,7 @@ namespace Breakout {
         ~InputManager();
         void handle_input_events();
 		bool handle_mouse_events()const;
+		void get_mouse_position(SDL_Point & position)const;
 
         void clear_flags();
         bool get_flag_up() const {return up;}

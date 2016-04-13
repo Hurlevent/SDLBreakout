@@ -1,56 +1,45 @@
 #include "Menu.h"
-namespace Breakout {
-		Menu::Menu(int Width, int Height)
-		{
-			ScreenHeight = Height;
-			ScreenWidth = Width;
-			NewGameRect = new SDL_Rect{ 0, 0, 0, 0 };;
-		}
 
-		void Menu::MenuSetup(int ScreenWidth, int ScreenHeight)
+namespace Breakout
+{
+	Menu::Menu(int window_width, int window_height, int number_of_buttons, int button_width, int button_height)
+	{
+		m_window_width = window_width;
+		m_button_height = window_height;
+		m_button_width = button_width;
+		m_button_height = button_height;
+
+		m_padding_y = 10;
+
+		m_view = 0;
+
+		for (int i = 0; i < number_of_buttons; i++)
 		{
+			m_texture_IDs.push_back(i);
+
+			int x = (window_width - button_width) / 2;
+			int y = (window_height - ((button_height + m_padding_y) * number_of_buttons * i)) / 2;
 			
-			
+			m_buttons.push_back(std::make_unique<Button *>(new Button(m_texture_IDs[i], x, y, m_button_width, m_button_height)));
 		}
-		int Menu::GetClick(const Window * win, const InputManager * input)
-		{
-			int EnterButton = 0;
-			SDL_GetMouseState(&x, &y);
+	}
 
-			if (x >= NewGameRect->x && x <= NewGameRect->x + NewGameRect->w && y >= NewGameRect->y && y <= NewGameRect->y + NewGameRect->h) {
-				win->set_render_color_on_mouse(0, 250, 0, 0);
-				if (input->handle_mouse_events() == true)
-				{
-						EnterButton = 1;					
-				}
-			}
-			else {
-				win->set_render_color_on_mouse(0, 0, 250, 0);
-			}
-			return EnterButton;
-		}
-		bool Menu::PressEsc(const InputManager * input)
-		{
-			/*bool Escape = false;
-			if (input->handle_input_events()) {
 
-			}*/
-			return false;
+	Menu::~Menu()
+	{
+		for (std::vector<std::unique_ptr<Button *>>::iterator itr = m_buttons.begin(); itr != m_buttons.end(); itr++)
+		{
+			delete (*itr).release();
 		}
+	}
 
-		void Menu::SetPosition(const int posx, const int posy)
+	void Menu::render_object(const Window* win, const InputManager* input)
+	{
+		for(std::vector<std::unique_ptr<Button *>>::iterator itr = m_buttons.begin(); itr != m_buttons.end(); itr++)
 		{
-			PositionX = posx;
-			PositionY = posy;
+			m_view = (**itr)->listen_to_click(win, input);
+			(**itr)->render_object(win, input);
 		}
-		
-		void Menu::render_object(const Window * win, const InputManager * input)
-		{
-			NewGameRect->x = ScreenWidth/PositionX;
-			NewGameRect->y = ScreenHeight /PositionY;
-			NewGameRect->w = 100;
-			NewGameRect->h = 20;
-			
-			win->render_texture(0, NewGameRect, nullptr);
-		}
+	}
+
 }

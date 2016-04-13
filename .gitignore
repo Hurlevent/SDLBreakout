@@ -216,3 +216,5 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+/SDLBreakout/SDLBreakout.VC.db
+/SDLBreakout/SDLBreakout.VC.VC.opendb
