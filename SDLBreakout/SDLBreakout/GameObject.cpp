@@ -18,5 +18,5 @@ string GameObject::GetName()
 
 void GameObject::SetPos(Point newPos)
 {
-
+	_pos = newPos;
 }

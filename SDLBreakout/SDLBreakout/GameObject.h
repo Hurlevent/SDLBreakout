@@ -5,6 +5,8 @@
 
 #include <string>
 #include "Point.h"
+#include "Color.h"
+
 using std::string;
 
 class GameObject
@@ -20,6 +22,8 @@ public:
 private:
 	string _name;
 	Point _pos;
+	Color color;
+	int texture_id;
 };
 
 #endif // !GAMEOBJECT_H
