@@ -7,22 +7,21 @@
 #include "Window.hpp"
 #include "IRenderable.hpp"
 #include "Sprites.h"
-#include "IMenu.h"
+
 
 namespace Breakout {
-	class Menu : public IRenderable, public IMenu {
+	class Menu : public IRenderable {
 
 	public:
 		Menu(int Width, int Height);
-		int MenuShow(const Window * win, const InputManager * input);
 		void MenuSetup(int ScreenWidht, int ScreenHeight);
 		int GetClick(const Window * win, const InputManager * input);
 		bool PressEsc(const InputManager * input);
 		void SetPosition(const int posx, const int posy);
+		void render_object(const Window * win, const InputManager * input);
 
 	private:
 	
-		void render_object(const Window * win, const InputManager * input = nullptr);
 		
 		int ScreenWidth;
 		int ScreenHeight;

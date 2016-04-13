@@ -23,6 +23,7 @@
 #include "InputManager.h"
 #include "Color.h"
 #include "Sprites.h"
+#include "Ball.h"
 
 namespace Breakout {
     
@@ -30,7 +31,7 @@ namespace Breakout {
     class Paddle : public IRenderable, public IViewport {
     public:
         
-        Paddle(const int posX, const int posY, const int width = 100, const int height = 50);
+        Paddle(Ball * ball, const int posX, const int posY, const int width = 100, const int height = 50);
         ~Paddle();
         
         void set_speed(const double speed){m_speed = speed;};
@@ -49,6 +50,7 @@ namespace Breakout {
         double m_speed;
         const SDL_Rect * m_viewport;
         int texture_id;
+		Ball * m_ball;
     };
 }
 

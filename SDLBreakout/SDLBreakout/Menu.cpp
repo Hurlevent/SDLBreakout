@@ -7,25 +7,6 @@ namespace Breakout {
 			NewGameRect = new SDL_Rect{ 0, 0, 0, 0 };;
 		}
 
-		int Menu::MenuShow(const Window * win, const InputManager * input)
-		{
-			SDL_GetMouseState(&x, &y);
-
-			if (x >= NewGameRect->x && x <= NewGameRect->x + NewGameRect->w && y >= NewGameRect->y && y <= NewGameRect->y + NewGameRect->h) {
-				win->set_render_color_on_mouse(0, 250, 0, 0);
-
-				if (event.type == SDL_MOUSEBUTTONDOWN)
-				{
-					if (event.button.button == SDL_BUTTON_LEFT) {
-
-					}
-				}
-			}
-			else {
-				win->set_render_color_on_mouse(0, 0, 250, 0);
-			}
-			return 0;
-		}
 		void Menu::MenuSetup(int ScreenWidth, int ScreenHeight)
 		{
 			

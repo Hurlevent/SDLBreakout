@@ -116,11 +116,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Ball.h" />
     <ClInclude Include="Brick.hpp" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="CompositeRenderable.h" />
     <ClInclude Include="FontTexture.h" />
-    <ClInclude Include="IMenu.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IRenderable.hpp" />
     <ClInclude Include="IViewport.h" />
@@ -133,6 +133,7 @@
     <ClInclude Include="Window.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="BrickContainer.cpp" />
     <ClCompile Include="FontTexture.cpp" />

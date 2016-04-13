@@ -10,12 +10,13 @@
 #include <iostream>
 namespace Breakout {
     
-    Paddle::Paddle(const int posX, const int posY, const int width, const int height){
+    Paddle::Paddle(Ball * ball, const int posX, const int posY, const int width, const int height){
         properties = new SDL_Rect{posX, posY, width, height};
         collider = new SDL_Rect{posX, posY, width, height};
         velocity = new Vector(0, 0);
         m_viewport = nullptr;
         texture_id = PURPLE_BRICK;
+		m_ball = ball;
     }
     
     Paddle::~Paddle(){

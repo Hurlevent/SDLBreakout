@@ -55,7 +55,7 @@ namespace Breakout {
 				{
 					SDL_DestroyTexture(m_textures[id]);
 				}
-
+				 
 				m_textures[id] = texture;
 			}
 			SDL_FreeSurface(text_surface);

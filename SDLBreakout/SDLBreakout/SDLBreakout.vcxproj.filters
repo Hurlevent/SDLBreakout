@@ -54,10 +54,10 @@
     <ClInclude Include="IViewport.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IMenu.h">
+    <ClInclude Include="FontTexture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FontTexture.h">
+    <ClInclude Include="Ball.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -93,6 +93,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FontTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ball.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

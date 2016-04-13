@@ -30,6 +30,7 @@ enum TTFs
 	MINECRAFT
 };
 
+
 enum TTF_TEXTURES
 {
 	SCORE,

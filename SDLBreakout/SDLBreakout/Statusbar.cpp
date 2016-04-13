@@ -59,8 +59,8 @@ namespace Breakout {
 			win->update_font_texture_text(i->texture_id, i->text, m_color);
 			win->render_font_texture(i->texture_id, &i->properties, &i->properties);
         }*/
-		//win->update_font_texture_text(m_score.texture_id, m_score.text, m_color);
-		//win->render_font_texture(m_score.texture_id, &m_score.properties, &m_score.properties);
+		win->update_font_texture_text(m_score.texture_id, m_score.text, m_color);
+		win->render_font_texture(m_score.texture_id, &m_score.properties, &m_score.properties);
 		win->update_font_texture_text(m_speed.texture_id, m_speed.text, m_color);
 		win->render_font_texture(m_speed.texture_id, &m_speed.properties, &m_speed.properties);
 		win->update_font_texture_text(m_fps.texture_id, m_fps.text, m_color);

@@ -26,6 +26,7 @@
 #include "Brick.hpp"
 #include "Statusbar.hpp"
 #include "Menu.h"
+#include "Ball.h"
 
 #include "BrickContainer.hpp"
 
@@ -44,11 +45,11 @@ int main(int argc, char ** argv) {
         Breakout::Window window(WINDOW_WIDTH, WINDOW_HEIGHT);
         Breakout::InputManager input;
         Breakout::CompositeRenderable game_objects;
-		Breakout::CompositeRenderable start;
-		Breakout::CompositeRenderable options;
-		Breakout::Menu menu(WINDOW_WIDTH, WINDOW_HEIGHT);
+		Breakout::Menu start(WINDOW_WIDTH, WINDOW_HEIGHT);
+		Breakout::Menu options(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-        Breakout::Paddle paddle((gameboard_viewport.w - 50) / 2, gameboard_viewport.h - 50);
+		Breakout::Ball ball(gameboard_viewport.w, gameboard_viewport.h, 100, 100);
+        Breakout::Paddle paddle(&ball, (gameboard_viewport.w - 50) / 2, gameboard_viewport.h - 50);
         paddle.set_viewport(&gameboard_viewport);
         paddle.set_speed(10);
 
@@ -61,17 +62,10 @@ int main(int argc, char ** argv) {
         game_objects.add(dynamic_cast<Breakout::IRenderable *>(&paddle));
         game_objects.add(dynamic_cast<Breakout::IRenderable *>(&bricks));
 		game_objects.add(dynamic_cast<Breakout::IRenderable *>(&statusbar));
-		start.add(dynamic_cast<Breakout::IRenderable *>(&menu));
-		start.addMenu(dynamic_cast<Breakout::IMenu *>(&menu));
-		start.addpos(dynamic_cast<Breakout::IMenu *>(&menu));
-
-        
-		options.add(dynamic_cast<Breakout::IRenderable *>(&menu));
-		options.addMenu(dynamic_cast<Breakout::IMenu *>(&menu));
-		options.addpos(dynamic_cast<Breakout::IMenu *>(&menu));
+		game_objects.add(dynamic_cast<Breakout::IRenderable *>(&ball));
+		
 
 		int Menu = 0;
-
         while (!input.get_flag_quit()) { // this is supposed to be the main game-loop
 			
 
@@ -80,6 +74,7 @@ int main(int argc, char ** argv) {
             // Reads input events from user
             input.handle_input_events();
 			if (Menu == 0 ) {
+				
 				// Clears the renderer
 				window.set_render_draw_color(0xFF, 0xFF, 0xFF, 0xFF);
 				window.clear_render();
@@ -87,17 +82,18 @@ int main(int argc, char ** argv) {
 				start.SetPosition(2,3);
 				
 				//Menu = menu.GetClick(&window, &input);
-				start.render_object(&window, &input);
 				Menu = start.GetClick(&window, &input);
+				start.render_object(&window, &input);
+				
 				std::cout << "Menu: " << Menu << std::endl;
 				
 				options.SetPosition(2,2);
 				Menu = options.GetClick(&window, &input);
 				options.render_object(&window, &input);
 				
-
-				
 				window.render_present();
+				
+				
 			}
 			else {
 				// Clears the renderer
