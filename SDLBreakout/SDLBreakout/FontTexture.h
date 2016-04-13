@@ -31,7 +31,7 @@ namespace Breakout {
 		void render(SDL_Renderer * renderer, int id, SDL_Rect * clip, double angle = 0.0, SDL_Point * center = nullptr, SDL_RendererFlip flip = SDL_FLIP_NONE)const;
 	private:
 		TTF_Font * m_font;
-		SDL_Texture * m_textures[NUMBER_OF_TTF_TEXTURES];
+		SDL_Texture * m_textures[sizeof(TTF_TEXTURES)*2];
 	};
 }
 

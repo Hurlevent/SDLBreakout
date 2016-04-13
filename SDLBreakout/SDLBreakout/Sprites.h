@@ -34,10 +34,9 @@ enum TTFs
 enum TTF_TEXTURES
 {
 	SCORE,
-	SPEED,
+	TIME,
 	SOUND,
-	HEALTH,
-	NUMBER_OF_TTF_TEXTURES
+	HEALTH
 };
 
 #endif /* Sprites_h */

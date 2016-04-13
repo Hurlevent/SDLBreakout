@@ -21,7 +21,7 @@ namespace Breakout {
 		std::string text;
 		std::string value;
         SDL_Rect properties;
-		SDL_Rect value_props;
+		SDL_Rect value_properties;
     };
     
     class Statusbar : public IViewport, public IRenderable {
@@ -37,9 +37,10 @@ namespace Breakout {
 		SDL_Color m_color;
         const SDL_Rect * m_viewport;
         struct texture_info m_score;
-        struct texture_info m_speed;
+        struct texture_info m_time;
         struct texture_info m_fps;
         struct texture_info m_health;
+		void to_string(std::string & str, double value);
     };
 }
 
