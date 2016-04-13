@@ -5,7 +5,7 @@ namespace Breakout
 	Menu::Menu(int window_width, int window_height, int number_of_buttons, int button_width, int button_height)
 	{
 		m_window_width = window_width;
-		m_button_height = window_height;
+		m_window_height = window_height;
 		m_button_width = button_width;
 		m_button_height = button_height;
 

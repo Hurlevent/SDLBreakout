@@ -18,10 +18,9 @@
 #include "Color.h"
 #include "GameObject.h"
 #include "IRenderable.hpp"
-#include "IViewport.h"
 
 namespace Breakout {
-    class Brick : public GameObject, public IViewport {
+    class Brick : public GameObject{
     public:
         Brick(int texture_id, int posX, int posY, int width = 20, int height = 10);
         ~Brick();
@@ -30,10 +29,10 @@ namespace Breakout {
         
         void set_active(bool active){m_active = active;};
         
-        void render_object(const Window * win, const InputManager * input = nullptr);
+        void render_object(const Window * win, const InputManager * input = nullptr) override;
         
-        void set_viewport(const SDL_Rect * viewport){m_viewport = viewport;};
-        
+		void set_viewport(const SDL_Rect * viewport) { m_viewport = viewport; }
+
     private:
         bool m_active;
         SDL_Rect * m_collider;

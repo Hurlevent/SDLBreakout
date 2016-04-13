@@ -17,7 +17,6 @@
 #endif
 
 #include "IRenderable.hpp"
-#include "IViewport.h"
 #include "Vector.hpp"
 #include "InputManager.h"
 #include "Sprites.h"
@@ -26,7 +25,7 @@
 namespace Breakout {
     
     
-    class Paddle : public GameObject, public IViewport {
+    class Paddle : public GameObject {
     public:
         
         Paddle(Ball * ball, const int posX, const int posY, const int width = 100, const int height = 50);
@@ -34,11 +33,11 @@ namespace Breakout {
         
         void set_speed(const double speed){m_speed = speed;};
         
-        void render_object(const Window * win, const InputManager * input = nullptr);
-        
-        void set_viewport(const SDL_Rect * viewport){m_viewport = viewport;};
+        void render_object(const Window * win, const InputManager * input = nullptr) override;
         
         void set_colors(const uint8_t red, const uint8_t green, const uint8_t blue, const uint8_t alpha);
+
+		void set_viewport(const SDL_Rect * viewport) { m_viewport = viewport; }
 
     private:
         SDL_Rect * properties;

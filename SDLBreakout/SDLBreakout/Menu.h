@@ -12,7 +12,7 @@ namespace Breakout {
 	{
 	public:
 		Menu(int window_width, int window_height, int number_of_buttons, int button_width = 100, int button_height = 20);
-		void render_object(const Window * win, const InputManager * input = nullptr);
+		void render_object(const Window * win, const InputManager * input = nullptr) override;
 		int get_view() { return m_view;};
 		void set_view(int view) { m_view = view; }
 		~Menu();

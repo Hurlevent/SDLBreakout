@@ -125,7 +125,6 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IRenderable.hpp" />
-    <ClInclude Include="IViewport.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Paddle.hpp" />

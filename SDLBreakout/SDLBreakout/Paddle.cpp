@@ -69,9 +69,9 @@ namespace Breakout {
     }
     
     void Paddle::set_colors(const uint8_t r, const uint8_t g, const uint8_t b, const uint8_t a){
-        m_color.color_red = r;
-		m_color.color_green = g;
-		m_color.color_blue = b;
-		m_color.color_alpha = a;
+		m_color.r = r;
+		m_color.g = g;
+		m_color.b = b;
+		m_color.a = a;
     }
 }

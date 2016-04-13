@@ -46,12 +46,15 @@ namespace Breakout {
            (*iter)->render_object(win);
        }
     }
-    
-    void BrickContainer::set_viewport(const SDL_Rect * viewport){
-        for(std::vector<std::unique_ptr<Brick>>::iterator iter = m_bricks.begin(); iter != m_bricks.end(); iter++){
-            (*iter)->set_viewport(viewport);
-        }
-    }
+
+	void BrickContainer::set_viewport(const SDL_Rect* viewport)
+	{
+		for (std::vector<std::unique_ptr<Brick>>::iterator iter = m_bricks.begin(); iter != m_bricks.end(); iter++)
+		{
+			(*iter)->set_viewport(viewport);
+		}
+	}
+
     
     void BrickContainer::handle_collision(){
         // if the ball collides with a brick, this function could maybe be usefull. Will change a lot when we implement the ball

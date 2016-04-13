@@ -8,19 +8,18 @@
 #include "Vector.hpp"
 #include "Window.hpp"
 #include "InputManager.h"
-#include "IViewport.h"
 #include "Sprites.h"
 
 
 namespace Breakout {
-	class Ball : public GameObject, public IRenderable
+	class Ball : public GameObject
 	{
 	public:
 		Ball(int win_width, int win_height, int width = 20, int height = 10);
 		~Ball();
-		void render_object(const Window * win, const InputManager * input = nullptr);
+		void render_object(const Window * win, const InputManager * input = nullptr) override;
 		void SetForce(double speed);
-		SDL_Rect *GetCollider() { return m_collider; };
+		SDL_Rect * GetCollider() { return m_collider; };
 		void handle_collision(Vector normal);
 
 

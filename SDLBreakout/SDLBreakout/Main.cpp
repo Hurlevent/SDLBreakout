@@ -46,23 +46,22 @@ int main(int argc, char ** argv) {
         Breakout::InputManager input;
         Breakout::CompositeRenderable game_objects;
 		Breakout::Menu start(WINDOW_WIDTH, WINDOW_HEIGHT, 2);
-		//Breakout::Button options(gameboard_viewport);
 
 		Breakout::Ball ball(gameboard_viewport.w, gameboard_viewport.h, 100, 100);
         Breakout::Paddle paddle(&ball, (gameboard_viewport.w - 50) / 2, gameboard_viewport.h - 50);
-        paddle.set_viewport(&gameboard_viewport);
         paddle.set_speed(10);
+		paddle.set_viewport(&gameboard_viewport);
 
 		Breakout::Statusbar statusbar(&statusbar_viewport);
+		statusbar.set_viewport(&statusbar_viewport);
         
         Breakout::BrickContainer bricks(gameboard_viewport.w, gameboard_viewport.h, 5, 10, 20);
-        bricks.set_viewport(&gameboard_viewport);
+		bricks.set_viewport(&gameboard_viewport);
 
-
-        game_objects.add(dynamic_cast<Breakout::IRenderable *>(&paddle));
-        game_objects.add(dynamic_cast<Breakout::IRenderable *>(&bricks));
-		game_objects.add(dynamic_cast<Breakout::IRenderable *>(&statusbar));
-		game_objects.add(dynamic_cast<Breakout::IRenderable *>(&ball));
+        game_objects.add(dynamic_cast<GameObject *>(&paddle));
+        game_objects.add(dynamic_cast<GameObject *>(&bricks));
+		game_objects.add(dynamic_cast<GameObject *>(&statusbar));
+		game_objects.add(dynamic_cast<GameObject *>(&ball));
 		
         while (!input.get_flag_quit()) { // this is supposed to be the main game-loop
 			

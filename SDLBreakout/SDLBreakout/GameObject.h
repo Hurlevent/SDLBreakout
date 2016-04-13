@@ -8,16 +8,19 @@
 
 #include "Point.h"
 #include "Color.h"
+#include "Window.hpp"
+#include "InputManager.h"
+#include "IRenderable.hpp"
 
 
 using std::string;
 
-class GameObject
+class GameObject : public Breakout::IRenderable
 {
 public:
 	GameObject();
 	GameObject(string name, Point pos, Point size, SDL_Color color, int textureID);
-	~GameObject();
+	virtual ~GameObject()override;
 	void SetObjectInfo(string name, Point pos, Point size, SDL_Color color, int textureID);
 	void SetName(string name);
 	void SetPos(Point newPos);
