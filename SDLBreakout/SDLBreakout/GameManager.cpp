@@ -26,8 +26,6 @@ namespace Breakout {
 		m_game_objects.add(dynamic_cast<GameObject *>(&m_bricks));
 		m_game_objects.add(dynamic_cast<GameObject *>(&m_statusbar));
 
-		m_delta = 0;
-		m_counted_frames = 0;
 		m_ticks = 0;
 
 	}
@@ -41,22 +39,27 @@ namespace Breakout {
 		double msPerTick = 1000 / 60;
 
 		m_ticks = 0;
-		m_counted_frames = 0;
+		int frames = 0;
 
-		m_delta = 0;
+		double delta = 0;
 
 		while(!m_input.get_flag_quit())
 		{
 			Uint32 now = SDL_GetTicks();
 
-			m_delta += (now - lastTime) / msPerTick;
+			delta += (now - lastTime) / msPerTick;
+
+			//m_timer.set_delta(m_timer.get_delta() + (now - lastTime)); // it would be nice if we could store this information on our Timer object
+
 			lastTime = now;
 
 			m_input.handle_input_events();
 
-			while (m_delta >= 1) {
+			while (delta >= 1) {
 				m_ticks++;
-				m_delta -= 1;
+				delta -= 1;
+				
+				//m_timer.dec_delta(); // It would be nice to use our timer-object
 				
 
 

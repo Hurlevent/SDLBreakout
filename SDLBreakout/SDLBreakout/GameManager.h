@@ -32,8 +32,6 @@ namespace Breakout {
 		BrickContainer m_bricks;
 		
 		Timer m_timer;
-		double m_delta;
-		int m_counted_frames;
 		int m_ticks;
 
 	};

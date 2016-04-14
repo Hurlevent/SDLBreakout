@@ -70,9 +70,35 @@ namespace Breakout {
 		return 60; // This is not the proper way to calculate fps!
 	}
 
-	double Timer::get_delta_time() const
+	double Timer::get_delta() const
 	{
-		return 1.2; // This is not the proper way to calculate fps!
+		//return m_delta;
+
+		return 3.0; // THIS IS HOW THE PADDLE IS CURRENTLY MOVING!!! WE NEED TO CHANGE THIS!
 	}
+
+	void Timer::set_delta(double delta)
+	{
+		m_delta = delta;
+	}
+
+	// Decrements the delta_time
+	void Timer::dec_delta()
+	{
+		m_delta--;
+	}
+
+	void Timer::set_frames(int frames)
+	{
+		m_counted_frames = frames;
+	}
+
+	int Timer::get_frames() const
+	{
+		return m_counted_frames;
+	}
+
+
+
 
 }

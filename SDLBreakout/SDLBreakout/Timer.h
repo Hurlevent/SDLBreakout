@@ -24,7 +24,13 @@ namespace Breakout {
         
         int elapsed_time() const;
 		double get_fps()const;
-		double get_delta_time()const;
+		double get_delta()const;
+
+		void set_delta(double delta);
+		void dec_delta();
+
+		void set_frames(int frames);
+		int get_frames()const;
         
         bool is_started(){return started;};
         bool is_paused(){return started && paused;};
@@ -34,6 +40,8 @@ namespace Breakout {
         bool started;
         bool paused;
 
+		double m_delta;
+		int m_counted_frames;
 	};
 }
 #endif
