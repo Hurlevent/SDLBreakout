@@ -8,6 +8,7 @@
 #include "Paddle.hpp"
 #include "Statusbar.hpp"
 #include "BrickContainer.hpp"
+#include "Renderer.h"
 
 namespace Breakout {
 	class GameManager
@@ -18,7 +19,7 @@ namespace Breakout {
 		~GameManager();
 	private:
 		Window m_window;
-		//SDL_Renderer * m_renderer;
+		Renderer m_renderer;
 		SDL_Rect m_gameboard_viewport;
 		SDL_Rect m_statusbar_viewport;
 		InputManager m_input;

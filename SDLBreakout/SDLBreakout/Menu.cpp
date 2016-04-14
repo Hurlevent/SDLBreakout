@@ -27,18 +27,18 @@ namespace Breakout
 
 	Menu::~Menu()
 	{
-		for (std::vector<std::unique_ptr<Button *>>::iterator itr = m_buttons.begin(); itr != m_buttons.end(); itr++)
+		for (std::vector<std::unique_ptr<Button *>>::iterator itr = m_buttons.begin(); itr != m_buttons.end(); ++itr)
 		{
 			delete (*itr).release();
 		}
 	}
 
-	void Menu::render_object(const Window* win, const InputManager* input)
+	void Menu::render_object(const Renderer* rend, const InputManager* input)
 	{
-		for(std::vector<std::unique_ptr<Button *>>::iterator itr = m_buttons.begin(); itr != m_buttons.end(); itr++)
+		for(std::vector<std::unique_ptr<Button *>>::iterator itr = m_buttons.begin(); itr != m_buttons.end(); ++itr)
 		{
-			m_view = (**itr)->listen_to_click(win, input);
-			(**itr)->render_object(win, input);
+			m_view = (**itr)->listen_to_click(rend, input);
+			(**itr)->render_object(rend, input);
 		}
 	}
 

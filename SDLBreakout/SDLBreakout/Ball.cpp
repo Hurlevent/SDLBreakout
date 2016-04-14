@@ -20,10 +20,10 @@ namespace Breakout {
 		m_properties = nullptr;
 		m_collider = nullptr;
 	}
-	void Ball::render_object(const Window * win, const InputManager * input)
+	void Ball::render_object(const Renderer * rend, const InputManager * input)
 	{
 		
-		win->render_texture(m_texture_id, m_collider, m_viewport);
+		rend->render_texture(m_texture_id, m_collider, m_viewport);
 	}
 	void Ball::SetForce()
 	{

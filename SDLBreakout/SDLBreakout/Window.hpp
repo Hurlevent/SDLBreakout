@@ -31,62 +31,22 @@
 #include "FontTexture.h"
 
 namespace Breakout {
-   static const int default_width = 1024;
-   static const int default_height = 1024;
-    
-    
+   
     class Window {
     public:
-		Window(const int width = default_width, const int height = default_height);
+		Window(const int width = 1024, const int height = 1024);
         
         ~Window();
-
-        void set_render_draw_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a) const;
-        void clear_render() const;
-        void render_fill_rect(const SDL_Rect * rect) const;
-		void render_texture(int id, const SDL_Rect * clip, const SDL_Rect * viewport = nullptr) const;
-		void render_font_texture(int id, const SDL_Rect * clip, const SDL_Rect * viewport = nullptr)const;
-		void update_font_texture_text(int id, std::string text, SDL_Color text_color)const;
-		void set_render_color_on_mouse(int id, uint8_t r, uint8_t g, uint8_t b)const;
-		void render_present() const;
 		
-		 
-        void capture_start_of_frame();
-        void capture_end_of_frame();
-        
-        int get_delta_time() const{return delta_time;};
-        double get_fps() const;
-        void reset_fps();
-        
         int get_height()const{return _height;};
         int get_width()const{return _width;};
+
+		SDL_Window * get_window()const { return _window; };
     
     private:
         int _width;
         int _height;
         SDL_Window * _window;
-        SDL_Renderer * _renderer;        
-
-        Timer timer;
-        int delta_time;
-        int time_start_of_frame;
-        int counted_frames;
-
-		bool failedToLoad;
-
-		SDL_Renderer *RendererMenu;
-		SDL_Texture *NewGameMenu;
-
-		SDL_Rect BackgroundRect;
-		SDL_Rect NewGameRect;
-
-		SDL_Event event;
-
-        
-        std::vector<std::shared_ptr<SDL_Texture *>> textures; // I made it a shared_ptr, it might not be enough to fix the leaks
-		FontTexture * m_font_texture_creator;
-		int m_font_size;
-
     };
 }
 

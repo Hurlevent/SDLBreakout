@@ -33,12 +33,13 @@ namespace Breakout {
 		
     }
     
-    void Paddle::render_object(const Window * win, const InputManager * input){
+    void Paddle::render_object(const Renderer * rend, const InputManager * input){
 
 		//Her varierer deltatime fra 1-3 tall, spørs helt hvordan frames er på din maskin.
-		double deltatime = win->get_delta_time();
+		double deltatime = rend->get_delta_time();
 		
-		std::cout << "Deltatime: " << deltatime << std::endl;
+
+		// std::cout << "Deltatime: " << deltatime << std::endl;
         
 		if(input != nullptr){
             if(input->get_flag_right()){
@@ -55,15 +56,15 @@ namespace Breakout {
         // Making sure that the paddle can't move out of bounds
         if(properties->x < 0){
             properties->x = 0;
-        } else if((properties->x + properties->w) > win->get_width()){
-            properties->x = (win->get_width() - properties->w);
+        } else if((properties->x + properties->w) > rend->get_width()){
+            properties->x = (rend->get_width() - properties->w);
         }
         
         // updating collider position to match properties
         collider->x = properties->x;
         collider->y = properties->y;
         
-		win->render_texture(m_texture_id, collider, m_viewport);
+		rend->render_texture(m_texture_id, collider, m_viewport);
 		
 		//win->set_render_draw_color(color.color_red, color.color_green, color.color_blue, color.color_alpha);	
 		//win->render_fill_rect(properties);

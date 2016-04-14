@@ -14,8 +14,8 @@ namespace Breakout {
 
 	public:
 		Button(int texture_id, int posX, int posY, int width = 100, int height = 20);
-		int listen_to_click(const Window * win, const InputManager * input);
-		void render_object(const Window * win, const InputManager * input);
+		int listen_to_click(const Renderer * rend, const InputManager * input);
+		void render_object(const Renderer * rend, const InputManager * input);
 
 	private:
 

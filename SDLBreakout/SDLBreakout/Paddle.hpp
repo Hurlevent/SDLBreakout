@@ -33,7 +33,7 @@ namespace Breakout {
         
         void set_speed(const double speed){m_speed = speed;};
         
-        void render_object(const Window * win, const InputManager * input = nullptr) override;
+        void render_object(const Renderer * rend, const InputManager * input = nullptr) override;
         
         void set_colors(const uint8_t red, const uint8_t green, const uint8_t blue, const uint8_t alpha);
 

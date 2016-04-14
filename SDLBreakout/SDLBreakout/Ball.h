@@ -6,7 +6,7 @@
 #include "GameObject.h"
 #include "IRenderable.hpp"
 #include "Vector.hpp"
-#include "Window.hpp"
+#include "Renderer.h"
 #include "InputManager.h"
 #include "Sprites.h"
 
@@ -21,7 +21,7 @@ namespace Breakout {
 		void SetForce();
 		SDL_Rect *GetCollider() { return m_collider; };
 
-		void render_object(const Window * win, const InputManager * input = nullptr) override;
+		void render_object(const Renderer * rend, const InputManager * input = nullptr) override;
 
 		void handle_collision(Vector normal);
 		void wall_collision();
