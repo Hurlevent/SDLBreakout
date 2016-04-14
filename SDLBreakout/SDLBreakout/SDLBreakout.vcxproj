@@ -122,6 +122,7 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="CompositeRenderable.h" />
     <ClInclude Include="FontTexture.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IRenderable.hpp" />
@@ -140,6 +141,7 @@
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="BrickContainer.cpp" />
     <ClCompile Include="FontTexture.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Main.cpp" />

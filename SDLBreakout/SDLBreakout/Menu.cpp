@@ -11,7 +11,7 @@ namespace Breakout
 
 		m_padding_y = 10;
 
-		m_view = 0;
+		m_view = 1;
 
 		for (int i = 0; i < number_of_buttons; i++)
 		{
