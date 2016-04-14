@@ -48,7 +48,7 @@ int main(int argc, char ** argv) {
 		Breakout::Menu start(WINDOW_WIDTH, WINDOW_HEIGHT);
 		Breakout::Menu options(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-		Breakout::Ball ball(gameboard_viewport.w, gameboard_viewport.h, 100, 100);
+		Breakout::Ball ball(&gameboard_viewport, WINDOW_WIDTH, WINDOW_HEIGHT);
         Breakout::Paddle paddle(&ball, (gameboard_viewport.w - 50) / 2, gameboard_viewport.h - 50);
         paddle.set_viewport(&gameboard_viewport);
         paddle.set_speed(10);
@@ -96,18 +96,21 @@ int main(int argc, char ** argv) {
 				
 			}
 			else {
+				
 				// Clears the renderer
 				window.set_render_draw_color(0xFF, 0xFF, 0xFF, 0xFF);
 				window.clear_render();
-
+				
 				// tells the renderer to render all game_objects
 				game_objects.render_object(&window, &input);
-
+				ball.BallBefore();
+				ball.SetForce();
+				ball.wall_collision();
 				//Her inneholder alle bildene
 				//window.render_texture(1);
 
 				// makes the renderer actually draw a picture on screen
-
+				ball.BallAfter();
 				window.render_present();
 
 				//Hvis du trykker escape så går du tilbake til menyen
