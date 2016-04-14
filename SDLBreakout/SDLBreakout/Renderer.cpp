@@ -273,17 +273,17 @@ namespace Breakout {
 	// START OF TIME RELATED FUNCTIONS
 	/////////////////////////////////////////////////
 
+	/*
 	void Renderer::capture_end_of_frame()
 	{
 		m_delta_time = static_cast<int>(SDL_GetTicks()) - m_time_start_of_frame;
 		m_counted_frames++;
 	}
-
 	void Renderer::capture_start_of_frame()
 	{
 		m_time_start_of_frame = static_cast<int>(SDL_GetTicks());
 	}
-
+	*/
 	void Renderer::reset_fps()
 	{
 		m_timer.stop();

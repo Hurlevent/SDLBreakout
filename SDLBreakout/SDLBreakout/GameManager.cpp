@@ -33,50 +33,48 @@ namespace Breakout {
 	/////////////////////////////////////////////////
 	void GameManager::run_gameloop()
 	{
+		Uint32 lastTime = SDL_GetTicks();
+		double msPerTick = 1000 / 60;
+
+		int ticks = 0;
+		int frames = 0;
+
+		double delta = 0;
+
 		while(!m_input.get_flag_quit())
 		{
+			Uint32 now = SDL_GetTicks();
 
-			m_renderer.capture_start_of_frame();
-
-			// Reads input events from user
+			delta += (now - lastTime) / msPerTick;
+			lastTime = now;
 
 			m_input.handle_input_events();
 
-			// Clears the renderer
-			m_renderer.set_render_draw_color(0xFF, 0xFF, 0xFF, 0xFF);
-			m_renderer.clear_render();
+			while (delta >= 1) {
+				ticks++;
+				delta -= 1;
+				
 
-			if(m_main_menu.get_view() == 0)
-			{
 
-				m_main_menu.render_object(&m_renderer, &m_input);
+				// Clears the renderer
+				m_renderer.set_render_draw_color(0xFF, 0xFF, 0xFF, 0xFF);
+				m_renderer.clear_render();
 
-			} else
-			{
-				// Update the picture of the screen in memory
 				m_game_objects.render_object(&m_renderer, &m_input);
 
-
-				// for the ball physics
+				// Ball physics & collision
 				m_ball.SetForce();
 				m_ball.wall_collision();
 				m_paddle.handleBall();
 
-
-				// temporary, press escape to return to the menu
-				if(m_input.get_flag_escape())
-				{
-					m_main_menu.set_view(0);
-				}
-
+				// Draw screen
+				m_renderer.render_present();
 			}
-
-			// makes the renderer actually draw a picture on the screen
-			m_renderer.render_present();
-
-			// update delta_time
-			m_renderer.capture_end_of_frame();
 		}
+	}
+
+	void GameManager::render() {
+
 	}
 
 	/////////////////////////////////////////////////

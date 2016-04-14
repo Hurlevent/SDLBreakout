@@ -16,6 +16,7 @@ namespace Breakout {
 	public:
 		GameManager(int window_width, int window_height, int statusbar_height);
 		void run_gameloop();
+		void render();
 		~GameManager();
 	private:
 		Window m_window;
