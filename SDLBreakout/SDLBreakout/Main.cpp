@@ -88,6 +88,8 @@ int main(int argc, char ** argv) {
 				game_objects.render_object(&window, &input);
 				ball.SetForce();
 				ball.wall_collision();
+
+				paddle.handleBall();
 				//Her inneholder alle bildene
 				//window.render_texture(1);
 

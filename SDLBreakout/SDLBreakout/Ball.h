@@ -26,6 +26,12 @@ namespace Breakout {
 		void handle_collision(Vector normal);
 		void wall_collision();
 
+		double GetSpeedX() { return m_speedX; };
+		double GetSpeedY() { return m_speedY; };
+
+		void SetSpeedX(double speedX) { m_speedX = speedX; };
+		void SetSpeedY(double speedY) { m_speedY = speedY; };
+
 	
 
 	private:
@@ -39,9 +45,9 @@ namespace Breakout {
 		SDL_Rect * m_collider;
 		SDL_Rect * m_properties;
 
+
 	
 		int m_texture_id;
-
 		const SDL_Rect * m_viewport;
 	};
 }

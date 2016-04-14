@@ -74,4 +74,32 @@ namespace Breakout {
 		m_color.b = b;
 		m_color.a = a;
     }
+	bool Paddle::CheckBallCollision()
+	{
+		//må sette ballspeed
+		int ballspeed = 5;
+		//sjekker om ballen beveger mot paddelen og om den kan treffe siden av paddelen
+		if (/*(ballspeed > 0) &&*/ (m_ball->GetCollider()->y + m_ball->GetCollider()->h >= collider->y) && (m_ball->GetCollider()->y+m_ball->GetCollider()->h <= collider->y + collider->h)) {
+
+			if ((m_ball->GetCollider()->x <= collider->x + collider->w) && (m_ball->GetCollider()->x+m_ball->GetCollider()->w >= collider->x)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	void Paddle::handleBall()
+	{
+		if (CheckBallCollision()) {
+			//henter midtpunkte til paddelen
+			int paddleCenter = collider->x + collider->w / 2;
+			int ballCenter = m_ball->GetCollider()->x + m_ball->GetCollider()->w / 2;
+
+			//Finner punkte der ballen treffer paddelen
+			int paddleLocation = ballCenter - paddleCenter;
+			double speedx = (paddleLocation / 19);
+
+			m_ball->SetSpeedX(speedx);
+			m_ball->SetSpeedY(-m_ball->GetSpeedY());
+		}
+	}
 }
