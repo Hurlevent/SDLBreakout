@@ -10,9 +10,7 @@
 #define CompositeRenderable_h
 
 #include <vector>
-#include <algorithm>
-#include "IRenderable.hpp"
-
+#include "GameObject.h"
 
 namespace Breakout {
     
@@ -21,23 +19,18 @@ namespace Breakout {
     
     class CompositeRenderable : public IRenderable{
     public:
-        CompositeRenderable();
-        ~CompositeRenderable();
+        CompositeRenderable(){};
+        ~CompositeRenderable(){};
         
-		void add(IRenderable * element) { children.push_back(element); };
+		void add(GameObject * element) { children.push_back(element); };
 	
-		void render_object(const Window * win, const InputManager * input) { for (int i = 0; i < children.size(); i++)children[i]->render_object(win, input); };
+		void render_object(const Window * win, const InputManager * input) override { for (int i = 0; i < children.size(); i++)children[i]->render_object(win, input); };
 
 		
     private:
-        std::vector<IRenderable *> children;
-
-		
+        std::vector<GameObject *> children;
 		
 	};
-    
-    CompositeRenderable::CompositeRenderable(){};
-    CompositeRenderable::~CompositeRenderable(){};
 }
 
 

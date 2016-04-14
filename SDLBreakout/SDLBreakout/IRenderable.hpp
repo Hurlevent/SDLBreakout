@@ -18,7 +18,9 @@ namespace Breakout {
     class IRenderable{
     public:
         virtual void render_object(const Window * win, const InputManager * input = nullptr) = 0;
+		virtual ~IRenderable(){}
     };
 }
 
 #endif /* IMovable_hpp */
+

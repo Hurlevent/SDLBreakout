@@ -12,23 +12,20 @@
 #define Paddle_hpp
 
 #ifdef _WIN32
-#include <SDL.h>
 #elif __APPLE__
-#include <SDL2/SDL.h>
+//#include <SDL2/SDL.h>
 #endif
 
 #include "IRenderable.hpp"
-#include "IViewport.h"
 #include "Vector.hpp"
 #include "InputManager.h"
-#include "Color.h"
 #include "Sprites.h"
 #include "Ball.h"
 
 namespace Breakout {
     
     
-    class Paddle : public IRenderable, public IViewport {
+    class Paddle : public GameObject {
     public:
         
         Paddle(Ball * ball, const int posX, const int posY, const int width = 100, const int height = 50);
@@ -36,20 +33,18 @@ namespace Breakout {
         
         void set_speed(const double speed){m_speed = speed;};
         
-        void render_object(const Window * win, const InputManager * input = nullptr);
-        
-        void set_viewport(const SDL_Rect * viewport){m_viewport = viewport;};
+        void render_object(const Window * win, const InputManager * input = nullptr) override;
         
         void set_colors(const uint8_t red, const uint8_t green, const uint8_t blue, const uint8_t alpha);
 
+		void set_viewport(const SDL_Rect * viewport) { m_viewport = viewport; }
+
     private:
-        Color color;
         SDL_Rect * properties;
         SDL_Rect * collider;
         Vector * velocity; // paddle doesn't really need constant movement. I should remove this
         double m_speed;
         const SDL_Rect * m_viewport;
-        int texture_id;
 		Ball * m_ball;
     };
 }

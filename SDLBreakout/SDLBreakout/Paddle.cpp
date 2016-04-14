@@ -15,7 +15,7 @@ namespace Breakout {
         collider = new SDL_Rect{posX, posY, width, height};
         velocity = new Vector(0, 0);
         m_viewport = nullptr;
-        texture_id = PURPLE_BRICK;
+        m_texture_id = PURPLE_BRICK;
 		m_ball = ball;
     }
     
@@ -62,16 +62,16 @@ namespace Breakout {
         collider->x = properties->x;
         collider->y = properties->y;
         
-		win->render_texture(texture_id, collider, m_viewport);
+		win->render_texture(m_texture_id, collider, m_viewport);
 		
 		//win->set_render_draw_color(color.color_red, color.color_green, color.color_blue, color.color_alpha);	
 		//win->render_fill_rect(properties);
     }
     
     void Paddle::set_colors(const uint8_t r, const uint8_t g, const uint8_t b, const uint8_t a){
-        color.color_red = r;
-        color.color_green = g;
-        color.color_blue = b;
-        color.color_alpha = a;
+		m_color.r = r;
+		m_color.g = g;
+		m_color.b = b;
+		m_color.a = a;
     }
 }

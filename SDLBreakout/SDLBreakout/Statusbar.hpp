@@ -9,10 +9,9 @@
 #ifndef Statusbar_hpp
 #define Statusbar_hpp
 
-#include "IViewport.h"
-#include "IRenderable.hpp"
 #include <string>
 #include <iomanip>
+#include "GameObject.h"
 
 namespace Breakout {
     
@@ -24,12 +23,12 @@ namespace Breakout {
 		SDL_Rect value_properties;
     };
     
-    class Statusbar : public IViewport, public IRenderable {
+    class Statusbar : public GameObject {
     public:
         Statusbar(const SDL_Rect * viewport);
         ~Statusbar();
         
-        void render_object(const Window * win, const InputManager * input = nullptr);
+        void render_object(const Window * win, const InputManager * input = nullptr)override;
         
         void set_viewport(const SDL_Rect * viewport){m_viewport = viewport;};
         

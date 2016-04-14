@@ -87,7 +87,6 @@ namespace Breakout {
 		FontTexture * m_font_texture_creator;
 		int m_font_size;
 
-
     };
 }
 

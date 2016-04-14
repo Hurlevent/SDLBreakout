@@ -15,8 +15,8 @@ namespace Breakout {
 	}
 	Ball::~Ball()
 	{
-		delete(m_properties);
-		delete(m_collider);
+		delete m_properties;
+		delete m_collider;
 		m_properties = nullptr;
 		m_collider = nullptr;
 	}

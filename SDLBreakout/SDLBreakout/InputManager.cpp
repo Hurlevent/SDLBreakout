@@ -65,14 +65,17 @@ namespace Breakout {
 		return mouseDown;
 		
 	}
+
+	void InputManager::get_mouse_position(SDL_Point& position) const
+	{
+		SDL_GetMouseState(&position.x, &position.y);
+	}
+
     
-    
-    
+	// sets all flags to false
     void InputManager::clear_flags()
     {
-        // Should hopefully set all the flags to flase. i must be initialized to the first flag,
-        // and must not be greater than the last flag.
-        for (bool * i = &up; i <= &quit; i++) {
+        for (auto i = &up; i <= &quit; i++) {
 				*i = false;
         }
         

@@ -26,10 +26,10 @@ namespace Breakout {
     }
     
     void Brick::set_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a){
-        m_color.color_red = r;
-        m_color.color_green = g;
-        m_color.color_blue = b;
-        m_color.color_alpha = a;
+        m_color.r = r;
+        m_color.g = g;
+        m_color.b = b;
+        m_color.a = a;
     }
     
     void Brick::render_object(const Window * win, const InputManager * input){

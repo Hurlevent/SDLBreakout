@@ -7,26 +7,26 @@
 //
 
 // the purpose of this class is to enable us treat all bricks as a single game_object
+// This class can probably be renamed to "Level"
 
 
 #ifndef BrickContainer_hpp
 #define BrickContainer_hpp
 
 #include "IRenderable.hpp"
-#include "IViewport.h"
 #include "Brick.hpp"
 #include <memory>
 #include "Sprites.h"
 
 namespace Breakout {
-    class BrickContainer : public IRenderable, public IViewport {
+    class BrickContainer : public GameObject{
     public:
         BrickContainer(int window_width, int window_height, int rows = 3, int colums = 5, int brick_height = 10);
         ~BrickContainer();
         
-        void render_object(const Window * win, const InputManager * input = nullptr);
-        
-        void set_viewport(const SDL_Rect * viewport);
+        void render_object(const Window * win, const InputManager * input = nullptr) override;
+
+		void set_viewport(const SDL_Rect * viewport);
         
         void handle_collision();
         

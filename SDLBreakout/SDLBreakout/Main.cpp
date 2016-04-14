@@ -45,82 +45,69 @@ int main(int argc, char ** argv) {
         Breakout::Window window(WINDOW_WIDTH, WINDOW_HEIGHT);
         Breakout::InputManager input;
         Breakout::CompositeRenderable game_objects;
-		Breakout::Menu start(WINDOW_WIDTH, WINDOW_HEIGHT);
-		Breakout::Menu options(WINDOW_WIDTH, WINDOW_HEIGHT);
+		Breakout::Menu start(WINDOW_WIDTH, WINDOW_HEIGHT, 2);
 
 		Breakout::Ball ball(&gameboard_viewport, WINDOW_WIDTH, WINDOW_HEIGHT);
         Breakout::Paddle paddle(&ball, (gameboard_viewport.w - 50) / 2, gameboard_viewport.h - 50);
-        paddle.set_viewport(&gameboard_viewport);
         paddle.set_speed(10);
+		paddle.set_viewport(&gameboard_viewport);
 
 		Breakout::Statusbar statusbar(&statusbar_viewport);
+		statusbar.set_viewport(&statusbar_viewport);
         
         Breakout::BrickContainer bricks(gameboard_viewport.w, gameboard_viewport.h, 5, 10, 20);
-        bricks.set_viewport(&gameboard_viewport);
+		bricks.set_viewport(&gameboard_viewport);
 
-
-        game_objects.add(dynamic_cast<Breakout::IRenderable *>(&paddle));
-        game_objects.add(dynamic_cast<Breakout::IRenderable *>(&bricks));
-		game_objects.add(dynamic_cast<Breakout::IRenderable *>(&statusbar));
-		game_objects.add(dynamic_cast<Breakout::IRenderable *>(&ball));
+        game_objects.add(dynamic_cast<GameObject *>(&paddle));
+        game_objects.add(dynamic_cast<GameObject *>(&bricks));
+		game_objects.add(dynamic_cast<GameObject *>(&statusbar));
+		game_objects.add(dynamic_cast<GameObject *>(&ball));
 		
-
-		int Menu = 0;
         while (!input.get_flag_quit()) { // this is supposed to be the main game-loop
 			
 
             window.capture_start_of_frame();
-            
+			
             // Reads input events from user
             input.handle_input_events();
-			if (Menu == 0 ) {
+
+			// Clears the renderer
+			window.set_render_draw_color(0xFF, 0xFF, 0xFF, 0xFF);
+			window.clear_render();
+
+			if (start.get_view() == 0 ) {
 				
-				// Clears the renderer
-				window.set_render_draw_color(0xFF, 0xFF, 0xFF, 0xFF);
-				window.clear_render();
-				
-				start.SetPosition(2,3);
-				
-				//Menu = menu.GetClick(&window, &input);
-				Menu = start.GetClick(&window, &input);
+				//Button = menu.GetClick(&window, &input);
 				start.render_object(&window, &input);
-				
-				std::cout << "Menu: " << Menu << std::endl;
-				
-				options.SetPosition(2,2);
-				Menu = options.GetClick(&window, &input);
-				options.render_object(&window, &input);
-				
-				window.render_present();
-				
-				
+
 			}
 			else {
-				
-				// Clears the renderer
-				window.set_render_draw_color(0xFF, 0xFF, 0xFF, 0xFF);
-				window.clear_render();
-				
+
+								
 				// tells the renderer to render all game_objects
 				game_objects.render_object(&window, &input);
-				ball.BallBefore();
 				ball.SetForce();
 				ball.wall_collision();
 				//Her inneholder alle bildene
 				//window.render_texture(1);
 
+
 				// makes the renderer actually draw a picture on screen
-				ball.BallAfter();
+			
 				window.render_present();
+
 
 				//Hvis du trykker escape så går du tilbake til menyen
 				if (input.get_flag_escape() == true) {
-					Menu = 0;
+					start.set_view(0);
 				}
-
-				// Update delta_time
-				window.capture_end_of_frame();
 			}
+			// makes the renderer actually draw a picture on screen
+
+			window.render_present();
+
+			// Update delta_time
+			window.capture_end_of_frame();
         }
         
     } catch(const char * msg){
