@@ -17,6 +17,7 @@ namespace Breakout {
         m_viewport = nullptr;
         m_texture_id = PURPLE_BRICK;
 		m_ball = ball;
+		
     }
     
     Paddle::~Paddle(){
@@ -96,8 +97,8 @@ namespace Breakout {
 
 			//Finner punkte der ballen treffer paddelen
 			int paddleLocation = ballCenter - paddleCenter;
-			double speedx = (paddleLocation / 19);
-
+			double speedx = paddleLocation*0.05;
+			std::cout << "dette er speed :" << speedx << std::endl;
 			m_ball->SetSpeedX(speedx);
 			m_ball->SetSpeedY(-m_ball->GetSpeedY());
 		}
