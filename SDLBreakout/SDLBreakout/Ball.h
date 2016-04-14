@@ -21,7 +21,7 @@ namespace Breakout {
 		void SetForce();
 		SDL_Rect *GetCollider() { return m_collider; };
 
-		void render_object(const Renderer * rend, const InputManager * input = nullptr) override;
+		void render_object(const Renderer * rend, const InputManager * input = nullptr, const Timer * timer = nullptr) override;
 
 		void handle_collision(Vector normal);
 		void wall_collision();

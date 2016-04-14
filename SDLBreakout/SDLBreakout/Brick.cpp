@@ -32,7 +32,7 @@ namespace Breakout {
         m_color.a = a;
     }
     
-    void Brick::render_object(const Renderer * rend, const InputManager * input){
+    void Brick::render_object(const Renderer * rend, const InputManager * input, const Timer * timer){
         if(m_active){
             /*
             win->set_render_draw_color(color.color_red, color.color_green, color.color_blue, color.color_alpha);

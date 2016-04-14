@@ -24,7 +24,7 @@ namespace Breakout {
         
 		void add(GameObject * element) { children.push_back(element); };
 	
-		void render_object(const Renderer * rend, const InputManager * input) override { for (int i = 0; i < children.size(); i++)children[i]->render_object(rend, input); };
+		void render_object(const Renderer * rend, const InputManager * input, const Timer * timer) override { for (int i = 0; i < children.size(); i++)children[i]->render_object(rend, input, timer); };
 
 		
     private:

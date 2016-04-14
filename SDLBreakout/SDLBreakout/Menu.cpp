@@ -33,7 +33,7 @@ namespace Breakout
 		}
 	}
 
-	void Menu::render_object(const Renderer* rend, const InputManager* input)
+	void Menu::render_object(const Renderer * rend, const InputManager * input, const Timer * timer)
 	{
 		for(std::vector<std::unique_ptr<Button *>>::iterator itr = m_buttons.begin(); itr != m_buttons.end(); ++itr)
 		{

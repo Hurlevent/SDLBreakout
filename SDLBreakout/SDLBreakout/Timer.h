@@ -23,6 +23,8 @@ namespace Breakout {
         void unpause();
         
         int elapsed_time() const;
+		double get_fps()const;
+		double get_delta_time()const;
         
         bool is_started(){return started;};
         bool is_paused(){return started && paused;};
@@ -31,6 +33,7 @@ namespace Breakout {
         int paused_time;
         bool started;
         bool paused;
+
 	};
 }
 #endif

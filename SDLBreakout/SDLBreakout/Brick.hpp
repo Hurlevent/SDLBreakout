@@ -29,7 +29,7 @@ namespace Breakout {
         
         void set_active(bool active){m_active = active;};
         
-        void render_object(const Renderer * rend, const InputManager * input = nullptr) override;
+        void render_object(const Renderer * rend, const InputManager * input = nullptr, const Timer * timer = nullptr) override;
         
 		void set_viewport(const SDL_Rect * viewport) { m_viewport = viewport; }
 

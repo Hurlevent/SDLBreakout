@@ -30,6 +30,11 @@ namespace Breakout {
 		Ball m_ball;
 		Paddle m_paddle;
 		BrickContainer m_bricks;
+		
+		Timer m_timer;
+		double m_delta;
+		int m_counted_frames;
+		int m_ticks;
 
 	};
 }

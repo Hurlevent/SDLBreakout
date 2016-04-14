@@ -63,4 +63,16 @@ namespace Breakout {
         }
         return time;
     }
+
+	
+	double Timer::get_fps() const
+	{
+		return 60; // This is not the proper way to calculate fps!
+	}
+
+	double Timer::get_delta_time() const
+	{
+		return 1.2; // This is not the proper way to calculate fps!
+	}
+
 }

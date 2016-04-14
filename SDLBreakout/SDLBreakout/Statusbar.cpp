@@ -57,8 +57,8 @@ namespace Breakout {
 	}
 
 
-    void Statusbar::render_object(const Renderer * rend, const InputManager * input){
-		auto fps = rend->get_fps();
+    void Statusbar::render_object(const Renderer * rend, const InputManager * input, const Timer * timer){
+		auto fps = timer->get_fps();
 		to_string(m_fps.value, fps);
 		//std::cout << "FPS: " << fps << ", FPSText:" << m_fps.text << ", FPSvalue: " << m_fps.value << std::endl;
 		

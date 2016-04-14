@@ -37,13 +37,14 @@ namespace Breakout {
 		int get_height() const { return m_window_height; }
 
 		// Maybe we should make a seperate class for this?
+		/*
 		void capture_start_of_frame();
 		void capture_end_of_frame();
 
 		int get_delta_time() const { return m_delta_time; };
 		double get_fps() const;
 		void reset_fps();
-
+		*/
 	private:
 		SDL_Renderer * m_renderer;
 
@@ -55,10 +56,12 @@ namespace Breakout {
 		int m_window_height;
 
 		// Maybe we should make a seperate class for this?
+		/*
 		Timer m_timer;
 		int m_delta_time;
 		int m_time_start_of_frame;
 		int m_counted_frames;
+		*/
 	};
 }
 

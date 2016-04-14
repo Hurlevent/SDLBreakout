@@ -28,7 +28,7 @@ namespace Breakout {
 			return clicked;
 		}
 		
-		void Button::render_object(const Renderer * rend, const InputManager * input)
+		void Button::render_object(const Renderer * rend, const InputManager * input, const Timer * timer)
 		{
 			// std::cout << "Rendering Texture: " << m_texture_id << ", Rect: " << m_properties.x << ", " << m_properties.y << ", " << m_properties.w << ", " << m_properties.h << std::endl;
 			rend->render_texture(m_texture_id, &m_properties, nullptr);

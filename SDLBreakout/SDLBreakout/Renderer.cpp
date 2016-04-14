@@ -163,7 +163,7 @@ namespace Breakout {
 		m_window_width = window->get_width();
 		m_window_height = window->get_height();
 
-		init_timer(&m_timer, &m_counted_frames);
+		//init_timer(&m_timer, &m_counted_frames);
 	}
 
 
@@ -284,6 +284,7 @@ namespace Breakout {
 		m_time_start_of_frame = static_cast<int>(SDL_GetTicks());
 	}
 	*/
+	/*
 	void Renderer::reset_fps()
 	{
 		m_timer.stop();
@@ -299,5 +300,5 @@ namespace Breakout {
 		return fps;
 	}
 
-
+	*/
 }

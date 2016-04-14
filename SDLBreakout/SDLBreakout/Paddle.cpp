@@ -33,13 +33,19 @@ namespace Breakout {
 		
     }
     
-    void Paddle::render_object(const Renderer * rend, const InputManager * input){
+    void Paddle::render_object(const Renderer * rend, const InputManager * input, const Timer * timer){
 
 		//Her varierer deltatime fra 1-3 tall, spørs helt hvordan frames er på din maskin.
-		double deltatime = rend->get_delta_time();
-		
+		double deltatime = timer->get_delta_time();
 
-		// std::cout << "Deltatime: " << deltatime << std::endl;
+		std::string deltastr;
+		int num_bytes = snprintf(&deltastr[0], deltastr.max_size(), "%.2f", deltatime);
+		if (num_bytes < deltastr.max_size())
+		{
+			deltastr.resize(num_bytes);
+		}
+
+		 std::cout << "Deltatime: " << deltastr << std::endl;
         
 		if(input != nullptr){
             if(input->get_flag_right()){

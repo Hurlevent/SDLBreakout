@@ -24,7 +24,7 @@ namespace Breakout {
         BrickContainer(int window_width, int window_height, int rows = 3, int colums = 5, int brick_height = 10);
         ~BrickContainer();
         
-        void render_object(const Renderer * rend, const InputManager * input = nullptr) override;
+        void render_object(const Renderer * rend, const InputManager * input = nullptr, const Timer * timer = nullptr) override;
 
 		void set_viewport(const SDL_Rect * viewport);
         

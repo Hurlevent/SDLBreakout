@@ -26,6 +26,10 @@ namespace Breakout {
 		m_game_objects.add(dynamic_cast<GameObject *>(&m_bricks));
 		m_game_objects.add(dynamic_cast<GameObject *>(&m_statusbar));
 
+		m_delta = 0;
+		m_counted_frames = 0;
+		m_ticks = 0;
+
 	}
 
 	/////////////////////////////////////////////////
@@ -36,23 +40,23 @@ namespace Breakout {
 		Uint32 lastTime = SDL_GetTicks();
 		double msPerTick = 1000 / 60;
 
-		int ticks = 0;
-		int frames = 0;
+		m_ticks = 0;
+		m_counted_frames = 0;
 
-		double delta = 0;
+		m_delta = 0;
 
 		while(!m_input.get_flag_quit())
 		{
 			Uint32 now = SDL_GetTicks();
 
-			delta += (now - lastTime) / msPerTick;
+			m_delta += (now - lastTime) / msPerTick;
 			lastTime = now;
 
 			m_input.handle_input_events();
 
-			while (delta >= 1) {
-				ticks++;
-				delta -= 1;
+			while (m_delta >= 1) {
+				m_ticks++;
+				m_delta -= 1;
 				
 
 
@@ -60,7 +64,7 @@ namespace Breakout {
 				m_renderer.set_render_draw_color(0xFF, 0xFF, 0xFF, 0xFF);
 				m_renderer.clear_render();
 
-				m_game_objects.render_object(&m_renderer, &m_input);
+				m_game_objects.render_object(&m_renderer, &m_input, &m_timer);
 
 				// Ball physics & collision
 				m_ball.SetForce();

@@ -41,7 +41,7 @@ namespace Breakout {
         }
     }
     // render all bricks
-    void BrickContainer::render_object(const Renderer * rend, const InputManager * input){
+    void BrickContainer::render_object(const Renderer * rend, const InputManager * input, const Timer * timer){
        for(std::vector<std::unique_ptr<Brick>>::iterator iter = m_bricks.begin(); iter != m_bricks.end(); ++iter){
            (*iter)->render_object(rend);
        }
