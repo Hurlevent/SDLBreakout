@@ -73,6 +73,8 @@ namespace Breakout {
         collider->y = properties->y;
         
 		rend->render_texture(m_texture_id, collider, m_viewport);
+
+		handleBall();
 		
 		//win->set_render_draw_color(color.color_red, color.color_green, color.color_blue, color.color_alpha);	
 		//win->render_fill_rect(properties);
@@ -89,28 +91,31 @@ namespace Breakout {
 		//må sette ballspeed
 		int ballspeed = 5;
 		//sjekker om ballen beveger mot paddelen og om den kan treffe siden av paddelen
-		if (/*(ballspeed > 0) &&*/ (m_ball->GetCollider()->y + m_ball->GetCollider()->h >= collider->y) && (m_ball->GetCollider()->y+m_ball->GetCollider()->h <= collider->y + collider->h)) {
+		if (/*(ballspeed > 0) &&*/ (m_ball->GetCollider()->y + m_ball->GetCollider()->h >= collider->y) && (m_ball->GetCollider()->y + m_ball->GetCollider()->h <= collider->y + collider->h)) {
 
-			if ((m_ball->GetCollider()->x <= collider->x + collider->w) && (m_ball->GetCollider()->x+m_ball->GetCollider()->w >= collider->x)) {
+			if ((m_ball->GetCollider()->x <= collider->x + collider->w) && (m_ball->GetCollider()->x + m_ball->GetCollider()->w >= collider->x)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	void Paddle::handleBall(const Window * win)
+	void Paddle::handleBall()
 	{
 		if (CheckBallCollision()) {
-			//henter midtpunkte til paddelen
+			// henter midtpunkte til paddelen
 			int paddleCenter = collider->x + collider->w / 2;
 			int ballCenter = m_ball->GetCollider()->x + m_ball->GetCollider()->w / 2;
-
-			//Finner punkte der ballen treffer paddelen
+			m_ball->set_position_y(collider->y - m_ball->GetCollider()->h);
+			
+			// Finner punkte der ballen treffer paddelen
+			
 			int paddleLocation = ballCenter - paddleCenter;
 			double speedx = paddleLocation*0.05;
 			double deltatime = /*win->get_delta_time();*/1;
 			std::cout << "dette er speed :" << speedx << std::endl;
 			m_ball->SetSpeedX(deltatime/speedx);
 			m_ball->SetSpeedY(deltatime/-m_ball->GetSpeedY());
+
 		}
 	}
 }

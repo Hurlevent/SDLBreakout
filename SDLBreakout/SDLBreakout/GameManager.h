@@ -11,6 +11,7 @@
 #include "Renderer.h"
 
 namespace Breakout {
+
 	class GameManager
 	{
 	public:

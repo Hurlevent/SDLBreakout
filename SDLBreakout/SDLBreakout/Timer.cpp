@@ -8,6 +8,8 @@ namespace Breakout {
         paused_time = 0;
         started = false;
         paused = false;
+		m_counted_frames = 0;
+		m_fps = 0;
 	}
 
 
@@ -18,8 +20,9 @@ namespace Breakout {
     void Timer::start(){
         started = true;
         paused = false;
-        start_time = static_cast<int>(SDL_GetTicks());
+        start_time = SDL_GetTicks();
         paused_time = 0;
+		m_fps = 1;
     }
     
     
@@ -28,13 +31,14 @@ namespace Breakout {
         paused = false;
         start_time = 0;
         paused_time = 0;
+		m_counted_frames = 0;
     }
     
     void Timer::pause(){
         if(started && !paused){
             paused = true;
             
-            paused_time = static_cast<int>(SDL_GetTicks()) - start_time;
+            paused_time = SDL_GetTicks() - start_time;
             
             start_time = 0;
         }
@@ -44,21 +48,21 @@ namespace Breakout {
         if(started && paused){
             paused = false;
             
-            start_time = static_cast<int>(SDL_GetTicks()) - paused_time;
+            start_time = SDL_GetTicks() - paused_time;
             
             paused_time = 0;
         }
     }
     
-    int Timer::elapsed_time() const{
+    Uint32 Timer::elapsed_time() const{
         
-        int time = 0;
+        Uint32 time = 0;
         
         if(started){
             if(paused){
                 time = paused_time;
             } else {
-                time = static_cast<int>(SDL_GetTicks()) - start_time;
+                time = SDL_GetTicks() - start_time;
             }
         }
         return time;
@@ -67,7 +71,7 @@ namespace Breakout {
 	
 	double Timer::get_fps() const
 	{
-		return 60; // This is not the proper way to calculate fps!
+		return m_fps;
 	}
 
 	double Timer::get_delta() const
@@ -96,6 +100,19 @@ namespace Breakout {
 	int Timer::get_frames() const
 	{
 		return m_counted_frames;
+	}
+
+	void Timer::update()
+	{
+		if (!paused) {
+			m_counted_frames++;
+		}
+		
+		double elapsed_ms = static_cast<double>(SDL_GetTicks() - start_time);
+
+		double elapsed_secounds = elapsed_ms / 1000.0;
+
+		m_fps = m_counted_frames / elapsed_secounds;
 	}
 
 

@@ -38,7 +38,6 @@ namespace Breakout {
         void set_colors(const uint8_t red, const uint8_t green, const uint8_t blue, const uint8_t alpha);
 
 		void set_viewport(const SDL_Rect * viewport) { m_viewport = viewport; }
-		void handleBall(const Window * win);
 		
 		
 
@@ -50,6 +49,7 @@ namespace Breakout {
         const SDL_Rect * m_viewport;
 		Ball * m_ball;
 		bool CheckBallCollision();
+		void handleBall();
 
     };
 }

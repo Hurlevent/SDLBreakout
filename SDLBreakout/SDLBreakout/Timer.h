@@ -22,7 +22,7 @@ namespace Breakout {
         void pause();
         void unpause();
         
-        int elapsed_time() const;
+        Uint32 elapsed_time() const;
 		double get_fps()const;
 		double get_delta()const;
 
@@ -31,17 +31,19 @@ namespace Breakout {
 
 		void set_frames(int frames);
 		int get_frames()const;
+		void update();
         
         bool is_started(){return started;};
         bool is_paused(){return started && paused;};
 	private:
-        int start_time;
-        int paused_time;
+        Uint32 start_time;
+        Uint32 paused_time;
         bool started;
         bool paused;
 
 		double m_delta;
 		int m_counted_frames;
+		double m_fps;
 	};
 }
 #endif

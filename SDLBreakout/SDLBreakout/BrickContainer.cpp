@@ -42,9 +42,11 @@ namespace Breakout {
     }
     // render all bricks
     void BrickContainer::render_object(const Renderer * rend, const InputManager * input, const Timer * timer){
-       for(std::vector<std::unique_ptr<Brick>>::iterator iter = m_bricks.begin(); iter != m_bricks.end(); ++iter){
+		handle_collision();
+       
+		for(std::vector<std::unique_ptr<Brick>>::iterator iter = m_bricks.begin(); iter != m_bricks.end(); ++iter){
            (*iter)->render_object(rend);
-       }
+		}
     }
 
 	void BrickContainer::set_viewport(const SDL_Rect* viewport)
@@ -81,21 +83,25 @@ namespace Breakout {
 				//top
 				if (check_ball_hit_brick(topX, topY, (*it)->GetCollider()) == true) {
 					top = true;
+					//m_ball->set_position_y((*it)->GetCollider()->y + (*it)->GetCollider()->h);
 					delete_block_on_hit((it)->get());
 				}
 				//bottom
 				if (check_ball_hit_brick(bottomX, bottomY, (*it)->GetCollider()) == true) {
 					bottom = true;
+					//m_ball->set_position_y((*it)->GetCollider()->y);
 					delete_block_on_hit((it)->get());
 				}
 				//left
 				if (check_ball_hit_brick(leftX, leftY, (*it)->GetCollider()) == true) {
 					left = true;
+					//m_ball->set_position_x((*it)->GetCollider()->x);
 					delete_block_on_hit((it)->get());
 				}
 				//right
 				if (check_ball_hit_brick(rightX, rightY, (*it)->GetCollider()) == true) {
 					left = true;
+					//m_ball->set_position_x((*it)->GetCollider()->x + (*it)->GetCollider()->w);
 					delete_block_on_hit((it)->get());
 				}
 		}
@@ -126,6 +132,7 @@ namespace Breakout {
 	//Prøvde ~brick(), men da klagde den, fordi den blir drept før du får sjekket
 	void BrickContainer::delete_block_on_hit(Brick *brick)
 	{
+		PlayerStats::Instance().score++;
 		brick->SetDestroy();
 	}
 }

@@ -22,7 +22,9 @@ namespace Breakout {
 	}
 	void Ball::render_object(const Renderer * rend, const InputManager * input, const Timer * timer)
 	{
-		
+		SetForce();
+		wall_collision();
+
 		rend->render_texture(m_texture_id, m_collider, m_viewport);
 	}
 	void Ball::SetForce()
@@ -40,11 +42,36 @@ namespace Breakout {
 	void Ball::wall_collision()
 	{
 		//Treffer ballen venstre vegg eller høyere så skal den bevege seg med en speilvinkel i motsatt retning
-		if (((m_collider->x<0) && (m_collider->x <= 0)) || ((m_collider->x > 0) && (m_collider->x+m_collider->w >= m_viewport->w))) {
+
+		if (m_collider->x <= m_viewport->x && m_speedX < 0)
+		{
+			set_position_x(m_viewport->x);
 			m_speedX = -m_speedX;
 		}
-		if((m_collider->y < 0) && m_collider->y <= (screen_Height-m_viewport->h)){
+
+		if(m_collider->x + m_collider->w >= m_viewport->w && m_speedX >= 0)
+		{
+			set_position_x(m_viewport->w - m_collider->w);
+			m_speedX = -m_speedX;
+		}
+
+		if(m_collider->y <= 0 && m_speedY < 0)
+		{
+			set_position_y(0);
 			m_speedY = -m_speedY;
+		}
+
+		if(m_collider->y + m_collider->h >= m_viewport->h)
+		{
+			m_speedY = -m_speedY;
+			
+			if(PlayerStats::Instance().health > 0)
+			{
+				PlayerStats::Instance().health--;
+			} else
+			{
+				std::cout << "GAME OVER!!" << std::endl;
+			}
 		}
 
 	}

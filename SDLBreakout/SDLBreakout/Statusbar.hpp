@@ -12,6 +12,7 @@
 #include <string>
 #include <iomanip>
 #include "GameObject.h"
+#include "PlayerStats.h"
 
 namespace Breakout {
     

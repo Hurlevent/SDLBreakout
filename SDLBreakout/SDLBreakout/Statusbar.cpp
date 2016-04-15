@@ -37,10 +37,6 @@ namespace Breakout {
 		m_health.text = "HP: ";
 		m_fps.text = "FPS: ";
 		m_time.text = "Time: ";
-		m_score.value = std::to_string(1); // Test-verdi
-		m_time.value = std::to_string(1); // Test-verdi
-		m_health.value = std::to_string(3); // Test-verdi
-
     }
     
     Statusbar::~Statusbar(){
@@ -58,8 +54,16 @@ namespace Breakout {
 
 
     void Statusbar::render_object(const Renderer * rend, const InputManager * input, const Timer * timer){
+		
 		auto fps = timer->get_fps();
 		to_string(m_fps.value, fps);
+		
+		auto time = static_cast<double>(timer->elapsed_time());
+		to_string(m_time.value, time / 1000.0);
+
+		m_score.value = std::to_string(PlayerStats::Instance().score);
+		m_health.value = std::to_string(PlayerStats::Instance().health);
+
 		//std::cout << "FPS: " << fps << ", FPSText:" << m_fps.text << ", FPSvalue: " << m_fps.value << std::endl;
 		
 		for(auto i = &m_score; i <= &m_health; i++)
