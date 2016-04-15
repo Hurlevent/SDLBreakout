@@ -89,7 +89,7 @@ int main(int argc, char ** argv) {
 				ball.SetForce();
 				ball.wall_collision();
 
-				paddle.handleBall();
+				paddle.handleBall(&window);
 				//Her inneholder alle bildene
 				//window.render_texture(1);
 

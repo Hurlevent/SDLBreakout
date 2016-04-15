@@ -88,7 +88,7 @@ namespace Breakout {
 		}
 		return false;
 	}
-	void Paddle::handleBall()
+	void Paddle::handleBall(const Window * win)
 	{
 		if (CheckBallCollision()) {
 			//henter midtpunkte til paddelen
@@ -98,9 +98,10 @@ namespace Breakout {
 			//Finner punkte der ballen treffer paddelen
 			int paddleLocation = ballCenter - paddleCenter;
 			double speedx = paddleLocation*0.05;
+			double deltatime = win->get_delta_time();
 			std::cout << "dette er speed :" << speedx << std::endl;
-			m_ball->SetSpeedX(speedx);
-			m_ball->SetSpeedY(-m_ball->GetSpeedY());
+			m_ball->SetSpeedX(deltatime/speedx);
+			m_ball->SetSpeedY(deltatime/-m_ball->GetSpeedY());
 		}
 	}
 }
