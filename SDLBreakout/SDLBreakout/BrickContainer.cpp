@@ -10,12 +10,12 @@
 
 
 namespace Breakout {
-    BrickContainer::BrickContainer(int window_width, int window_height, int rows, int columns, int brick_height){
+    BrickContainer::BrickContainer(Ball *ball,int window_width, int window_height, int rows, int columns, int brick_height){
         
         m_texture_IDs.push_back(BLUE_BRICK);
         m_texture_IDs.push_back(GREEN_BRICK);
         m_texture_IDs.push_back(CYAN_BRICK);
-        
+		m_ball = ball;
         m_brick_rows = rows;
         m_brick_columns = columns;
         m_brick_height = brick_height;
@@ -58,5 +58,74 @@ namespace Breakout {
     
     void BrickContainer::handle_collision(){
         // if the ball collides with a brick, this function could maybe be usefull. Will change a lot when we implement the ball
+		int leftX = m_ball->GetCollider()->x;
+		int leftY = m_ball->GetCollider()->y + m_ball->GetCollider()->h / 2;
+
+		int rightX = m_ball->GetCollider()->x + m_ball->GetCollider()->w;
+		int rightY = m_ball->GetCollider()->y + m_ball->GetCollider()->h / 2;
+
+		int topX = m_ball->GetCollider()->x + m_ball->GetCollider()->w / 2;
+		int topY = m_ball->GetCollider()->y;
+
+		int bottomX = m_ball->GetCollider()->x + m_ball->GetCollider()->w / 2;
+		int bottomY = m_ball->GetCollider()->y + m_ball->GetCollider()->h;
+			
+		bool top = false;
+		bool bottom = false;
+		bool left = false;
+		bool right = false;
+		
+
+		//kanskje bytte ut med en iterator?
+		for (std::vector<std::unique_ptr<Brick>>::iterator it = m_bricks.begin(); it != m_bricks.end(); it++) {
+				//top
+				if (check_ball_hit_brick(topX, topY, (*it)->GetCollider()) == true) {
+					top = true;
+					delete_block_on_hit((it)->get());
+				}
+				//bottom
+				if (check_ball_hit_brick(bottomX, bottomY, (*it)->GetCollider()) == true) {
+					bottom = true;
+					delete_block_on_hit((it)->get());
+				}
+				//left
+				if (check_ball_hit_brick(leftX, leftY, (*it)->GetCollider()) == true) {
+					left = true;
+					delete_block_on_hit((it)->get());
+				}
+				//right
+				if (check_ball_hit_brick(rightX, rightY, (*it)->GetCollider()) == true) {
+					left = true;
+					delete_block_on_hit((it)->get());
+				}
+		}
+		double speedX = m_ball->GetSpeedY();
+		double speedY = m_ball->GetSpeedY();
+
+		if (top == true) {
+			m_ball->SetSpeedY(-speedY);
+		}
+		if (bottom == true) {
+			m_ball->SetSpeedY(-speedY);
+		}
+		if (left == true) {
+			m_ball->SetSpeedX(-speedX);
+		}	
+		if (right == true) {
+			m_ball->SetSpeedX(-speedX);
+		}
     }
+	bool BrickContainer::check_ball_hit_brick(int ballX, int ballY, SDL_Rect *rectBrick)
+	{
+		bool hit = false;
+		if ((ballX >= rectBrick->x) && (ballX<=rectBrick->x + rectBrick->w) && (ballY >= rectBrick->y)&&(ballY <= rectBrick->y + rectBrick->h)) {
+			hit = true;
+		}
+		return hit;
+	}
+	//Prøvde ~brick(), men da klagde den, fordi den blir drept før du får sjekket
+	void BrickContainer::delete_block_on_hit(Brick *brick)
+	{
+		brick->SetDestroy();
+	}
 }

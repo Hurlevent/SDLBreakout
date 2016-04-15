@@ -14,7 +14,7 @@ namespace Breakout {
 		m_statusbar(&m_statusbar_viewport), 
 		m_ball(&m_gameboard_viewport), 
 		m_paddle(&m_ball, (m_gameboard_viewport.w - 50) / 2, m_gameboard_viewport.h - 50),
-		m_bricks(window_width, window_height, 5, 10, 20)
+		m_bricks(&m_ball,window_width, window_height, 5, 10, 20)
 	{
 		m_paddle.set_speed(10);
 		m_paddle.set_viewport(&m_gameboard_viewport);
@@ -73,7 +73,7 @@ namespace Breakout {
 				m_ball.SetForce();
 				m_ball.wall_collision();
 				m_paddle.handleBall(&m_window);
-
+				m_bricks.handle_collision();
 				// Draw screen
 				m_renderer.render_present();
 			}

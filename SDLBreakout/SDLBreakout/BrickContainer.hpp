@@ -17,17 +17,18 @@
 #include "Brick.hpp"
 #include <memory>
 #include "Sprites.h"
+#include <iterator>
 
 namespace Breakout {
     class BrickContainer : public GameObject{
     public:
-        BrickContainer(int window_width, int window_height, int rows = 3, int colums = 5, int brick_height = 10);
+        BrickContainer(Ball *ball,int window_width, int window_height, int rows = 3, int colums = 5, int brick_height = 10);
         ~BrickContainer();
         
         void render_object(const Renderer * rend, const InputManager * input = nullptr, const Timer * timer = nullptr) override;
 
 		void set_viewport(const SDL_Rect * viewport);
-        
+
         void handle_collision();
         
     private:
@@ -37,9 +38,12 @@ namespace Breakout {
         int m_brick_columns;
         int m_brick_rows;
         int m_brick_height;
-        
+		Ball *m_ball;
         std::vector<int> m_texture_IDs;
         std::vector<std::unique_ptr<Brick>> m_bricks;
+
+		bool check_ball_hit_brick(int ballX, int ballY, SDL_Rect *rectBrick);
+		void delete_block_on_hit(Brick *brick);
     };
 }
 

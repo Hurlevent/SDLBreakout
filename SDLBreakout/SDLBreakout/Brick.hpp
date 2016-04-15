@@ -18,6 +18,7 @@
 #include "Color.h"
 #include "GameObject.h"
 #include "IRenderable.hpp"
+#include "Ball.h"
 
 namespace Breakout {
     class Brick : public GameObject{
@@ -32,6 +33,10 @@ namespace Breakout {
         void render_object(const Renderer * rend, const InputManager * input = nullptr, const Timer * timer = nullptr) override;
         
 		void set_viewport(const SDL_Rect * viewport) { m_viewport = viewport; }
+
+		SDL_Rect *GetCollider() { return m_collider; };
+
+		void SetDestroy();
 
     private:
         bool m_active;

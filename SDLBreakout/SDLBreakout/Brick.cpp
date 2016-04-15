@@ -15,6 +15,7 @@ namespace Breakout {
         m_active = true;
         m_texture_id = texture_id;
         m_viewport = nullptr;
+
     }
     
     Brick::~Brick(){
@@ -41,5 +42,12 @@ namespace Breakout {
             rend->render_texture(m_texture_id, m_collider, m_viewport);
         }
     }
-    
+	void Brick::SetDestroy()
+	{
+		m_collider->h = 0;
+		m_collider->w = 0;
+
+		m_properties->h = 0;
+		m_properties->w = 0;
+	}
 }
