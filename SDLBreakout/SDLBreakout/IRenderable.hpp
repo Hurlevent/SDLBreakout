@@ -11,13 +11,14 @@
 #ifndef IRenderable_hpp
 #define IRenderable_hpp
 
-#include "Window.hpp"
+#include "Renderer.h"
 #include "InputManager.h"
+#include "Timer.h"
 
 namespace Breakout {
     class IRenderable{
     public:
-        virtual void render_object(const Window * win, const InputManager * input = nullptr) = 0;
+        virtual void render_object(const Renderer * rend, const InputManager * input = nullptr, const Timer * timer = nullptr) = 0;
 		virtual ~IRenderable(){}
     };
 }

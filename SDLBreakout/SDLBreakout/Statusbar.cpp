@@ -57,17 +57,17 @@ namespace Breakout {
 	}
 
 
-    void Statusbar::render_object(const Window * win, const InputManager * input){
-		auto fps = win->get_fps();
+    void Statusbar::render_object(const Renderer * rend, const InputManager * input, const Timer * timer){
+		auto fps = timer->get_fps();
 		to_string(m_fps.value, fps);
 		//std::cout << "FPS: " << fps << ", FPSText:" << m_fps.text << ", FPSvalue: " << m_fps.value << std::endl;
 		
 		for(auto i = &m_score; i <= &m_health; i++)
         {
-			win->update_font_texture_text(i->texture_id, i->text, m_color);
-			win->render_font_texture(i->texture_id, &i->properties);
-			win->update_font_texture_text(i->texture_id + 1, i->value, m_color);
-			win->render_font_texture(i->texture_id + 1, &i->value_properties);
+			rend->update_font_texture_text(i->texture_id, i->text, m_color);
+			rend->render_font_texture(i->texture_id, &i->properties);
+			rend->update_font_texture_text(i->texture_id + 1, i->value, m_color);
+			rend->render_font_texture(i->texture_id + 1, &i->value_properties);
         }
     }
 }

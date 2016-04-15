@@ -28,7 +28,7 @@ namespace Breakout {
         Statusbar(const SDL_Rect * viewport);
         ~Statusbar();
         
-        void render_object(const Window * win, const InputManager * input = nullptr)override;
+        void render_object(const Renderer * rend, const InputManager * input = nullptr, const Timer * timer = nullptr)override;
         
         void set_viewport(const SDL_Rect * viewport){m_viewport = viewport;};
         

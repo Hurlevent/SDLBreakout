@@ -35,21 +35,21 @@ namespace Breakout {
     }
     
     BrickContainer::~BrickContainer(){
-        for(std::vector<std::unique_ptr<Brick>>::iterator iter = m_bricks.begin(); iter != m_bricks.end(); iter++){
+        for(std::vector<std::unique_ptr<Brick>>::iterator iter = m_bricks.begin(); iter != m_bricks.end(); ++iter){
             delete iter->release(); // I have no idea if this is the proper way to free memory,
             //maybe even the smart-pointer will do the job for us.
         }
     }
     // render all bricks
-    void BrickContainer::render_object(const Breakout::Window * win, const Breakout::InputManager * input){
-       for(std::vector<std::unique_ptr<Brick>>::iterator iter = m_bricks.begin(); iter != m_bricks.end(); iter++){
-           (*iter)->render_object(win);
+    void BrickContainer::render_object(const Renderer * rend, const InputManager * input, const Timer * timer){
+       for(std::vector<std::unique_ptr<Brick>>::iterator iter = m_bricks.begin(); iter != m_bricks.end(); ++iter){
+           (*iter)->render_object(rend);
        }
     }
 
 	void BrickContainer::set_viewport(const SDL_Rect* viewport)
 	{
-		for (std::vector<std::unique_ptr<Brick>>::iterator iter = m_bricks.begin(); iter != m_bricks.end(); iter++)
+		for (std::vector<std::unique_ptr<Brick>>::iterator iter = m_bricks.begin(); iter != m_bricks.end(); ++iter)
 		{
 			(*iter)->set_viewport(viewport);
 		}
