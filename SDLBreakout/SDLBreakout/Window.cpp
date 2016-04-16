@@ -42,7 +42,7 @@ namespace Breakout {
         _width = width;
         _height = height;
 
-        SDL_Init(SDL_INIT_VIDEO);
+        SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO);
         
         if(!create_window(&_window, width, height)){
             std::cerr << "Error: " << SDL_GetError() << std::endl;

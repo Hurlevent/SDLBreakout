@@ -36,9 +36,10 @@ namespace Breakout {
                     case SDLK_RIGHT:
                         right = true;
                         break;
-                    case SDLK_SPACE:
+					case SDLK_RCTRL|SDLK_SPACE:
                         space = true;
                         break;
+
                     case SDLK_ESCAPE:
                         escape = true;
                         break;

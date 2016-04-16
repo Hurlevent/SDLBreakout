@@ -17,6 +17,7 @@ namespace Breakout {
         m_viewport = nullptr;
         m_texture_id = PURPLE_BRICK;
 		m_ball = ball;
+		sound.loadSound("PongDark");
 		
     }
     
@@ -48,13 +49,23 @@ namespace Breakout {
 
 		 std::cout << "Deltatime: " << deltastr << std::endl;
         */
+	
+		if (input->get_flag_space() == true) {
+			m_ball->SetBall(false);
+		}
 
 		if(input != nullptr){
             if(input->get_flag_right()){
                 properties->x += static_cast<int>((deltatime/10 * m_speed));
+					
+
             } else if(input->get_flag_left()){
                 properties->x += static_cast<int>((deltatime/10 * -m_speed));
             }
+			if (m_ball->GetBall() == true) {
+				m_ball->moveBallToPaddle(properties->x + properties->w / 2);
+			}
+		
         }
         
         // the paddle doesn't need constant movement, so the velocity member variable could be removed
@@ -94,6 +105,7 @@ namespace Breakout {
 		if (/*(ballspeed > 0) &&*/ (m_ball->GetCollider()->y + m_ball->GetCollider()->h >= collider->y) && (m_ball->GetCollider()->y + m_ball->GetCollider()->h <= collider->y + collider->h)) {
 
 			if ((m_ball->GetCollider()->x <= collider->x + collider->w) && (m_ball->GetCollider()->x + m_ball->GetCollider()->w >= collider->x)) {
+				sound.playSound();
 				return true;
 			}
 		}

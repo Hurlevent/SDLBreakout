@@ -68,15 +68,21 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LibraryPath>E:\Skolearbeid\C++\Innlevering\SDLBreakout\packages\SDL2_mixer-2.0.1\VisualC\external\lib\x86;E:\Skolearbeid\C++\Innlevering\SDLBreakout\packages\SDL2_mixer-2.0.1\VisualC\external\include;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\Skolearbeid\C++\Innlevering\SDLBreakout\packages\SDL2_mixer-2.0.1\VisualC\external\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>E:\Skolearbeid\C++\Innlevering\SDLBreakout\packages\SDL2_mixer-2.0.1\include;E:\Skolearbeid\C++\Innlevering\SDLBreakout\packages\SDL2_mixer-2.0.1\VisualC\external\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>E:\Skolearbeid\C++\Innlevering\SDLBreakout\packages\SDL2_mixer-2.0.1\lib\x86;E:\Skolearbeid\C++\Innlevering\SDLBreakout\packages\SDL2_mixer-2.0.1\VisualC\external\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -87,6 +93,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>E:\Skolearbeid\C++\Innlevering\SDLBreakout\packages\SDL2_mixer-2.0.1\VisualC\external\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -132,6 +140,7 @@
     <ClInclude Include="PlayerStats.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Renderer.h" />
+    <ClInclude Include="SoundMix.h" />
     <ClInclude Include="Sprites.h" />
     <ClInclude Include="Statusbar.hpp" />
     <ClInclude Include="Timer.h" />
@@ -152,6 +161,9 @@
     <ClCompile Include="Paddle.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="SoundMix.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\Skolearbeid\C++\Innlevering\SDLBreakout\packages\SDL2_mixer-2.0.1\VisualC\external\lib\x64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="Statusbar.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Vector.cpp" />

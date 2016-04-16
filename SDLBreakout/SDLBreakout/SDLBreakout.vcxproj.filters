@@ -78,6 +78,9 @@
     <ClInclude Include="PlayerStats.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SoundMix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Brick.cpp">
@@ -129,6 +132,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundMix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

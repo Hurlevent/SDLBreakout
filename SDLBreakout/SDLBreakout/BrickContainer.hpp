@@ -19,6 +19,7 @@
 #include "Sprites.h"
 #include <iterator>
 #include "PlayerStats.h"
+#include "SoundMix.h"
 
 namespace Breakout {
 
@@ -45,6 +46,8 @@ namespace Breakout {
 		void handle_collision();
 		bool check_ball_hit_brick(int ballX, int ballY, SDL_Rect *rectBrick);
 		void delete_block_on_hit(Brick *brick);
+
+		SoundMix Sound;
     };
 }
 

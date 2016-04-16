@@ -31,6 +31,7 @@ namespace Breakout {
             int texture_id = m_texture_IDs[(i / m_brick_columns) % m_texture_IDs.size()];
             
             m_bricks.push_back(std::unique_ptr<Brick>(new Brick(texture_id, x, y, w, h)));
+			Sound.loadSound("PongLight");
         }
     }
     
@@ -126,6 +127,7 @@ namespace Breakout {
 		bool hit = false;
 		if ((ballX >= rectBrick->x) && (ballX<=rectBrick->x + rectBrick->w) && (ballY >= rectBrick->y)&&(ballY <= rectBrick->y + rectBrick->h)) {
 			hit = true;
+			Sound.playSound();
 		}
 		return hit;
 	}

@@ -2,16 +2,17 @@
 namespace Breakout {
 	Ball::Ball(SDL_Rect *viewport, int width, int height)
 	{
-		m_properties = new SDL_Rect{ (viewport->w)/2 , (viewport->h)/2, 10, 10 };
-		m_collider = new SDL_Rect{ (viewport->w)/2, (viewport->h)/2, 10, 10 };
+		m_properties = new SDL_Rect{ (viewport->w)/2 , (viewport->h-100), 10, 10 };
+		m_collider = new SDL_Rect{ (viewport->w)/2, (viewport->h-100), 10, 10 };
 		m_hit = false;
 		m_texture_id = BALL;
 		m_viewport = viewport;
 		screen_Height = height;
 		screen_Width = width;
-		
+		m_sound.loadSound("PongDark");
 		m_speedX = -1;
 		m_speedY = -1;
+		GoBall = true;
 	}
 	Ball::~Ball()
 	{
@@ -27,13 +28,30 @@ namespace Breakout {
 
 		rend->render_texture(m_texture_id, m_collider, m_viewport);
 	}
+	void Ball::moveBallToPaddle(int force)
+	{
+
+		m_properties->x = force;
+		m_collider->x = force;
+		
+	}
+	void Ball::SetBall(bool ball)
+	{
+		GoBall = false;
+	}
+	bool Ball::GetBall()
+	{
+		return GoBall;
+	}
+
 	void Ball::SetForce()
 	{
-		m_properties->x += m_speedX;
-		m_properties->y += m_speedY;
-		m_collider->x += m_speedX;
-		m_collider->y += m_speedY;
-
+		if (GoBall == false) {
+			m_properties->x += m_speedX;
+			m_properties->y += m_speedY;
+			m_collider->x += m_speedX;
+			m_collider->y += m_speedY;
+		}
 	}
 
 	void Ball::handle_collision(Vector normal)
@@ -47,18 +65,21 @@ namespace Breakout {
 		{
 			set_position_x(m_viewport->x);
 			m_speedX = -m_speedX;
+			m_sound.playSound();
 		}
 
 		if(m_collider->x + m_collider->w >= m_viewport->w && m_speedX >= 0)
 		{
 			set_position_x(m_viewport->w - m_collider->w);
 			m_speedX = -m_speedX;
+			m_sound.playSound();
 		}
 
 		if(m_collider->y <= 0 && m_speedY < 0)
 		{
 			set_position_y(0);
 			m_speedY = -m_speedY;
+			m_sound.playSound();
 		}
 
 		if(m_collider->y + m_collider->h >= m_viewport->h)

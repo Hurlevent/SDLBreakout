@@ -21,6 +21,7 @@
 #include "InputManager.h"
 #include "Sprites.h"
 #include "Ball.h"
+#include "SoundMix.h"
 
 namespace Breakout {
     
@@ -50,7 +51,7 @@ namespace Breakout {
 		Ball * m_ball;
 		bool CheckBallCollision();
 		void handleBall();
-
+		SoundMix sound;
     };
 }
 
