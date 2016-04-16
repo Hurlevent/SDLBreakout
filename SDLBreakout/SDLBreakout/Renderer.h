@@ -45,6 +45,7 @@ namespace Breakout {
 		double get_fps() const;
 		void reset_fps();
 		*/
+
 	private:
 		SDL_Renderer * m_renderer;
 

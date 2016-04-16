@@ -39,9 +39,10 @@ namespace Breakout {
 		double msPerTick = 1000 / 60;
 
 		m_ticks = 0;
-		int frames = 0;
 
 		double delta = 0;
+
+		m_timer.start();
 
 		while(!m_input.get_flag_quit())
 		{
@@ -56,28 +57,26 @@ namespace Breakout {
 			m_input.handle_input_events();
 
 			while (delta >= 1) {
-				m_ticks++;
 				delta -= 1;
 				
 				//m_timer.dec_delta(); // It would be nice to use our timer-object
-				
-
 
 				// Clears the renderer
 				m_renderer.set_render_draw_color(0xFF, 0xFF, 0xFF, 0xFF);
 				m_renderer.clear_render();
 
+				// Executes all the game logic and creates an image in memory
 				m_game_objects.render_object(&m_renderer, &m_input, &m_timer);
 
-				// Ball physics & collision
-				m_ball.SetForce();
-				m_ball.wall_collision();
-				m_paddle.handleBall(&m_window);
-				m_bricks.handle_collision();
 				// Draw screen
 				m_renderer.render_present();
+
+				// update timer!
+				m_timer.update();
 			}
 		}
+		
+		m_timer.stop();
 	}
 
 	void GameManager::render() {

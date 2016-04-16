@@ -18,8 +18,10 @@
 #include <memory>
 #include "Sprites.h"
 #include <iterator>
+#include "PlayerStats.h"
 
 namespace Breakout {
+
     class BrickContainer : public GameObject{
     public:
         BrickContainer(Ball *ball,int window_width, int window_height, int rows = 3, int colums = 5, int brick_height = 10);
@@ -28,8 +30,6 @@ namespace Breakout {
         void render_object(const Renderer * rend, const InputManager * input = nullptr, const Timer * timer = nullptr) override;
 
 		void set_viewport(const SDL_Rect * viewport);
-
-        void handle_collision();
         
     private:
         int m_window_width;
@@ -42,6 +42,7 @@ namespace Breakout {
         std::vector<int> m_texture_IDs;
         std::vector<std::unique_ptr<Brick>> m_bricks;
 
+		void handle_collision();
 		bool check_ball_hit_brick(int ballX, int ballY, SDL_Rect *rectBrick);
 		void delete_block_on_hit(Brick *brick);
     };
