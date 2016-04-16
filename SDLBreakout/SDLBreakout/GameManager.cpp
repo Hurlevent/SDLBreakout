@@ -13,7 +13,7 @@ namespace Breakout {
 		m_main_menu(window_width, window_height, 2), 
 		m_statusbar(&m_statusbar_viewport), 
 		m_ball(&m_gameboard_viewport), 
-		m_paddle(&m_ball, (m_gameboard_viewport.w - 50) / 2, m_gameboard_viewport.h - 50),
+		m_paddle(&m_ball, (m_gameboard_viewport.w - 50) / 2, m_gameboard_viewport.h -m_statusbar_viewport.h),
 		m_bricks(&m_ball,window_width, window_height, 5, 10, 20)
 	{
 		m_paddle.set_speed(10);
