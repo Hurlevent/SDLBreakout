@@ -24,7 +24,6 @@ namespace Breakout {
         
         Uint32 elapsed_time() const;
 		double get_fps()const;
-		double get_delta()const;
 
 		void set_delta(double delta);
 		void dec_delta();

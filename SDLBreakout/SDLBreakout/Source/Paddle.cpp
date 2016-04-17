@@ -38,7 +38,7 @@ namespace Breakout {
     void Paddle::render_object(const Renderer * rend, const InputManager * input, const Timer * timer){
 
 		
-		double deltatime = timer->get_delta();
+		double speed = 3;
 		
 		/*
 		std::string deltastr;
@@ -57,11 +57,11 @@ namespace Breakout {
 
 		if(input != nullptr){
             if(input->get_flag_right()){
-                properties->x += static_cast<int>((deltatime/10 * m_speed));
+                properties->x += static_cast<int>((speed/10 * m_speed));
 					
 
             } else if(input->get_flag_left()){
-                properties->x += static_cast<int>((deltatime/10 * -m_speed));
+                properties->x += static_cast<int>((speed/10 * -m_speed));
             }
 			if (m_ball->GetBall() == true) {
 				m_ball->moveBallToPaddle(properties->x + properties->w / 2);

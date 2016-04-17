@@ -74,13 +74,6 @@ namespace Breakout {
 		return m_fps;
 	}
 
-	double Timer::get_delta() const
-	{
-		//return m_delta;
-
-		return 3.0; // THIS IS HOW THE PADDLE IS CURRENTLY MOVING!!! WE NEED TO CHANGE THIS!
-	}
-
 	void Timer::set_delta(double delta)
 	{
 		m_delta = delta;
