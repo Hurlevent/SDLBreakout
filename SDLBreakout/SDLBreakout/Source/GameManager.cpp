@@ -91,6 +91,15 @@ namespace Breakout {
 			m_bricks.resetBricks();
 			m_ball.m_gameover = false;
 		}
+		if (m_bricks.NoBricks()) {
+			std::cout << "You are a Winner!" << std::endl;
+			m_game_objects.ChangeView(0);
+			PlayerStats::Instance().ResetGame();
+			m_timer.stop();
+			m_timer.start();
+			m_bricks.resetBricks();
+			m_ball.m_gameover = false;
+		}
 		if (m_game_objects.menu.get_view()==1 && m_ball.m_gameover == false) {
 			m_game_objects.ChangeView(1);
 			m_game_objects.menu.set_view(0);

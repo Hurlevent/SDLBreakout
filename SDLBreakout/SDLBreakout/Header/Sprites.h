@@ -18,9 +18,6 @@ enum Sprites {
     CYAN_BRICK,
     WHITE_BRICK,
     YELLOW_BRICK,
-    WHITE_HEART,
-    READ_HEART_WITH_EDGES,
-    RED_HEART,
     BALL,
     NUMBER_OF_SPRITES
 };

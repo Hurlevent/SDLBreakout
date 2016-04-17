@@ -83,12 +83,13 @@ namespace Breakout {
 		bool bottom = false;
 		bool left = false;
 		bool right = false;
+		NoBricksLeft = true;
 		
-
 		//kanskje bytte ut med en iterator?
 		for (std::vector<std::unique_ptr<Brick>>::iterator it = m_bricks.begin(); it != m_bricks.end(); it++) {
 				//top
 			if ((*it)->m_active) {
+				NoBricksLeft = false;
 				if (check_ball_hit_brick(topX, topY, (*it)->GetCollider())) {
 					top = true;
 					//m_ball->set_position_y((*it)->GetCollider()->y + (*it)->GetCollider()->h);
