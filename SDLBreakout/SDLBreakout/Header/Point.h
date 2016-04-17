@@ -1,3 +1,8 @@
+//
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
+//  Copyright © 2016 SDLBreakout. All rights reserved.
+//
 
 #ifndef POINT_H
 #define POINT_H

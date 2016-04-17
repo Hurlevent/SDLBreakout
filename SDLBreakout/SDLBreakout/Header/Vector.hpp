@@ -1,8 +1,4 @@
-//
-//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
-//	04.2016
-//  Copyright © 2016 SDLBreakout. All rights reserved.
-//
+
 
 #ifndef Vector_hpp
 #define Vector_hpp
