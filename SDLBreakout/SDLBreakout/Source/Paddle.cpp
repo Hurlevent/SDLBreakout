@@ -123,10 +123,9 @@ namespace Breakout {
 			
 			int paddleLocation = ballCenter - paddleCenter;
 			double speedx = paddleLocation*0.05;
-			double deltatime = /*win->get_delta_time();*/1;
 
 			m_ball->GetVelocity()->set_x(speedx);
-			m_ball->GetVelocity()->set_y(deltatime/-(m_ball->GetVelocity()->get_y()));
+			m_ball->GetVelocity()->set_y(-(m_ball->GetVelocity()->get_y()));
 		}
 	}
 }
