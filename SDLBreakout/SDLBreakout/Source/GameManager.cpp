@@ -1,10 +1,13 @@
+//
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
+//  Copyright © 2016 SDLBreakout. All rights reserved.
+//
+
 #include "../Header/GameManager.h"
 
 namespace Breakout {
 
-	/////////////////////////////////////////////////
-	// CONSTRUCTOR
-	/////////////////////////////////////////////////
 	GameManager::GameManager(int window_width, int window_height, int statusbar_height) :
 		m_window(window_width, window_height),
 		m_renderer(&m_window),
@@ -30,9 +33,6 @@ namespace Breakout {
 		m_game_objects.ChangeView(0);
 	}
 
-	/////////////////////////////////////////////////
-	// GAME LOOP
-	/////////////////////////////////////////////////
 	void GameManager::run_gameloop()
 	{
 		

@@ -1,10 +1,12 @@
+//
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
+//  Copyright © 2016 SDLBreakout. All rights reserved.
+//
+
 #include "../Header/Renderer.h"
 
 namespace Breakout {
-
-	/////////////////////////////////////////////////
-	// START OF UTIL FUNCTIONS
-	/////////////////////////////////////////////////
 
 	SDL_Texture * load_texture(std::string path, SDL_Renderer * renderer)
 	{
@@ -29,7 +31,6 @@ namespace Breakout {
 			//Get rid of old loaded surface
 			SDL_FreeSurface(loaded_surface);
 		}
-
 		return new_texture;
 	}
 

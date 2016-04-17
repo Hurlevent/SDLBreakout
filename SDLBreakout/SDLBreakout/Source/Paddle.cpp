@@ -1,13 +1,10 @@
 //
-//  Paddle.cpp
-//  SDLBreakout
-//
-//  Created by Oliver Eftevaag on 31.03.2016.
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
 //  Copyright © 2016 SDLBreakout. All rights reserved.
 //
 
 #include "../Header/Paddle.hpp"
-#include <iostream>
 namespace Breakout {
     
     Paddle::Paddle(Ball * ball, const int posX, const int posY, const int width, const int height){
@@ -36,21 +33,9 @@ namespace Breakout {
 		
     }
     
-    void Paddle::render_object(const Renderer * rend, const InputManager * input, const Timer * timer){
+    void Paddle::render_object(const Renderer * rend, const InputManager * input, const Timer * timer){		
+		double speed = 3;
 
-		
-		double deltatime = timer->get_delta();
-		
-		/*
-		std::string deltastr;
-		int num_bytes = snprintf(&deltastr[0], deltastr.max_size(), "%.2f", deltatime);
-		if (num_bytes < deltastr.max_size())
-		{
-			deltastr.resize(num_bytes);
-		}
-
-		 std::cout << "Deltatime: " << deltastr << std::endl;
-        */
 	
 		if (input->get_flag_space() == true) {
 			m_ball->SetBall(false);
@@ -58,11 +43,11 @@ namespace Breakout {
 
 		if(input != nullptr){
             if(input->get_flag_right()){
-                properties->x += static_cast<int>((deltatime/10 * m_speed));
+                properties->x += static_cast<int>((speed/10 * m_speed));
 					
 
             } else if(input->get_flag_left()){
-                properties->x += static_cast<int>((deltatime/10 * -m_speed));
+                properties->x += static_cast<int>((speed/10 * -m_speed));
             }
 			if (m_ball->GetBall() == true) {
 				m_ball->moveBallToPaddle(properties->x + properties->w / 2);

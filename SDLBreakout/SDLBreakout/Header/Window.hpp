@@ -1,14 +1,8 @@
 //
-//  Window.hpp
-//  SDLBreakout
-//
-//  Created by Oliver Eftevaag on 31.03.2016.
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
 //  Copyright © 2016 SDLBreakout. All rights reserved.
 //
-
-// The purpose of this class is to initialize SDL and create a simple SDL_Window, bundled together with a renderer.
-// This way, all the complex details on how a window is created will be hidden in this class.
-
 
 #ifndef Window_hpp
 #define Window_hpp

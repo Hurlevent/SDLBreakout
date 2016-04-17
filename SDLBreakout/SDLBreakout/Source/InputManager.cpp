@@ -1,14 +1,17 @@
+//
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
+//  Copyright © 2016 SDLBreakout. All rights reserved.
+//
+
 #include "../Header/InputManager.h"
 
 namespace Breakout {
-    
-    
-    
-    InputManager::InputManager()
+
+	InputManager::InputManager()
     {
 		clear_flags();
     }
-    
     
     InputManager::~InputManager()
     {
@@ -71,8 +74,7 @@ namespace Breakout {
 	{
 		SDL_GetMouseState(&position.x, &position.y);
 	}
-
-    
+	    
 	// sets all flags to false
     void InputManager::clear_flags()
     {

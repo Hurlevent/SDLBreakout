@@ -124,7 +124,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="GameObject.h" />
     <ClInclude Include="Header\Ball.h" />
     <ClInclude Include="Header\Brick.hpp" />
     <ClInclude Include="Header\BrickContainer.hpp" />
@@ -133,6 +132,7 @@
     <ClInclude Include="Header\CompositeRenderable.h" />
     <ClInclude Include="Header\FontTexture.h" />
     <ClInclude Include="Header\GameManager.h" />
+    <ClInclude Include="Header\GameObject.h" />
     <ClInclude Include="Header\InputManager.h" />
     <ClInclude Include="Header\IRenderable.hpp" />
     <ClInclude Include="Header\Menu.h" />

@@ -1,3 +1,9 @@
+//
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
+//  Copyright © 2016 SDLBreakout. All rights reserved.
+//
+
 #include "../Header/Menu.h"
 
 namespace Breakout
@@ -26,8 +32,7 @@ namespace Breakout
 		(*m_buttons[0])->text = "Exit";
 		(*m_buttons[1])->text = "Start";
 	}
-
-
+	
 	Menu::~Menu()
 	{
 	}
@@ -38,9 +43,6 @@ namespace Breakout
 		bool pressedStop = false;
 		for(std::vector<std::unique_ptr<Button *>>::iterator itr = m_buttons.begin(); itr != m_buttons.end(); ++itr)
 		{
-			
-			
-
 			(**itr)->render_object(rend, input);
 		}
 		pressedStart = (*m_buttons[1])->listen_to_click(rend, input);
@@ -56,5 +58,4 @@ namespace Breakout
 		rend->update_font_texture_text(BREAKOUT, "Breakout", SDL_Color{ 0,0,0 });
 		rend->render_font_texture(BREAKOUT, &clip);
 	}
-
 }

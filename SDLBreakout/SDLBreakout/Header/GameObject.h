@@ -1,4 +1,9 @@
-//GameObject.h
+//
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
+//  Copyright © 2016 SDLBreakout. All rights reserved.
+//
+
 #pragma once
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H

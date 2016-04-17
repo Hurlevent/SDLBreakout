@@ -1,3 +1,9 @@
+//
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
+//  Copyright © 2016 SDLBreakout. All rights reserved.
+//
+
 #include "../Header/Ball.h"
 namespace Breakout {
 	Ball::Ball(SDL_Rect *viewport, int width, int height)
