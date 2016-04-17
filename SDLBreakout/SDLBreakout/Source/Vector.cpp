@@ -6,7 +6,7 @@
 //  Copyright © 2016 SDLBreakout. All rights reserved.
 //
 
-#include "Vector.hpp"
+#include "../Header/Vector.hpp"
 
 namespace Breakout {
     

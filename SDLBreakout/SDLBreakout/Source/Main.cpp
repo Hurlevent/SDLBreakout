@@ -18,18 +18,18 @@
 
 
 #include <iostream>
-#include "GameManager.h"
+#include "../Header/GameManager.h"
 #include <memory>
-#include "InputManager.h"
-#include "Window.hpp"
-#include "CompositeRenderable.h"
-#include "Paddle.hpp"
-#include "Brick.hpp"
-#include "Statusbar.hpp"
-#include "Menu.h"
-#include "Ball.h"
+#include "../Header/InputManager.h"
+#include "../Header/Window.hpp"
+#include "../Header/CompositeRenderable.h"
+#include "../Header/Paddle.hpp"
+#include "../Header/Brick.hpp"
+#include "../Header/Statusbar.hpp"
+#include "../Header/Menu.h"
+#include "../Header/Ball.h"
 
-#include "BrickContainer.hpp"
+#include "../Header/BrickContainer.hpp"
 #include <vld.h>
 
 static const int WINDOW_WIDTH = 640;

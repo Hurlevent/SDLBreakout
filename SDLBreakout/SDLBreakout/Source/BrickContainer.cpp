@@ -6,7 +6,7 @@
 //  Copyright © 2016 SDLBreakout. All rights reserved.
 //
 
-#include "BrickContainer.hpp"
+#include "../Header/BrickContainer.hpp"
 
 
 namespace Breakout {

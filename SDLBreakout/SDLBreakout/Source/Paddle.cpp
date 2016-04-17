@@ -6,7 +6,7 @@
 //  Copyright © 2016 SDLBreakout. All rights reserved.
 //
 
-#include "Paddle.hpp"
+#include "../Header/Paddle.hpp"
 #include <iostream>
 namespace Breakout {
     

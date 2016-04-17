@@ -15,7 +15,7 @@
 #include <memory>
 #include <vector>
 #include <iostream>
-#include <dirent.h>
+#include "../Dirent/dirent.h"
 #include "Window.hpp"
 
 namespace Breakout {

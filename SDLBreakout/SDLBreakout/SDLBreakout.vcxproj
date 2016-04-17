@@ -77,11 +77,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>E:\Skolearbeid\C++\Innlevering\SDLBreakout\packages\SDL2_mixer-2.0.1\include;E:\Skolearbeid\C++\Innlevering\SDLBreakout\packages\SDL2_mixer-2.0.1\VisualC\external\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\Skolearbeid\C++\Innlevering\SDLBreakout\packages\SDL2_mixer-2.0.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>E:\Skolearbeid\C++\Innlevering\SDLBreakout\packages\SDL2_mixer-2.0.1\lib\x86;E:\Skolearbeid\C++\Innlevering\SDLBreakout\packages\SDL2_mixer-2.0.1\VisualC\external\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>E:\Skolearbeid\C++\Innlevering\SDLBreakout\packages\SDL2_mixer-2.0.1\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -124,50 +124,48 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Ball.h" />
-    <ClInclude Include="Brick.hpp" />
-    <ClInclude Include="BrickContainer.hpp" />
-    <ClInclude Include="Color.h" />
-    <ClInclude Include="CompositeRenderable.h" />
-    <ClInclude Include="FontTexture.h" />
-    <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="InputManager.h" />
-    <ClInclude Include="IRenderable.hpp" />
-    <ClInclude Include="Button.h" />
-    <ClInclude Include="Menu.h" />
-    <ClInclude Include="Paddle.hpp" />
-    <ClInclude Include="PlayerStats.h" />
-    <ClInclude Include="Point.h" />
-    <ClInclude Include="Renderer.h" />
-    <ClInclude Include="SoundMix.h" />
-    <ClInclude Include="Sprites.h" />
-    <ClInclude Include="Statusbar.hpp" />
-    <ClInclude Include="Timer.h" />
-    <ClInclude Include="Vector.hpp" />
-    <ClInclude Include="Window.hpp" />
+    <ClInclude Include="Header\Ball.h" />
+    <ClInclude Include="Header\Brick.hpp" />
+    <ClInclude Include="Header\BrickContainer.hpp" />
+    <ClInclude Include="Header\Button.h" />
+    <ClInclude Include="Header\Color.h" />
+    <ClInclude Include="Header\CompositeRenderable.h" />
+    <ClInclude Include="Header\FontTexture.h" />
+    <ClInclude Include="Header\GameManager.h" />
+    <ClInclude Include="Header\InputManager.h" />
+    <ClInclude Include="Header\IRenderable.hpp" />
+    <ClInclude Include="Header\Menu.h" />
+    <ClInclude Include="Header\Paddle.hpp" />
+    <ClInclude Include="Header\PlayerStats.h" />
+    <ClInclude Include="Header\Point.h" />
+    <ClInclude Include="Header\Renderer.h" />
+    <ClInclude Include="Header\SoundMix.h" />
+    <ClInclude Include="Header\Sprites.h" />
+    <ClInclude Include="Header\Statusbar.hpp" />
+    <ClInclude Include="Header\Timer.h" />
+    <ClInclude Include="Header\Vector.hpp" />
+    <ClInclude Include="Header\Window.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ball.cpp" />
-    <ClCompile Include="Brick.cpp" />
-    <ClCompile Include="BrickContainer.cpp" />
-    <ClCompile Include="FontTexture.cpp" />
-    <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Button.cpp" />
-    <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="Paddle.cpp" />
-    <ClCompile Include="Point.cpp" />
-    <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="SoundMix.cpp">
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\Skolearbeid\C++\Innlevering\SDLBreakout\packages\SDL2_mixer-2.0.1\VisualC\external\lib\x64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-    <ClCompile Include="Statusbar.cpp" />
-    <ClCompile Include="Timer.cpp" />
-    <ClCompile Include="Vector.cpp" />
-    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="Source\Ball.cpp" />
+    <ClCompile Include="Source\Brick.cpp" />
+    <ClCompile Include="Source\BrickContainer.cpp" />
+    <ClCompile Include="Source\Button.cpp" />
+    <ClCompile Include="Source\FontTexture.cpp" />
+    <ClCompile Include="Source\GameManager.cpp" />
+    <ClCompile Include="Source\GameObject.cpp" />
+    <ClCompile Include="Source\InputManager.cpp" />
+    <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\Menu.cpp" />
+    <ClCompile Include="Source\Paddle.cpp" />
+    <ClCompile Include="Source\Point.cpp" />
+    <ClCompile Include="Source\Renderer.cpp" />
+    <ClCompile Include="Source\SoundMix.cpp" />
+    <ClCompile Include="Source\Statusbar.cpp" />
+    <ClCompile Include="Source\Timer.cpp" />
+    <ClCompile Include="Source\Vector.cpp" />
+    <ClCompile Include="Source\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

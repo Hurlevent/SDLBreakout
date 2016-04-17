@@ -6,7 +6,7 @@
 //  Copyright © 2016 SDLBreakout. All rights reserved.
 //
 
-#include "Statusbar.hpp"
+#include "../Header/Statusbar.hpp"
 
 #include <sstream>
 #include <boost/format.hpp>

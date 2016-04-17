@@ -6,7 +6,7 @@
 //  Copyright © 2016 SDLBreakout. All rights reserved.
 //
 
-#include "Brick.hpp"
+#include "../Header/Brick.hpp"
 
 namespace Breakout {
     Brick::Brick(const int texture_id, int posX, int posY, int width, int height){

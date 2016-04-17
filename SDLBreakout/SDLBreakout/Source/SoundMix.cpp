@@ -1,4 +1,4 @@
-#include "SoundMix.h"
+#include "../Header/SoundMix.h"
 #include <iostream>
 
 namespace Breakout {

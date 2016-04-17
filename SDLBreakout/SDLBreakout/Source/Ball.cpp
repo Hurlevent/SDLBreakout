@@ -1,4 +1,4 @@
-#include "Ball.h"
+#include "../Header/Ball.h"
 namespace Breakout {
 	Ball::Ball(SDL_Rect *viewport, int width, int height)
 	{

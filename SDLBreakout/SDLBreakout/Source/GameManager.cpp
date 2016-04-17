@@ -1,4 +1,4 @@
-#include "GameManager.h"
+#include "../Header/GameManager.h"
 
 namespace Breakout {
 

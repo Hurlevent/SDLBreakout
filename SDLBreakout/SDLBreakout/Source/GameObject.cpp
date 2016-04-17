@@ -1,5 +1,5 @@
-#include "GameObject.h"
-#include "Color.h"
+#include "../Header/GameObject.h"
+#include "../Header/Color.h"
 
 
 GameObject::GameObject()
