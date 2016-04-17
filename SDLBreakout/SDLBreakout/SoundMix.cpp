@@ -14,6 +14,8 @@ namespace Breakout {
 	SoundMix::~SoundMix()
 	{
 		Mix_FreeChunk(SoundEffect);
+		Mix_CloseAudio();
+		Mix_Quit();
 		SoundEffect = nullptr;
 	}
 	bool SoundMix::loadSound(std::string nameSound)
@@ -30,15 +32,5 @@ namespace Breakout {
 	void SoundMix::playSound()
 	{
 		Mix_PlayChannel(-1,SoundEffect, 0);
-		
-
-
 	}
-
-	void SoundMix::stopSound()
-	{
-		
-	}
-
-
 }

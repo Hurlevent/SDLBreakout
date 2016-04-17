@@ -47,6 +47,7 @@ namespace Breakout {
 
 		while(!m_input.get_flag_quit())
 		{
+			
 			CheckView();
 			Uint32 now = SDL_GetTicks();
 
@@ -84,11 +85,19 @@ namespace Breakout {
 	void GameManager::CheckView() {
 		if (m_ball.m_gameover) {
 			m_game_objects.ChangeView(0);
+			PlayerStats::Instance().ResetGame();
+			m_timer.stop();
+			m_timer.start();
+			m_bricks.resetBricks();
+			m_ball.m_gameover = false;
 		}
-		if (m_game_objects.menu.get_view()==1) {
+		if (m_game_objects.menu.get_view()==1 && m_ball.m_gameover == false) {
 			m_game_objects.ChangeView(1);
 			m_game_objects.menu.set_view(0);
 			m_timer.unpause();
+		}
+		if (m_game_objects.menu.get_view() == -1) {
+			exit(0);
 		}
 		if (m_input.get_flag_escape()) {
 			m_game_objects.ChangeView(0);

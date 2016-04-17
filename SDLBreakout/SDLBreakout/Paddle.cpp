@@ -14,10 +14,12 @@ namespace Breakout {
         properties = new SDL_Rect{posX, posY, width, height};
         collider = new SDL_Rect{posX, posY, width, height};
         velocity = new Vector(0, 0);
+		sound.loadSound("PongDark");
+
         m_viewport = nullptr;
         m_texture_id = PURPLE_BRICK;
 		m_ball = ball;
-		sound.loadSound("PongDark");
+		
 		
     }
     
@@ -86,9 +88,7 @@ namespace Breakout {
 		rend->render_texture(m_texture_id, collider, m_viewport);
 
 		handleBall();
-		
-		//win->set_render_draw_color(color.color_red, color.color_green, color.color_blue, color.color_alpha);	
-		//win->render_fill_rect(properties);
+	
     }
     
     void Paddle::set_colors(const uint8_t r, const uint8_t g, const uint8_t b, const uint8_t a){
@@ -102,7 +102,7 @@ namespace Breakout {
 		//må sette ballspeed
 		int ballspeed = 5;
 		//sjekker om ballen beveger mot paddelen og om den kan treffe siden av paddelen
-		if (/*(ballspeed > 0) &&*/ (m_ball->GetCollider()->y + m_ball->GetCollider()->h >= collider->y) && (m_ball->GetCollider()->y + m_ball->GetCollider()->h <= collider->y + collider->h)) {
+		if ((m_ball->GetCollider()->y + m_ball->GetCollider()->h >= collider->y) && (m_ball->GetCollider()->y + m_ball->GetCollider()->h <= collider->y + collider->h)) {
 
 			if ((m_ball->GetCollider()->x <= collider->x + collider->w) && (m_ball->GetCollider()->x + m_ball->GetCollider()->w >= collider->x)) {
 				sound.playSound();
@@ -124,7 +124,7 @@ namespace Breakout {
 			int paddleLocation = ballCenter - paddleCenter;
 			double speedx = paddleLocation*0.05;
 			double deltatime = /*win->get_delta_time();*/1;
-			std::cout << "dette er speed :" << speedx << std::endl;
+
 			m_ball->GetVelocity()->set_x(deltatime / speedx);
 			m_ball->GetVelocity()->set_y(deltatime/-(m_ball->GetVelocity()->get_y()));
 		}

@@ -58,5 +58,4 @@ namespace Breakout {
         
         SDL_Quit();
     }
-	
 }

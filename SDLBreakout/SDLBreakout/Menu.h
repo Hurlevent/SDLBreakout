@@ -12,10 +12,12 @@ namespace Breakout {
 	{
 	public:
 		Menu(int window_width, int window_height, int number_of_buttons, int button_width = 100, int button_height = 20);
-		void render_object(const Renderer * rend, const InputManager * input = nullptr, const Timer * timer = nullptr) override;
-		int get_view() { return m_view;};
-		void set_view(int view) { m_view = view; }
 		~Menu();
+
+		void render_object(const Renderer * rend, const InputManager * input = nullptr, const Timer * timer = nullptr) override;
+		void set_view(int view) { m_view = view; }
+		int get_view() { return m_view;};
+		
 	private:
 		int m_window_width;
 		int m_window_height;

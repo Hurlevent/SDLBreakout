@@ -32,6 +32,7 @@ namespace Breakout {
 
 		void set_viewport(const SDL_Rect * viewport);
         
+		void resetBricks();
     private:
         int m_window_width;
         int m_window_height;
@@ -39,15 +40,16 @@ namespace Breakout {
         int m_brick_columns;
         int m_brick_rows;
         int m_brick_height;
+
 		Ball *m_ball;
+		SoundMix Sound;
+
         std::vector<int> m_texture_IDs;
         std::vector<std::unique_ptr<Brick>> m_bricks;
 
 		void handle_collision();
 		bool check_ball_hit_brick(int ballX, int ballY, SDL_Rect *rectBrick);
 		void delete_block_on_hit(Brick *brick);
-
-		SoundMix Sound;
     };
 }
 

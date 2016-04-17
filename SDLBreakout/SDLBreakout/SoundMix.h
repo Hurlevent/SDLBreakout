@@ -15,7 +15,6 @@ namespace Breakout {
 		~SoundMix();
 		bool loadSound(std::string nameSound);
 		void playSound();
-		void stopSound();
 		
 	private:
 		//Dette er for lyder ikke musikk

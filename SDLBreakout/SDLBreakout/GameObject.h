@@ -21,6 +21,7 @@ public:
 	GameObject();
 	GameObject(string name, Point pos, Point size, SDL_Color color, int textureID);
 	virtual ~GameObject()override;
+
 	void SetObjectInfo(string name, Point pos, Point size, SDL_Color color, int textureID);
 	void SetName(string name);
 	void SetPos(Point newPos);

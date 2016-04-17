@@ -19,12 +19,17 @@ namespace Breakout {
         Vector();
         Vector(const double x, const double y);
         ~Vector();
+
         double get_x()const{return _x;};
         double get_y()const{return _y;};
+
         void set_x(const double x){_x = x;};
         void set_y(const double y){_y = y;};
+
         double length() const;
         void normalize();
+		Vector multiply(double scalar)const;
+		Vector operator*(double scalar)const;
         
     private:
         double _x;

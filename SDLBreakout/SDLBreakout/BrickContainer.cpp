@@ -36,10 +36,8 @@ namespace Breakout {
     }
     
     BrickContainer::~BrickContainer(){
-        for(std::vector<std::unique_ptr<Brick>>::iterator iter = m_bricks.begin(); iter != m_bricks.end(); ++iter){
-            delete iter->release(); // I have no idea if this is the proper way to free memory,
-            //maybe even the smart-pointer will do the job for us.
-        }
+		
+       
     }
     // render all bricks
     void BrickContainer::render_object(const Renderer * rend, const InputManager * input, const Timer * timer){
@@ -55,6 +53,14 @@ namespace Breakout {
 		for (std::vector<std::unique_ptr<Brick>>::iterator iter = m_bricks.begin(); iter != m_bricks.end(); ++iter)
 		{
 			(*iter)->set_viewport(viewport);
+		}
+	}
+
+	void BrickContainer::resetBricks()
+	{
+		for (std::vector<std::unique_ptr<Brick>>::iterator iter = m_bricks.begin(); iter != m_bricks.end(); ++iter)
+		{
+			(*iter)->m_active = true;
 		}
 	}
 
@@ -82,29 +88,31 @@ namespace Breakout {
 		//kanskje bytte ut med en iterator?
 		for (std::vector<std::unique_ptr<Brick>>::iterator it = m_bricks.begin(); it != m_bricks.end(); it++) {
 				//top
-				if (check_ball_hit_brick(topX, topY, (*it)->GetCollider()) == true) {
+			if ((*it)->m_active) {
+				if (check_ball_hit_brick(topX, topY, (*it)->GetCollider())) {
 					top = true;
 					//m_ball->set_position_y((*it)->GetCollider()->y + (*it)->GetCollider()->h);
 					delete_block_on_hit((it)->get());
 				}
 				//bottom
-				if (check_ball_hit_brick(bottomX, bottomY, (*it)->GetCollider()) == true) {
+				if (check_ball_hit_brick(bottomX, bottomY, (*it)->GetCollider())) {
 					bottom = true;
 					//m_ball->set_position_y((*it)->GetCollider()->y);
 					delete_block_on_hit((it)->get());
 				}
 				//left
-				if (check_ball_hit_brick(leftX, leftY, (*it)->GetCollider()) == true) {
+				if (check_ball_hit_brick(leftX, leftY, (*it)->GetCollider())) {
 					left = true;
 					//m_ball->set_position_x((*it)->GetCollider()->x);
 					delete_block_on_hit((it)->get());
 				}
 				//right
-				if (check_ball_hit_brick(rightX, rightY, (*it)->GetCollider()) == true) {
+				if (check_ball_hit_brick(rightX, rightY, (*it)->GetCollider())) {
 					left = true;
 					//m_ball->set_position_x((*it)->GetCollider()->x + (*it)->GetCollider()->w);
 					delete_block_on_hit((it)->get());
 				}
+			}
 		}
 		double speedX = m_ball->GetVelocity()->get_x();
 		double speedY = m_ball->GetVelocity()->get_y();

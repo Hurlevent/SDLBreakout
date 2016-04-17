@@ -27,19 +27,18 @@ namespace Breakout {
         ~Brick();
         
         void set_color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha);
-        
-        void set_active(bool active){m_active = active;};
-        
-        void render_object(const Renderer * rend, const InputManager * input = nullptr, const Timer * timer = nullptr) override;
-        
+        void set_active(bool active){m_active = active;};        
 		void set_viewport(const SDL_Rect * viewport) { m_viewport = viewport; }
-
-		SDL_Rect *GetCollider() { return m_collider; };
-
 		void SetDestroy();
+		
+		SDL_Rect *GetCollider() { return m_collider; };
+		
+		void render_object(const Renderer * rend, const InputManager * input = nullptr, const Timer * timer = nullptr) override;
+
+		bool m_active;
 
     private:
-        bool m_active;
+
         SDL_Rect * m_collider;
         SDL_Rect * m_properties;
         const SDL_Rect * m_viewport;

@@ -14,8 +14,10 @@ namespace Breakout {
 
 	public:
 		Button(int texture_id, int posX, int posY, int width = 100, int height = 20);
+
 		bool listen_to_click(const Renderer * rend, const InputManager * input);
 		void render_object(const Renderer * rend, const InputManager * input, const Timer * timer = nullptr);
+
 		std::string text;
 	private:
 

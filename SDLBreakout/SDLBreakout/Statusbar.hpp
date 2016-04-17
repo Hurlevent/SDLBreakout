@@ -18,8 +18,10 @@ namespace Breakout {
     
     struct texture_info{
         int texture_id;
+
 		std::string text;
 		std::string value;
+
         SDL_Rect properties;
 		SDL_Rect value_properties;
     };
@@ -36,10 +38,12 @@ namespace Breakout {
     private:
 		SDL_Color m_color;
         const SDL_Rect * m_viewport;
+
         struct texture_info m_score;
         struct texture_info m_time;
         struct texture_info m_fps;
         struct texture_info m_health;
+
 		void to_string(std::string & str, double value);
     };
 }

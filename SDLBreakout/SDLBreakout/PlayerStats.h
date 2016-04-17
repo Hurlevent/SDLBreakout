@@ -13,6 +13,7 @@ namespace Breakout
 			static PlayerStats player_stats;
 			return player_stats;
 		}
+		void ResetGame() { score = 0; highscore = 0; health = 3; };
 		int score;
 		int highscore;
 		int health;

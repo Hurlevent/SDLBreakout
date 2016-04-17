@@ -7,14 +7,17 @@ namespace Breakout {
 		m_hit = false;
 		m_texture_id = BALL;
 		m_viewport = viewport;
+		m_sound.loadSound("PongDark");
+		m_gameover = false;
+		m_colliderOld = m_collider;
+
 		screen_Height = height;
 		screen_Width = width;
-		m_sound.loadSound("PongDark");
+
 		velocity.set_x(-1);
 		velocity.set_y(-1);
 	
 		GoBall = true;
-		m_gameover = false;
 	}
 	Ball::~Ball()
 	{
@@ -35,7 +38,9 @@ namespace Breakout {
 
 		m_properties->x = force;
 		m_collider->x = force;
-		
+		m_properties->y = (m_viewport->h - 100);
+		m_collider->y = (m_viewport->h - 100);
+
 	}
 	void Ball::SetBall(bool ball)
 	{
@@ -48,11 +53,13 @@ namespace Breakout {
 
 	void Ball::SetForce()
 	{
+		Vector vel = velocity;
+		
 		if (GoBall == false) {
-			m_properties->x += velocity.get_x();
-			m_properties->y += velocity.get_y();
-			m_collider->x += velocity.get_x();
-			m_collider->y += velocity.get_y();
+			m_properties->x += vel.get_x();
+			m_properties->y += vel.get_y();
+			m_collider->x += vel.get_x();
+			m_collider->y += vel.get_y();
 		}
 	}
 
@@ -87,6 +94,7 @@ namespace Breakout {
 		if(m_collider->y + m_collider->h >= m_viewport->h)
 		{
 			GoBall = true;
+			velocity.set_y(-velocity.get_y());
 			if(PlayerStats::Instance().health > 0)
 			{
 				PlayerStats::Instance().health--;

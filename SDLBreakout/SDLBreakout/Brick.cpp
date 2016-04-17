@@ -35,19 +35,12 @@ namespace Breakout {
     
     void Brick::render_object(const Renderer * rend, const InputManager * input, const Timer * timer){
         if(m_active){
-            /*
-            win->set_render_draw_color(color.color_red, color.color_green, color.color_blue, color.color_alpha);
-            win->render_fill_rect(properties);
-            */
+         
             rend->render_texture(m_texture_id, m_collider, m_viewport);
         }
     }
 	void Brick::SetDestroy()
 	{
-		m_collider->h = 0;
-		m_collider->w = 0;
-
-		m_properties->h = 0;
-		m_properties->w = 0;
+		m_active = false;
 	}
 }

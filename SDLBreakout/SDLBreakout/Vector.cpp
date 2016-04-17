@@ -35,4 +35,13 @@ namespace Breakout {
         set_x(x);
         set_y(y);
     }
+
+	Vector Vector::multiply(double scalar)const{
+		Vector ret(_x * scalar, _y * scalar);
+		return ret;
+	}
+
+	Vector Vector::operator*(double scalar)const {
+		return multiply(scalar);
+	}
 }

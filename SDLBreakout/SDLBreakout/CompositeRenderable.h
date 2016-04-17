@@ -19,6 +19,8 @@ namespace Breakout {
     // I think it can be used for updating the positions of our gameObjects
     class CompositeRenderable{
     public:
+		Menu menu;
+
 		CompositeRenderable(int window_width, int window_height, int number_of_buttons, int button_width = 100, int button_height = 20) : menu(window_width, window_height, number_of_buttons, button_width, button_height) {};
         ~CompositeRenderable(){};
         
@@ -30,7 +32,7 @@ namespace Breakout {
 		void UpdateGame(const Renderer * rend, const InputManager * input, const Timer * timer) { for (int i = 0; i < children.size(); i++)children[i]->render_object(rend, input, timer); };
 		void UpdateMenu(const Renderer * rend, const InputManager * input, const Timer * timer) { menu.render_object(rend, input, timer); };
 		
-		Menu menu;
+		
     private:
         std::vector<GameObject *> children;
 		

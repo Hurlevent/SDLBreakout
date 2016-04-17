@@ -30,27 +30,30 @@ namespace Breakout
 
 	Menu::~Menu()
 	{
-		for (std::vector<std::unique_ptr<Button *>>::iterator itr = m_buttons.begin(); itr != m_buttons.end(); ++itr)
-		{
-			delete (*itr).release();
-		}
 	}
 
 	void Menu::render_object(const Renderer * rend, const InputManager * input, const Timer * timer)
 	{
 		bool pressedStart = false;
+		bool pressedStop = false;
 		for(std::vector<std::unique_ptr<Button *>>::iterator itr = m_buttons.begin(); itr != m_buttons.end(); ++itr)
 		{
 			
-			pressedStart = (**itr)->listen_to_click(rend, input);
+			
 
 			(**itr)->render_object(rend, input);
 		}
+		pressedStart = (*m_buttons[1])->listen_to_click(rend, input);
+		pressedStop = (*m_buttons[0])->listen_to_click(rend, input);
 		if (pressedStart == true) {
 			m_view = 1;
 		}
-		rend->update_font_texture_text(BREAKOUT, "Breakout", SDL_Color{ 0,0,0 });
+		else if(pressedStop == true) {
+			m_view = -1;
+		}
 		SDL_Rect clip = SDL_Rect{ m_window_width / 3, m_padding_y, m_window_width / 3, m_title_h };
+
+		rend->update_font_texture_text(BREAKOUT, "Breakout", SDL_Color{ 0,0,0 });
 		rend->render_font_texture(BREAKOUT, &clip);
 	}
 
