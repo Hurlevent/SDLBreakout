@@ -1,12 +1,8 @@
 //
-//  Paddle.hpp
-//  SDLBreakout
-//
-//  Created by Oliver Eftevaag on 31.03.2016.
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
 //  Copyright © 2016 SDLBreakout. All rights reserved.
 //
-
-// This class represents the paddle which the player is controlling.
 
 #ifndef Paddle_hpp
 #define Paddle_hpp

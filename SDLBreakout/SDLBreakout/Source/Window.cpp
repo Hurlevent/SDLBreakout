@@ -1,8 +1,6 @@
 //
-//  Window.cpp
-//  SDLBreakout
-//
-//  Created by Oliver Eftevaag on 31.03.2016.
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
 //  Copyright © 2016 SDLBreakout. All rights reserved.
 //
 
@@ -11,10 +9,6 @@
 
 namespace Breakout {
     
-	/////////////////////////////////////////////////
-	// START OF UTIL FUNCTIONS
-	/////////////////////////////////////////////////
-
     bool create_window(SDL_Window ** window, const int width, const int height){
         bool success = true;
         
@@ -34,10 +28,6 @@ namespace Breakout {
         return success;
     }
     
-	/////////////////////////////////////////////////
-	// CONSTRUCTOR AND DESTRUCTOR
-	/////////////////////////////////////////////////
-
     Window::Window(const int width, const int height){
         _width = width;
         _height = height;

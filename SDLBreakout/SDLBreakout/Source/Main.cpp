@@ -1,8 +1,6 @@
 //
-//  main.cpp
-//  SDLBreakout
-//
-//  Created by Oliver Eftevaag on 31.03.2016.
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
 //  Copyright © 2016 SDLBreakout. All rights reserved.
 //
 
@@ -20,9 +18,8 @@
 #include "../Header/Statusbar.hpp"
 #include "../Header/Menu.h"
 #include "../Header/Ball.h"
-
 #include "../Header/BrickContainer.hpp"
-#include <vld.h>
+
 
 static const int WINDOW_WIDTH = 640;
 static const int WINDOW_HEIGHT = 480;

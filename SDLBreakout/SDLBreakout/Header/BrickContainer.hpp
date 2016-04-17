@@ -1,14 +1,8 @@
 //
-//  BrickContainer.hpp
-//  SDLBreakout
-//
-//  Created by Oliver Eftevaag on 08.04.2016.
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
 //  Copyright © 2016 SDLBreakout. All rights reserved.
 //
-
-// the purpose of this class is to enable us treat all bricks as a single game_object
-// This class can probably be renamed to "Level"
-
 
 #ifndef BrickContainer_hpp
 #define BrickContainer_hpp

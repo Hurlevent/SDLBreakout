@@ -1,3 +1,9 @@
+//
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
+//  Copyright © 2016 SDLBreakout. All rights reserved.
+//
+
 #ifndef Ball_h
 #define Ball_h
 
@@ -56,4 +62,4 @@ namespace Breakout {
 		int m_texture_id;
 	};
 }
-#endif // !Ball_h
+#endif

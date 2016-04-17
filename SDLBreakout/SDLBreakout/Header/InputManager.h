@@ -1,4 +1,8 @@
-// This class listens to input events
+//
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
+//  Copyright © 2016 SDLBreakout. All rights reserved.
+//
 
 #ifndef INPUTMANAGER
 #define INPUTMANAGER

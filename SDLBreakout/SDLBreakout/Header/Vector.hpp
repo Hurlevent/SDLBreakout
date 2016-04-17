@@ -1,12 +1,8 @@
 //
-//  Vector.hpp
-//  SDLBreakout
-//
-//  Created by Oliver Eftevaag on 31.03.2016.
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
 //  Copyright © 2016 SDLBreakout. All rights reserved.
 //
-
-// This class can be used by moving game_objects to calculate the direction in which the object is moving towards
 
 #ifndef Vector_hpp
 #define Vector_hpp
