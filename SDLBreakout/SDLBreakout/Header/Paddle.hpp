@@ -7,6 +7,7 @@
 //
 
 // This class represents the paddle which the player is controlling.
+// This object will manipulate the ball if the ball collides with it.
 
 #ifndef Paddle_hpp
 #define Paddle_hpp

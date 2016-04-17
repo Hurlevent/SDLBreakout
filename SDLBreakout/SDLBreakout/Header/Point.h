@@ -1,7 +1,9 @@
-#pragma once
+
 #ifndef POINT_H
 #define POINT_H
 
+
+// Represents a point. This class is probably unused
 class Point
 {
 public:

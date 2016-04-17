@@ -12,6 +12,9 @@
 
 namespace Breakout {
 
+	// The GameManager class Initializes all the object used by our game
+	// The run_gameloop function runs the "infinite" loop that we are used to define as the gameloop.
+
 	class GameManager
 	{
 	public:

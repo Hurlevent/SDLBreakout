@@ -15,8 +15,10 @@
 
 namespace Breakout {
     
-    // Do you remember the design pattern composite??
-    // I think it can be used for updating the positions of our gameObjects
+    // This class has a member variable and function for every "View" in the game. A "View" is an GameObject or a collection of GameObjects that can be displayed on the screen at the same time. 
+	// The update function is being called every frame, to change the content of the screen, we need to change the content of this function. We do this with the help of member function pointers. 
+
+
     class CompositeRenderable{
     public:
 		Menu menu;

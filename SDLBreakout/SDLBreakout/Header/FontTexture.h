@@ -1,7 +1,5 @@
-#pragma once
-
-//#ifndef FONTTEXTURE_H
-//#define FONTTEXTURE_H
+#ifndef FONTTEXTURE_H
+#define FONTTEXTURE_H
 
 #ifdef _WIN32
 #include <SDL.h>
@@ -19,6 +17,12 @@
 #include "Sprites.h"
 
 namespace Breakout {
+
+	// The purpose of this class is to make it easy to use SDL_TTF to generate SDL_Textures from strings.
+	// This class has a array with the size of every TTF_Textures registered in the Sprites.h file times two.
+	// That is because the statusbar need to both be able to create TTF_Textures for the labels, and for the values. 
+	// Technically, not every index in this array will be used. Which could become a problem if we expanded the game to a larger scale.
+
 	class FontTexture
 	{
 	public:
@@ -35,4 +39,4 @@ namespace Breakout {
 	};
 }
 
-//#endif
+#endif

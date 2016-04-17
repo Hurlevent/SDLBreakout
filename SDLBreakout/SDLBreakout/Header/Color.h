@@ -9,7 +9,7 @@
 #ifndef Color_h
 #define Color_h
 
-// default color: red
+// This struct not being used for anything. We have discovered that SDL_Color makes this struct obsolete. (Default color: Red)
 typedef struct {
     uint8_t color_red = 0xFF;
     uint8_t color_green = 0x00;

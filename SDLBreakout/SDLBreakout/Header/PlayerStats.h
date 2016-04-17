@@ -4,7 +4,7 @@
 
 namespace Breakout
 {
-	
+	// This class is a singleton that contains values related to how well the player is doing. We unfortunately didn't have enough time to implement highscore
 	class PlayerStats
 	{
 	public:

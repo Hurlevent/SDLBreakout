@@ -9,6 +9,8 @@
 #include "Sprites.h"
 #include <string>
 
+// This class represents a clickable button and is used by our menu. (Our menu contains an std::vector of buttons)
+
 namespace Breakout {
 	class Button : public IRenderable {
 

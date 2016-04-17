@@ -8,6 +8,8 @@
 #include "Sprites.h"
 
 namespace Breakout {
+
+	// This class decides how our menu will look and behave.
 	class Menu : public IRenderable
 	{
 	public:

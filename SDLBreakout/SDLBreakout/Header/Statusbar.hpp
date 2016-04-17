@@ -14,6 +14,8 @@
 #include "GameObject.h"
 #include "PlayerStats.h"
 
+
+// This class represents the statusbar, which informs the player of score, health, time and fps.
 namespace Breakout {
     
     struct texture_info{

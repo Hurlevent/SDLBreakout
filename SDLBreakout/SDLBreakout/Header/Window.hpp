@@ -30,6 +30,8 @@
 #include <dirent.h>
 #include "FontTexture.h"
 
+// This class creates an SDL_Window and is used to simplify the window-creation task for our GameManager
+
 namespace Breakout {
    
     class Window {

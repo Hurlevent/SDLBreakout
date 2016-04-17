@@ -9,6 +9,9 @@
 #include <SDL2/SDL.h>
 #endif
 namespace Breakout {
+	
+	// The function handle_input_events reads through all the input events that has occured during the last frame, and sets relevant flags for the GameObjects to read,
+	// and execute different behavours based on which flags are set. The Quit flag will cause our game_loop to stop.
     class InputManager
     {
     public:

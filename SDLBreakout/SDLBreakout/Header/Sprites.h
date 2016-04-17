@@ -18,8 +18,7 @@ enum Sprites {
     CYAN_BRICK,
     WHITE_BRICK,
     YELLOW_BRICK,
-    BALL,
-    NUMBER_OF_SPRITES
+    BALL
 };
 
 enum TTFs

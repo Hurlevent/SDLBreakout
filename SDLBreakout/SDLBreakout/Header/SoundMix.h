@@ -7,7 +7,7 @@
 #ifndef SoundMix_h
 #define SoundMix_h
 
-
+// This class allows us to play sounds
 namespace Breakout {
 	class SoundMix{
 	public:

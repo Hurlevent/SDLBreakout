@@ -6,8 +6,8 @@
 //  Copyright © 2016 SDLBreakout. All rights reserved.
 //
 
-// the purpose of this class is to enable us treat all bricks as a single game_object
-// This class can probably be renamed to "Level"
+// The purpose of this class is to "hide" all bricks in a single object. This enables us to treat all the bricks as a single game object
+// Because in Breakout, levels are often defined by the layout of the bricks, you could consider this class to be the level in our game. 
 
 
 #ifndef BrickContainer_hpp

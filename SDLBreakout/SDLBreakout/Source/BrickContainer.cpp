@@ -86,32 +86,27 @@ namespace Breakout {
 		bool right = false;
 		NoBricksLeft = true;
 		
-		//kanskje bytte ut med en iterator?
 		for (std::vector<std::unique_ptr<Brick>>::iterator it = m_bricks.begin(); it != m_bricks.end(); it++) {
 				//top
 			if ((*it)->m_active) {
 				NoBricksLeft = false;
 				if (check_ball_hit_brick(topX, topY, (*it)->GetCollider())) {
 					top = true;
-					//m_ball->set_position_y((*it)->GetCollider()->y + (*it)->GetCollider()->h);
 					delete_block_on_hit((it)->get());
 				}
 				//bottom
 				if (check_ball_hit_brick(bottomX, bottomY, (*it)->GetCollider())) {
 					bottom = true;
-					//m_ball->set_position_y((*it)->GetCollider()->y);
 					delete_block_on_hit((it)->get());
 				}
 				//left
 				if (check_ball_hit_brick(leftX, leftY, (*it)->GetCollider())) {
 					left = true;
-					//m_ball->set_position_x((*it)->GetCollider()->x);
 					delete_block_on_hit((it)->get());
 				}
 				//right
 				if (check_ball_hit_brick(rightX, rightY, (*it)->GetCollider())) {
 					left = true;
-					//m_ball->set_position_x((*it)->GetCollider()->x + (*it)->GetCollider()->w);
 					delete_block_on_hit((it)->get());
 				}
 			}
@@ -135,7 +130,6 @@ namespace Breakout {
 		}
 		return hit;
 	}
-	//Prøvde ~brick(), men da klagde den, fordi den blir drept før du får sjekket
 	void BrickContainer::delete_block_on_hit(Brick *brick)
 	{
 		PlayerStats::Instance().score++;

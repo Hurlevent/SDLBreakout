@@ -20,6 +20,8 @@
 #include "IRenderable.hpp"
 #include "Ball.h"
 
+// This class represents a brick in Breakout. When the ball hits a brick, the brick will disappear. 
+
 namespace Breakout {
     class Brick : public GameObject{
     public:
