@@ -11,17 +11,13 @@
 #ifndef Paddle_hpp
 #define Paddle_hpp
 
-#ifdef _WIN32
-#elif __APPLE__
-//#include <SDL2/SDL.h>
-#endif
-
 #include "IRenderable.hpp"
 #include "Vector.hpp"
 #include "InputManager.h"
 #include "Sprites.h"
 #include "Ball.h"
 #include "SoundMix.h"
+#include <iostream>
 
 namespace Breakout {
     

@@ -5,18 +5,10 @@
 //  Created by Oliver Eftevaag on 31.03.2016.
 //  Copyright © 2016 SDLBreakout. All rights reserved.
 //
-#ifdef _WIN32
+
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
-
-#elif __APPLE__
-#include <SDL2/SDL.h>
-#include <SDL2_ttf/SDL_ttf.h>
-#include <SDL2_image/SDL_image.h>
-#endif
-
-
 #include <iostream>
 #include "../Header/GameManager.h"
 #include <memory>
