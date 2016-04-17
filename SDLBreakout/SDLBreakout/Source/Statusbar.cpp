@@ -6,9 +6,6 @@
 
 #include "../Header/Statusbar.hpp"
 
-#include <sstream>
-#include <boost/format.hpp>
-
 namespace Breakout {
     Statusbar::Statusbar(const SDL_Rect * viewport){
         m_viewport = viewport;

@@ -5,7 +5,6 @@
 //
 
 #include "../Header/Paddle.hpp"
-#include <iostream>
 namespace Breakout {
     
     Paddle::Paddle(Ball * ball, const int posX, const int posY, const int width, const int height){
