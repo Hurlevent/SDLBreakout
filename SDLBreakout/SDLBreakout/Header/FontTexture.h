@@ -1,7 +1,10 @@
-#pragma once
+//
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
+//  Copyright © 2016 SDLBreakout. All rights reserved.
+//
 
-//#ifndef FONTTEXTURE_H
-//#define FONTTEXTURE_H
+#pragma once
 
 #ifdef _WIN32
 #include <SDL.h>

@@ -1,3 +1,9 @@
+//
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
+//  Copyright © 2016 SDLBreakout. All rights reserved.
+//
+
 #ifndef GameManager_h
 #define GameManager_h
 #include "Window.hpp"

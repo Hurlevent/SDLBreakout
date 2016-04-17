@@ -1,45 +1,55 @@
-//
-//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
-//	04.2016
-//  Copyright © 2016 SDLBreakout. All rights reserved.
-//
-
-#include "../Header/Timer.h"
+#include "Time.h"
 
 namespace Breakout {
 
-	Timer::Timer()
+	Time::Time()
 	{
         start_time = 0;
         paused_time = 0;
-        started = false;
+
+        running = false;
         paused = false;
+		
 		m_counted_frames = 0;
 		m_fps = 0;
+
+		// Refactored time
+		lastTime = 0;
+		msPerTick = 1000 / 60;
+
+		m_ticks = 0;
+
+		m_deltaTime = 0;
+
+
 	}
 
-	Timer::~Timer()
+
+	Time::~Time()
 	{
 	}
     
-    void Timer::start(){
-        started = true;
+    void Time::Start(){
+        running = true;
         paused = false;
-        start_time = SDL_GetTicks();
+        lastTime = start_time = SDL_GetTicks();
         paused_time = 0;
 		m_fps = 1;
+
+
     }
     
-    void Timer::stop(){
-        started = false;
+    
+    void Time::Stop(){
+        running = false;
         paused = false;
         start_time = 0;
         paused_time = 0;
 		m_counted_frames = 0;
     }
     
-    void Timer::pause(){
-        if(started && !paused){
+    void Time::Pause(){
+        if(running && !paused){
             paused = true;
             
             paused_time = SDL_GetTicks() - start_time;
@@ -48,8 +58,8 @@ namespace Breakout {
         }
     }
     
-    void Timer::unpause(){
-        if(started && paused){
+    void Time::Continue(){
+        if(running && paused){
             paused = false;
             
             start_time = SDL_GetTicks() - paused_time;
@@ -58,11 +68,11 @@ namespace Breakout {
         }
     }
     
-    Uint32 Timer::elapsed_time() const{
+    Uint32 Time::GetElapsedTime() const{
         
         Uint32 time = 0;
         
-        if(started){
+        if(running){
             if(paused){
                 time = paused_time;
             } else {
@@ -73,38 +83,34 @@ namespace Breakout {
     }
 
 	
-	double Timer::get_fps() const
+	double Time::GetFps() const
 	{
 		return m_fps;
 	}
 
-	double Timer::get_delta() const
+	double Time::GetDeltatime() const
 	{
-		return 3.0;
+		return m_deltaTime;
 	}
 
-	void Timer::set_delta(double delta)
-	{
-		m_delta = delta;
-	}
-
-	// Decrements the delta_time
-	void Timer::dec_delta()
-	{
-		m_delta--;
-	}
-
-	void Timer::set_frames(int frames)
-	{
-		m_counted_frames = frames;
-	}
-
-	int Timer::get_frames() const
+	int Time::GetFrames() const
 	{
 		return m_counted_frames;
 	}
 
-	void Timer::update()
+	void Time::UpdateDeltatime()
+	{
+		Uint32 now = SDL_GetTicks();
+		m_deltaTime += (now - lastTime) / msPerTick;
+		lastTime = now;
+	}
+
+	void Time::DecDeltatime()
+	{
+		m_deltaTime -= 1;
+	}
+
+	void Time::UpdateFps()
 	{
 		if (!paused) {
 			m_counted_frames++;
@@ -115,6 +121,8 @@ namespace Breakout {
 		double elapsed_secounds = elapsed_ms / 1000.0;
 
 		m_fps = m_counted_frames / elapsed_secounds;
+
+		
 	}
 
 

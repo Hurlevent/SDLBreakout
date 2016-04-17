@@ -1,8 +1,6 @@
 //
-//  CompositeMovable.h
-//  SDLBreakout
-//
-//  Created by Oliver Eftevaag on 31.03.2016.
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
 //  Copyright © 2016 SDLBreakout. All rights reserved.
 //
 
@@ -15,8 +13,6 @@
 
 namespace Breakout {
     
-    // Do you remember the design pattern composite??
-    // I think it can be used for updating the positions of our gameObjects
     class CompositeRenderable{
     public:
 		Menu menu;

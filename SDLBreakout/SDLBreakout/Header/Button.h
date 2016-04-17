@@ -1,3 +1,9 @@
+//
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
+//  Copyright © 2016 SDLBreakout. All rights reserved.
+//
+
 #ifndef Button_h
 #define Button_h
 
@@ -25,5 +31,5 @@ namespace Breakout {
 		SDL_Rect m_properties;
 	};
 }
-#endif // ! Button_h
+#endif 
 

@@ -1,12 +1,8 @@
 //
-//  IMovable.hpp
-//  SDLBreakout
-//
-//  Created by Oliver Eftevaag on 31.03.2016.
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
 //  Copyright © 2016 SDLBreakout. All rights reserved.
 //
-
-// This is an interface that all game_objects is supposed to inherit from
 
 #ifndef IRenderable_hpp
 #define IRenderable_hpp

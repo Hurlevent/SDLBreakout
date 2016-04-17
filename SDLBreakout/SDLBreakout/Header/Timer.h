@@ -1,3 +1,15 @@
+//
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
+//  Copyright © 2016 SDLBreakout. All rights reserved.
+//
+
+//
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
+//  Copyright © 2016 SDLBreakout. All rights reserved.
+//
+
 #ifndef TIMER
 #define TIMER
 
@@ -6,9 +18,6 @@
 #elif __APPLE__
 #include <SDL2/SDL.h>
 #endif
-
-
-// This is the "Advanced Timer" from the lazyfoo tutorials
 
 namespace Breakout {
 	class Timer

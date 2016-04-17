@@ -1,8 +1,6 @@
 //
-//  Paddle.cpp
-//  SDLBreakout
-//
-//  Created by Oliver Eftevaag on 31.03.2016.
+//  Created by Oliver Eftevaag, Alexander Larsen & Gunnar A. Holst
+//	04.2016
 //  Copyright © 2016 SDLBreakout. All rights reserved.
 //
 
@@ -37,20 +35,8 @@ namespace Breakout {
     }
     
     void Paddle::render_object(const Renderer * rend, const InputManager * input, const Timer * timer){
-
-		
+				
 		double deltatime = timer->get_delta();
-		
-		/*
-		std::string deltastr;
-		int num_bytes = snprintf(&deltastr[0], deltastr.max_size(), "%.2f", deltatime);
-		if (num_bytes < deltastr.max_size())
-		{
-			deltastr.resize(num_bytes);
-		}
-
-		 std::cout << "Deltatime: " << deltastr << std::endl;
-        */
 	
 		if (input->get_flag_space() == true) {
 			m_ball->SetBall(false);
