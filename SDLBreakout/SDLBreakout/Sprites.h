@@ -36,7 +36,10 @@ enum TTF_TEXTURES
 	SCORE,
 	TIME,
 	SOUND,
-	HEALTH
+	HEALTH,
+	BREAKOUT,
+	START,
+	EXIT
 };
 
 #endif /* Sprites_h */

@@ -9,9 +9,9 @@ namespace Breakout {
 			std::cout << "PROPS: " << m_properties.x << ", " << m_properties.y << ", " << m_properties.w << ", " << m_properties.h << std::endl;
 		}
 
-		int Button::listen_to_click(const Renderer * rend, const InputManager * input)
+		bool Button::listen_to_click(const Renderer * rend, const InputManager * input)
 		{
-			int clicked = 0;
+			bool clicked = false;
 			SDL_Point mouse_pos;
 			input->get_mouse_position(mouse_pos);
 
@@ -19,7 +19,7 @@ namespace Breakout {
 				rend->set_render_color_on_mouse(0, 250, 0, 0);
 				if (input->handle_mouse_events() == true)
 				{
-					clicked = 1;
+					clicked = true;
 				}
 			}
 			else {
@@ -30,7 +30,7 @@ namespace Breakout {
 		
 		void Button::render_object(const Renderer * rend, const InputManager * input, const Timer * timer)
 		{
-			// std::cout << "Rendering Texture: " << m_texture_id << ", Rect: " << m_properties.x << ", " << m_properties.y << ", " << m_properties.w << ", " << m_properties.h << std::endl;
-			rend->render_texture(m_texture_id, &m_properties, nullptr);
+			rend->update_font_texture_text(m_texture_id, text.c_str(), SDL_Color{ 0,0,0 });
+			rend->render_font_texture(m_texture_id, &m_properties, nullptr);
 		}
 }

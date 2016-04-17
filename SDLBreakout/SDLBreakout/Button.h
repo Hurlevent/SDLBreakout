@@ -7,16 +7,16 @@
 #include "Window.hpp"
 #include "IRenderable.hpp"
 #include "Sprites.h"
-
+#include <string>
 
 namespace Breakout {
 	class Button : public IRenderable {
 
 	public:
 		Button(int texture_id, int posX, int posY, int width = 100, int height = 20);
-		int listen_to_click(const Renderer * rend, const InputManager * input);
+		bool listen_to_click(const Renderer * rend, const InputManager * input);
 		void render_object(const Renderer * rend, const InputManager * input, const Timer * timer = nullptr);
-
+		std::string text;
 	private:
 
 		int m_texture_id;

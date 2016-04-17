@@ -10,9 +10,11 @@ namespace Breakout {
 		screen_Height = height;
 		screen_Width = width;
 		m_sound.loadSound("PongDark");
-		m_speedX = -1;
-		m_speedY = -1;
+		velocity.set_x(-1);
+		velocity.set_y(-1);
+	
 		GoBall = true;
+		m_gameover = false;
 	}
 	Ball::~Ball()
 	{
@@ -47,10 +49,10 @@ namespace Breakout {
 	void Ball::SetForce()
 	{
 		if (GoBall == false) {
-			m_properties->x += m_speedX;
-			m_properties->y += m_speedY;
-			m_collider->x += m_speedX;
-			m_collider->y += m_speedY;
+			m_properties->x += velocity.get_x();
+			m_properties->y += velocity.get_y();
+			m_collider->x += velocity.get_x();
+			m_collider->y += velocity.get_y();
 		}
 	}
 
@@ -61,37 +63,37 @@ namespace Breakout {
 	{
 		//Treffer ballen venstre vegg eller høyere så skal den bevege seg med en speilvinkel i motsatt retning
 
-		if (m_collider->x <= m_viewport->x && m_speedX < 0)
+		if (m_collider->x <= m_viewport->x && velocity.get_x() < 0)
 		{
 			set_position_x(m_viewport->x);
-			m_speedX = -m_speedX;
+			velocity.set_x(-velocity.get_x());
 			m_sound.playSound();
 		}
 
-		if(m_collider->x + m_collider->w >= m_viewport->w && m_speedX >= 0)
+		if(m_collider->x + m_collider->w >= m_viewport->w && velocity.get_x() >= 0)
 		{
 			set_position_x(m_viewport->w - m_collider->w);
-			m_speedX = -m_speedX;
+			velocity.set_x(-velocity.get_x());
 			m_sound.playSound();
 		}
 
-		if(m_collider->y <= 0 && m_speedY < 0)
+		if(m_collider->y <= 0 && velocity.get_y() < 0)
 		{
 			set_position_y(0);
-			m_speedY = -m_speedY;
+			velocity.set_y(-velocity.get_y());
 			m_sound.playSound();
 		}
 
 		if(m_collider->y + m_collider->h >= m_viewport->h)
 		{
-			m_speedY = -m_speedY;
-			
+			GoBall = true;
 			if(PlayerStats::Instance().health > 0)
 			{
 				PlayerStats::Instance().health--;
 			} else
 			{
 				std::cout << "GAME OVER!!" << std::endl;
+				m_gameover = true;
 			}
 		}
 

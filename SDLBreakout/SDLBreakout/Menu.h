@@ -22,6 +22,9 @@ namespace Breakout {
 		int m_button_width;
 		int m_button_height;
 		int m_padding_y;
+
+		int m_number_of_buttons;
+		int m_title_h;
 		
 		int m_view; // This is a temp variable that will be replaced
 

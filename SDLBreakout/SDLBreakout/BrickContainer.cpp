@@ -106,20 +106,14 @@ namespace Breakout {
 					delete_block_on_hit((it)->get());
 				}
 		}
-		double speedX = m_ball->GetSpeedY();
-		double speedY = m_ball->GetSpeedY();
+		double speedX = m_ball->GetVelocity()->get_x();
+		double speedY = m_ball->GetVelocity()->get_y();
 
-		if (top == true) {
-			m_ball->SetSpeedY(-speedY);
+		if (top == true || bottom == true) {
+			m_ball->GetVelocity()->set_y(-speedY);
 		}
-		if (bottom == true) {
-			m_ball->SetSpeedY(-speedY);
-		}
-		if (left == true) {
-			m_ball->SetSpeedX(-speedX);
-		}	
-		if (right == true) {
-			m_ball->SetSpeedX(-speedX);
+		if (left == true || right == true) {
+			m_ball->GetVelocity()->set_x(-speedX);
 		}
     }
 	bool BrickContainer::check_ball_hit_brick(int ballX, int ballY, SDL_Rect *rectBrick)

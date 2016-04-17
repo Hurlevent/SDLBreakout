@@ -67,8 +67,10 @@ namespace Breakout {
 	{
 		for (int i = 0; i < sizeof(TTF_TEXTURES)*2; i++)
 		{
-			SDL_DestroyTexture(m_textures[i]);
-			m_textures[i] = nullptr;
+			if (m_textures[i] != nullptr) {
+				SDL_DestroyTexture(m_textures[i]);
+				m_textures[i] = nullptr;
+			}
 		}
 	}
 

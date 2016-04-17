@@ -30,7 +30,7 @@
 #include "Ball.h"
 
 #include "BrickContainer.hpp"
-
+#include <vld.h>
 
 static const int WINDOW_WIDTH = 640;
 static const int WINDOW_HEIGHT = 480;
@@ -38,7 +38,6 @@ static const int STATUSBAR_HEIGHT = 50;
 
 int main(int argc, char ** argv) {
     
-
 		Breakout::GameManager gm(WINDOW_WIDTH, WINDOW_HEIGHT, STATUSBAR_HEIGHT);
 		gm.run_gameloop();
 

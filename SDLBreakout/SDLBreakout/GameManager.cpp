@@ -10,7 +10,7 @@ namespace Breakout {
 		m_renderer(&m_window),
 		m_gameboard_viewport{0, statusbar_height, window_width, window_height - statusbar_height},
 		m_statusbar_viewport{0, 0, window_width, statusbar_height}, 
-		m_main_menu(window_width, window_height, 2), 
+		m_game_objects(window_width, window_height, 2, 100, 20),
 		m_statusbar(&m_statusbar_viewport), 
 		m_ball(&m_gameboard_viewport), 
 		m_paddle(&m_ball, (m_gameboard_viewport.w - 50) / 2, m_gameboard_viewport.h -m_statusbar_viewport.h),
@@ -27,7 +27,7 @@ namespace Breakout {
 		m_game_objects.add(dynamic_cast<GameObject *>(&m_statusbar));
 
 		m_ticks = 0;
-
+		m_game_objects.ChangeView(0);
 	}
 
 	/////////////////////////////////////////////////
@@ -35,6 +35,7 @@ namespace Breakout {
 	/////////////////////////////////////////////////
 	void GameManager::run_gameloop()
 	{
+		
 		Uint32 lastTime = SDL_GetTicks();
 		double msPerTick = 1000 / 60;
 
@@ -46,6 +47,7 @@ namespace Breakout {
 
 		while(!m_input.get_flag_quit())
 		{
+			CheckView();
 			Uint32 now = SDL_GetTicks();
 
 			delta += (now - lastTime) / msPerTick;
@@ -66,7 +68,7 @@ namespace Breakout {
 				m_renderer.clear_render();
 
 				// Executes all the game logic and creates an image in memory
-				m_game_objects.render_object(&m_renderer, &m_input, &m_timer);
+				m_game_objects.Update(&m_renderer, &m_input, &m_timer);
 
 				// Draw screen
 				m_renderer.render_present();
@@ -77,6 +79,21 @@ namespace Breakout {
 		}
 		
 		m_timer.stop();
+	}
+
+	void GameManager::CheckView() {
+		if (m_ball.m_gameover) {
+			m_game_objects.ChangeView(0);
+		}
+		if (m_game_objects.menu.get_view()==1) {
+			m_game_objects.ChangeView(1);
+			m_game_objects.menu.set_view(0);
+			m_timer.unpause();
+		}
+		if (m_input.get_flag_escape()) {
+			m_game_objects.ChangeView(0);
+			m_timer.pause();
+		}
 	}
 
 	void GameManager::render() {

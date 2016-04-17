@@ -125,9 +125,8 @@ namespace Breakout {
 			double speedx = paddleLocation*0.05;
 			double deltatime = /*win->get_delta_time();*/1;
 			std::cout << "dette er speed :" << speedx << std::endl;
-			m_ball->SetSpeedX(deltatime/speedx);
-			m_ball->SetSpeedY(deltatime/-m_ball->GetSpeedY());
-
+			m_ball->GetVelocity()->set_x(deltatime / speedx);
+			m_ball->GetVelocity()->set_y(deltatime/-(m_ball->GetVelocity()->get_y()));
 		}
 	}
 }

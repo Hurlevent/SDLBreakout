@@ -26,11 +26,12 @@ namespace Breakout {
 		SDL_Rect m_statusbar_viewport;
 		InputManager m_input;
 		CompositeRenderable m_game_objects;
-		Menu m_main_menu;
 		Statusbar m_statusbar;
 		Ball m_ball;
 		Paddle m_paddle;
 		BrickContainer m_bricks;
+
+		void CheckView();
 		
 		Timer m_timer;
 		int m_ticks;
