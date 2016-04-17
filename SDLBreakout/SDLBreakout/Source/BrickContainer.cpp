@@ -62,6 +62,7 @@ namespace Breakout {
 		{
 			(*iter)->m_active = true;
 		}
+		NoBricksLeft = false;
 	}
 
     

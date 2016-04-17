@@ -38,7 +38,7 @@ namespace Breakout {
     
     void Paddle::render_object(const Renderer * rend, const InputManager * input, const Timer * timer){
 
-		//Her varierer deltatime fra 1-3 tall, spørs helt hvordan frames er på din maskin.
+		
 		double deltatime = timer->get_delta();
 		
 		/*
@@ -125,7 +125,7 @@ namespace Breakout {
 			double speedx = paddleLocation*0.05;
 			double deltatime = /*win->get_delta_time();*/1;
 
-			m_ball->GetVelocity()->set_x(deltatime / speedx);
+			m_ball->GetVelocity()->set_x(speedx);
 			m_ball->GetVelocity()->set_y(deltatime/-(m_ball->GetVelocity()->get_y()));
 		}
 	}

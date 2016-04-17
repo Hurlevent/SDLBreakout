@@ -33,6 +33,7 @@ namespace Breakout {
 		void set_viewport(const SDL_Rect * viewport);
         
 		bool NoBricks() { return NoBricksLeft; };
+	
 		void resetBricks();
     private:
         int m_window_width;
@@ -42,6 +43,7 @@ namespace Breakout {
         int m_brick_rows;
         int m_brick_height;
 		bool NoBricksLeft;
+
 
 		Ball *m_ball;
 		SoundMix Sound;
